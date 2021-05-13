@@ -21,7 +21,7 @@ public class hello extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.getRequestDispatcher("/WEB-INF/HelloWorld.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/modules/style-guide/Inicio.jsp").forward(request, response);
 	}
 
 	/**

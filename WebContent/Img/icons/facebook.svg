@@ -1,0 +1,42 @@
+<svg version="1.2" baseProfile="tiny-ps" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24">
+	<title>facebook (1)-svg</title>
+	<defs>
+		<image  width="512" height="512" id="img1" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAAIAAQMAAADOtka5AAAAAXNSR0IB2cksfwAAAAZQTFRFGXbS8vLyuAg5UAAAAAJ0Uk5TAP9bkSK1AAADW0lEQVR4nO3dTZKjMAwFYFJZZJkj+CgczT4aR/ERsmRBhWlC0/w5FtbL4PbMY4nxV2BJZBHKqqrXceuTD18tjmv6/L5vFoDiBta3UGuAbp5/0czve4c9wfIZjA5ofwCrA57gEsyLoFyCeRHuWuCBreG8ilYLTKuond/3YBCmMKiDMIVBHYQpDEYPtPpaHo8Oi+IUR/38MY5AFMc4ql6o09F8AgDyaMwkII/GTDII0H4CqBGgwxJxTEUYQOa/chkFoFIYigEGoFIYigEGoFoaqgkGoGIcyhEGDAa0vwCoMaD7FwCLAU8CXwA2/+utSoAAAQIECBAgQIBA6cD8d4AOeFQgUIHAAwUcCCz+ztABHgUcCDwrEGhRwKOAQ4EKBDoUeKCARwGHAhUIdCjQosADBTwKOBSoQOCJAtsoJgPbKCYD2ygmA9soJgMNCmzTIBnYzk8FdmmQCuzSIBXYpcHpwC6PUgGPAg0KuOzAbn4isE/Es4F9JicC+0Q8G9hn8tmAzw402QGXHdjPPxkIFOPJQKCaSwMCr4PSgMD7pDTAlw80BELvVAIYYHbjIiDMTwRC4ylA6NOjJCD05VASEPrwJwkwKFDnAFa/7pZA8Nrffwc9AQIECBAgQIAAAQIECBAgQIDAkYn7o3zgkh24lg/csgP37IApH6jLB2x2oC8euGQHruUDt+zAPTtgygfq8gGbHeiLBy7ZgWt24FY+cM8OmPKBunzAZgfW12UA1rsJFQmsvwnKAaw/KioSWH/WlAMw5QN1dsBmBzbXvQNCUHCcAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQKBuwGCD35fkfgBoD5A5RBQAGA+ROYX8fkNqtCYDcr00EpJZzAiD3rBMBqe2eAMh9+0RAaj0oAHLvQhGQ3qoCED6bBlgEONDDUgZqBBj2uDQIcKCTqAwI5RgHhg0ihWqKA74SG8LGgeYTgFAMccC9SdDDwOu01QPjVmS1Hhg3WzV6YNzqNJ5JUWDcaDSeSVHAv07H4xgF3LvoHAW+z1stMG0oZ7TAtN9sNAwxYNrtNRqGGOC/z0fDEAPcNGB1wLwpn9EB8569sUWIAP5nILYIEcDNI7UGWG6cHHmG94B/P3QMWI5EbuEt8H0DfwB8H9uan6zAsgAAAABJRU5ErkJggg=="/>
+		<image  width="474" height="512" id="img2" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAdoAAAIAAQMAAAAfZz84AAAAAXNSR0IB2cksfwAAAAZQTFRFAAAA+vr6rg9d/AAAAAJ0Uk5TAAB2k804AAAAbklEQVR4nO3LsQ0AAAQAMJ953Wd8IGZp90YAAAAAAMAP2ZuSZVmWZVmWZVmWZVmWZVmWZVmWZVmWZVmWZVmWZVmWZVmWZVmWZVmWZVmWZVmWZVmWZVmWZVmWZVmWZVmWZVmWZVmWZVmWZVmW5XMegL6SEenl2aoAAAAASUVORK5CYII="/>
+	</defs>
+	<style>
+		tspan { white-space:pre }
+	</style>
+	<use id="Layer" href="#img1" x="0" y="0" />
+	<use id="Layer" href="#img2" x="38" y="0" />
+	<g id="Layer">
+	</g>
+	<g id="Layer">
+	</g>
+	<g id="Layer">
+	</g>
+	<g id="Layer">
+	</g>
+	<g id="Layer">
+	</g>
+	<g id="Layer">
+	</g>
+	<g id="Layer">
+	</g>
+	<g id="Layer">
+	</g>
+	<g id="Layer">
+	</g>
+	<g id="Layer">
+	</g>
+	<g id="Layer">
+	</g>
+	<g id="Layer">
+	</g>
+	<g id="Layer">
+	</g>
+	<g id="Layer">
+	</g>
+	<g id="Layer">
+	</g>
+</svg>
