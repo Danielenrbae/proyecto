@@ -13,21 +13,19 @@
     <meta name="application-name" content="Inicio" />
     <title>Inicio</title>
 
-    <link rel="stylesheet" href="/WEB-INF/assets/Script/jquery-ui-1.12.1/jquery-ui.css" media="all">
-    <link rel="stylesheet" href="/WEB-INF/assets/Script/jquerymodal/jquerymodal.css" media="all">
-    <link rel="stylesheet" href="/WEB-INF/assets/CSS/bootstrap-4.1.3/bootstrap.css" media="all">
+<!--     <link rel="stylesheet" href="/WEB-INF/assets/Script/jquery-ui-1.12.1/jquery-ui.css" media="all"> -->
+<!--     <link rel="stylesheet" href="/WEB-INF/assets/Script/jquerymodal/jquerymodal.css" media="all"> -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     
 
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
-
-    <script src="/WEB-INF/assets/Script/jquery-ui-1.12.1/jquery.js"></script>
-    <script src="/WEB-INF/assets/Script/jquery-ui-1.12.1/jquery-ui.js"></script>
-    <script src="/WEB-INF/assets/Script/jquerymodal/jquerymodal.js"></script>
-    <script src="/WEB-INF/assets/Script/owl-carousel-2.3.4/owl.carousel.min.js"></script>  
+<!--     <script src="/WEB-INF/assets/Script/jquery-ui-1.12.1/jquery.js"></script> -->
+<!--     <script src="/WEB-INF/assets/Script/jquery-ui-1.12.1/jquery-ui.js"></script> -->
+<!--     <script src="/WEB-INF/assets/Script/jquerymodal/jquerymodal.js"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
-    <script src="/WEB-INF/assets/Script/scriptPC.js"></script> 
+
 
 </head>
 
@@ -35,13 +33,19 @@
 
 <style>
 
-  
+
 	<%@ include file="/WEB-INF/assets/Script/owl-carousel-2.3.4/owl.carousel.min.css"%>
 	<%@ include file="/WEB-INF/assets/Script/owl-carousel-2.3.4/owl.theme.default.min.css"%>
 	<%@ include file="/WEB-INF/assets/CSS/themes/theme.css"%>
 	<%@ include file="/WEB-INF/assets/CSS/stylesPC.css"%>
 
 </style>
+
+<script>
+
+<%@ include file="/WEB-INF/assets/Script/owl-carousel-2.3.4/owl.carousel.min.js"%>
+<%@ include file="/WEB-INF/assets/Script/scriptPC.js"%>
+</script>
 
     
 
@@ -75,13 +79,13 @@
 
                                             <div class="pf-auth__buttons">
                 
-                            <a class="pf-auth__login" href="#">INICIAR SESIÓN</a>
+                            <span class="pf-auth__login" data-id="login">INICIAR SESIÓN</span>
                             
 
 
 
-<div class="pf-button-primary ">
-    <a class="pf-button-primary__text" href="#">REGISTRAR</a>
+<div class="pf-button-primary" data-id="registrar">
+    <span class="pf-button-primary__text" >REGISTRAR</span>
 </div>                        </div>
                     
                 </div>
@@ -112,17 +116,37 @@
       
                             <div class="pf-auth__buttons">
         
-                    <a class="pf-auth__login" href="#">INICIAR SESIÓN</a>
+                    <a class="pf-auth__login" data-id="login">INICIAR SESIÓN</a>
                     
 
 
 
-<div class="pf-button-primary ">
-    <a class="pf-button-primary__text" href="#">REGISTRAR</a>
+<div class="pf-button-primary " data-id="registrar">
+    <a class="pf-button-primary__text" >REGISTRAR</a>
 </div>                </div>
                     
         </div>
     </div>
+    
+    
+    
+    <header class="pf-header">
+
+    <div class="pf-header__info">
+        <h1 class="pf-info__title">Hacemos la vida más facil a todos.</h1>
+
+        <div class="pf-button-primary " data-id="registrar">
+    <a class="pf-button-primary__text" >Únete ya</a>
+</div>  
+    </div>
+
+    <div class="pf-header__img">
+        <img src="./Img/common/portada.png" alt="Imagen cabecera hombre sosteniendo un hamburguesa" />
+    </div>
+
+</header>
+    
+    
 <section class="pf-info1">
     <h2 class="pf-info1__title">¿QUÉ OFRECEMOS?</h2>
     <h3 class="pf-info1__subtitle">TU SOCIO DE ENTREGA DE COMIDA A DOMICILIO</h3>
@@ -188,8 +212,8 @@
 
 
 
-<div class="pf-button-primary  pf-button-primary--fill ">
-    <a class="pf-button-primary__text" href="#">Únete ya</a>
+<div class="pf-button-primary  pf-button-primary--fill " data-id="registrar">
+    <a class="pf-button-primary__text" >Únete ya</a>
 </div>
             </div>
         </div>
@@ -208,8 +232,8 @@
 
 
 
-<div class="pf-button-primary  pf-button-primary--fill ">
-    <a class="pf-button-primary__text" href="#">Únete ya</a>
+<div class="pf-button-primary  pf-button-primary--fill " data-id="registrar">
+    <a class="pf-button-primary__text" >Únete ya</a>
 </div>    </div>
 
     <div class="pf-footer__nav">
@@ -250,6 +274,132 @@
     </div>
 
 </footer>
+
+ <div class="modal pf-modal-sign-in" metodo="sign" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+    <div class="modal-dialog">
+  
+      <div class="modal-content">
+        <span class="pf-modal-sign-in__close"></span>
+        <div class="modal-body">
+          <h2 class="pf-modal-sign-in__title">Iniciar sesión en *****</h2>
+
+          <form class="pf-modal-sign-in__form" action="iniciarsesion" method="POST">
+
+            <div class="form-group">
+                <label for="email"><img src="./Img/icons/icon-email-gray.svg" alt="Icono email"></label>
+                <input type="email" class="form-control" name="email" aria-describedby="emailHelp" placeholder="E-mail" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password"><img src="./Img/icons/icon-lock-gray.svg" alt="Icono candado"></label>
+                <input type="password" class="form-control" name="password" aria-describedby="passwordhelp" placeholder="Contraseña" required>
+            </div>
+
+            <div class="form-group">
+                <span><a data-id="forgot">¿Has olvidado tu contraseña?</a></span>
+            </div>
+
+            <input class="pf-form__submit" type="submit" value="Inicia sesión con e-mail">        
+          </form>
+
+          <div class="pf-modal-sign-in__login">
+            <span>¿No tienes cuenta?</span>
+            <a data-id="registrar">Registrar</a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="modal pf-modal-sign-up" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+  
+      <div class="modal-content">
+        <span class="pf-modal-sign-up__close"></span>
+        <div class="modal-body">
+          <h2 class="pf-modal-sign-up__title">Regístrate en *****</h2>
+
+          <form class="pf-modal-sign-up__form" action="registrar" method="POST">
+
+            <div class="form-group">
+                <label for="nombre"><img src="./Img/icons/icon-pf-user-gray.svg" alt="Icono profile"></label>
+                <input type="text" class="form-control" name="nombre" aria-describedby="nombrehelp" placeholder="Nombre" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email"><img src="./Img/icons/icon-email-gray.svg" alt="Icono email"></label>
+                <input type="email" class="form-control" name="email" aria-describedby="emailHelp" placeholder="E-mail" required>
+                
+            </div>
+
+            <div class="form-group">
+                <label for="password"><img src="./Img/icons/icon-lock-gray.svg" alt="Icono candado"></label>
+                <input type="password" class="form-control" name="password" aria-describedby="passwordhelp" placeholder="Contraseña" required>
+            </div>
+
+            <div class="form-group">
+              <label for="confirm_password"><img src="./Img/icons/icon-lock-gray.svg" alt="Icono candado"></label>
+                <input type="password" class="form-control" name="confirm_password" placeholder="Vuelve a introducir la contraseña" aria-describedby="confirm_passwordhelp" required>
+            </div>
+
+            <div class="form-group">
+                <select class="form-control pf-form__select" name="user" placeholder="Seleccione un tipo de usuario" title="Seleccione un tipo de usuario" required>
+                 <option selected>Seleccione un tipo de usuario</option>
+                  <option>Cliente</option>
+                  <option>Empresa</option>
+                </select>
+            </div>
+            
+            <input class="pf-form__submit" type="submit" value="Regístrate con tu e-mail">        
+          </form>
+
+          <div class="pf-modal-sign-up__login">
+            <span>¿Ya tienes una cuenta de usuario?</span>
+            <a data-id="login">Iniciar sesión</a>
+
+            <p>
+                Al registrarse con nosotros, aceptas nuestros <a href="#">Términos de Servicio</a>y <a href="#">Política de Privacidad</a>
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  
+    <div class="modal pf-modal-sign-in forgot" id="exampleModal"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+  
+      <div class="modal-content">
+        <span class="pf-modal-sign-in__close close_forgot"></span>
+        <div class="modal-body">
+          <h2 class="pf-modal-sign-in__title">¿Has olvidado tu contraseña?</h2>
+
+          <form class="pf-modal-sign-in__form" action="#" method="POST">
+
+            <div class="form-group">
+                <label for="email"><img src="../../../assets/Img/icons/icon-email-gray.svg" alt="Icono email"></label>
+                <input type="email" class="form-control" name="email" aria-describedby="emailHelp" placeholder="E-mail" required>
+            </div>
+
+
+
+            <input class="pf-form__submit" type="submit" value="Restaurar tu contraseña">        
+          </form>
+
+          <div class="pf-modal-sign-in__login">
+            <a data-id="login">Volver a iniciar sesión</a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+
+
 
 
 

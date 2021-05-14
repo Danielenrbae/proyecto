@@ -1,4 +1,61 @@
-.pf-carrito {
+a {
+	cursor:pointer;
+}
+
+.pf-header {
+  width: 100%;
+  background-image: url("../../../Img/common/header.png");
+  background-repeat: repeat;
+  background-size: cover;
+  background-position: top;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Open Sans"; }
+  
+
+  
+    @media screen and (max-width:1024px){
+    
+	  	.pf-header .pf-header__img > img{
+	  		display: none
+	  	}
+	  	
+	  	
+    }
+  	
+  	
+  .pf-header .pf-header__info {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 50px; }
+    
+    
+    @media screen and (max-width: 1024px){
+    
+	  	.pf-header .pf-header__info {
+	  		  width: 80%;
+	  	}
+    }
+    
+    
+    
+    .pf-header .pf-header__info .pf-info__title {
+      color: #2E5056;
+      font-size: 4rem;
+      font-weight: bold; }
+    .pf-header .pf-header__info .pf-button-primary {
+      padding: 15px 45px; }
+  .pf-header .pf-header__img > img {
+    width: 514px;
+    height: 622px; }
+    
+    
+    
+    .pf-carrito {
   width: 100%;
   font-family: "Open Sans";
   padding: 0px 100px;
@@ -277,132 +334,7 @@
   font-size: 1.3rem;
   font-weight: 600;
 }
-.b2b-collection {
-  padding: 10px;
-  overflow-x: hidden;
-  margin: 20px 0;
-}
 
-.b2b-collection .b2b-collection-header {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  padding: 5px 0 20px;
-}
-
-.b2b-collection .b2b-collection-header .b2b-collection-title {
-  font-family: Lato;
-  font-size: 24px;
-  font-weight: 900;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: normal;
-  color: #333333;
-}
-
-.b2b-collection .b2b-collection-header .b2b-collection-link {
-  font-family: Lato;
-  font-size: 16px;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: normal;
-  color: #3a3a3a;
-  text-align: right;
-  text-decoration: underline;
-}
-
-.b2b-collection .b2b-collection-wrapper {
-  overflow-x: auto;
-  scrollbar-width: thin;
-  scrollbar-color: #3a3a3a7a white;
-}
-
-.b2b-collection .b2b-collection-wrapper::-webkit-scrollbar {
-  width: 12px;
-  height: 6px;
-}
-
-.b2b-collection .b2b-collection-wrapper::-webkit-scrollbar-track {
-  background: transparent;
-  height: 6px;
-}
-
-.b2b-collection .b2b-collection-wrapper::-webkit-scrollbar-thumb {
-  background-color: #3a3a3a7a;
-  opacity: .6;
-  border-radius: 20px;
-  border: 3px solid transparent;
-  height: 6px;
-}
-
-.b2b-collection .b2b-collection-wrapper .b2b-collection-row {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  padding: 10px 0;
-}
-
-.b2b-collection .b2b-collection-wrapper .b2b-collection-row .b2b-collection-item {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  padding-right: 30px;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
-.b2b-collection .b2b-collection-wrapper .b2b-collection-row .b2b-collection-item a,
-.b2b-collection .b2b-collection-wrapper .b2b-collection-row .b2b-collection-item a:hover,
-.b2b-collection .b2b-collection-wrapper .b2b-collection-row .b2b-collection-item a:visited {
-  text-decoration: none;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: column;
-  flex-direction: column;
-}
-
-.b2b-collection .b2b-collection-wrapper .b2b-collection-row .b2b-collection-item img {
-  height: 161px;
-  width: auto;
-}
-
-.b2b-collection .b2b-collection-wrapper .b2b-collection-row .b2b-collection-item .b2b-collection-text {
-  font-family: Lato;
-  font-size: 18px;
-  font-weight: bold;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: normal;
-  color: #333333;
-  padding: 10px 0;
-}
 .pf-button-primary {
   width: -webkit-fit-content;
   width: -moz-fit-content;
@@ -2751,6 +2683,7 @@
   font-weight: 600;
   font-size: 1.5rem;
   text-decoration: none;
+  cursor: pointer;
 }
 
 .pf-nav .pf-nav__container .pf-container__auth .pf-auth__buttons .pf-auth__login:hover {
@@ -3895,7 +3828,10 @@
   color: #24BFA3;
   font-size: 1.2rem;
   font-weight: 600;
+  cursor: pointer;
 }
+
+
 .pf-info4 {
   width: 100%;
   margin-top: 100px;
@@ -4103,3 +4039,14 @@
   filter: grayscale(100%);
   opacity: 0.5;
 }
+
+
+
+
+
+
+
+
+
+
+
