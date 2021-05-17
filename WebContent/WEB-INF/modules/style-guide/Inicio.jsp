@@ -320,7 +320,7 @@
         <div class="modal-body">
           <h2 class="pf-modal-sign-up__title">Regístrate en *****</h2>
 
-          <form class="pf-modal-sign-up__form" action="registrar" method="POST">
+          <form class="pf-modal-sign-up__form" >
 
             <div class="form-group">
                 <label for="nombre"><img src="./Img/icons/icon-pf-user-gray.svg" alt="Icono profile"></label>
@@ -344,15 +344,17 @@
             </div>
 
             <div class="form-group">
-                <select class="form-control pf-form__select" name="user" placeholder="Seleccione un tipo de usuario" title="Seleccione un tipo de usuario" required>
+                <select class="form-control pf-form__select" name="r_user" required>
                  <option selected>Seleccione un tipo de usuario</option>
-                  <option>Cliente</option>
-                  <option>Empresa</option>
+                  <option value="Cliente">Cliente</option>
+                  <option value="Empresa">Empresa</option>
                 </select>
             </div>
             
             <input class="pf-form__submit" type="submit" value="Regístrate con tu e-mail">        
           </form>
+          
+          <span id="error_registro"> </span>
 
           <div class="pf-modal-sign-up__login">
             <span>¿Ya tienes una cuenta de usuario?</span>
@@ -368,15 +370,18 @@
     </div>
   </div>
   
-    <div class="modal pf-modal-sign-in forgot" id="exampleModal"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+  
+  <!-- Modal -->
+  <div class="modal pf-modal-forgot" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
     <div class="modal-dialog">
   
       <div class="modal-content">
-        <span class="pf-modal-sign-in__close close_forgot"></span>
+        <span class="pf-modal-forgot__close"></span>
         <div class="modal-body">
-          <h2 class="pf-modal-sign-in__title">¿Has olvidado tu contraseña?</h2>
+          <h2 class="pf-modal-forgot__title">¿Has olvidado tu contraseña?</h2>
 
-          <form class="pf-modal-sign-in__form" action="#" method="POST">
+          <form class="pf-modal-forgot__form" action="#" method="POST">
 
             <div class="form-group">
                 <label for="email"><img src="../../../assets/Img/icons/icon-email-gray.svg" alt="Icono email"></label>
@@ -388,7 +393,7 @@
             <input class="pf-form__submit" type="submit" value="Restaurar tu contraseña">        
           </form>
 
-          <div class="pf-modal-sign-in__login">
+          <div class="pf-modal-forgot__login">
             <a data-id="login">Volver a iniciar sesión</a>
           </div>
 
@@ -396,7 +401,6 @@
       </div>
     </div>
   </div>
-  
   
 
 
