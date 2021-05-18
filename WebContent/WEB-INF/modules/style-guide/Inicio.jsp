@@ -283,7 +283,7 @@
         <div class="modal-body">
           <h2 class="pf-modal-sign-in__title">Iniciar sesión en *****</h2>
 
-          <form class="pf-modal-sign-in__form" action="iniciarsesion" method="POST">
+          <form class="pf-modal-sign-in__form">
 
             <div class="form-group">
                 <label for="email"><img src="./Img/icons/icon-email-gray.svg" alt="Icono email"></label>
@@ -294,10 +294,21 @@
                 <label for="password"><img src="./Img/icons/icon-lock-gray.svg" alt="Icono candado"></label>
                 <input type="password" class="form-control" name="password" aria-describedby="passwordhelp" placeholder="Contraseña" required>
             </div>
+            
+                <div class="form-group">
+                <select class="form-control pf-form__select" name="r_user" required>
+                 <option selected>Seleccione un tipo de usuario</option>
+                  <option value="Cliente">Cliente</option>
+                  <option value="Empresa">Empresa</option>
+                </select>
+            </div>
 
             <div class="form-group">
                 <span><a data-id="forgot">¿Has olvidado tu contraseña?</a></span>
             </div>
+            
+            <span id="error_login"> </span>
+            
 
             <input class="pf-form__submit" type="submit" value="Inicia sesión con e-mail">        
           </form>
@@ -384,7 +395,7 @@
           <form class="pf-modal-forgot__form" action="#" method="POST">
 
             <div class="form-group">
-                <label for="email"><img src="../../../assets/Img/icons/icon-email-gray.svg" alt="Icono email"></label>
+                <label for="email"><img src="./Img/icons/icon-email-gray.svg" alt="Icono email"></label>
                 <input type="email" class="form-control" name="email" aria-describedby="emailHelp" placeholder="E-mail" required>
             </div>
 
@@ -402,7 +413,31 @@
     </div>
   </div>
   
+  
+  <!-- Modal -->
+  <div class="modal pf-modal-verificacion" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+    <div class="modal-dialog">
+  
+      <div class="modal-content">
+        <span class="pf-modal-verificacion__close"></span>
+        <div class="modal-body">
+          <h2 class="pf-modal-verificacion__title">Verificar</h2>
 
+          <form class="pf-modal-verificacion__form">
+
+            <div class="form-group">
+                <label for="codigo"><img src="./Img/icons/icon-lock-gray.svg" alt="Icono profile"></label>
+                <input type="text" class="form-control" name="codigo" aria-describedby="nombrehelp" placeholder="Código" required>
+            </div>
+
+
+            <input class="pf-form__submit" type="submit" value="Verificar">        
+          </form>
+			<span id="error_verificacion"> </span>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
 

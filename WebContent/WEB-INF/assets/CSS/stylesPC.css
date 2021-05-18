@@ -4351,3 +4351,89 @@ a {
 	font-size: 1.2rem;
 	font-weight: 600;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.pf-modal-verificacion {
+  background-color: rgba(164, 226, 219, 0.25);
+  backdrop-filter: blur(14px);
+  text-align: center;
+  font-family: "Open Sans"; }
+  @media (min-width: 576px) {
+    .pf-modal-verificacion .modal-dialog {
+      max-width: 600px; } }
+  .pf-modal-verificacion .modal-dialog .modal-content {
+    position: relative;
+    border-radius: 15px;
+    box-shadow: 0 3px 6px #D4D4D4;
+    border: none;
+    background-color: white; }
+    .pf-modal-verificacion .modal-dialog .modal-content .pf-modal-verificacion__close {
+      content: "";
+      background-image: url("../../../Img/icons/icon-close-gray.svg");
+      background-size: 100% 100%;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+      z-index: 999; }
+    .pf-modal-verificacion .modal-dialog .modal-content .modal-body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 50px 0px; }
+      .pf-modal-verificacion .modal-dialog .modal-content .modal-body .pf-modal-verificacion__title {
+        color: #2E5056;
+        font-weight: bold;
+        font-size: 2.5rem;
+        margin-bottom: 50px; }
+      .pf-modal-verificacion .modal-dialog .modal-content .modal-body .pf-modal-verificacion__form {
+        width: 85%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 30px; }
+        .pf-modal-verificacion .modal-dialog .modal-content .modal-body .pf-modal-verificacion__form > .form-group {
+          width: 85%;
+          display: flex;
+          gap: 10px; }
+          .pf-modal-verificacion .modal-dialog .modal-content .modal-body .pf-modal-verificacion__form > .form-group > .form-control {
+            font-size: 1.5rem;
+            border: none;
+            border-bottom: 1px solid #F5F5F5; }
+            .pf-modal-verificacion .modal-dialog .modal-content .modal-body .pf-modal-verificacion__form > .form-group > .form-control:focus {
+              border: none;
+              border-bottom: 1.5px solid #D4D4D4;
+              outline: 0;
+              box-shadow: none; }
+        .pf-modal-verificacion .modal-dialog .modal-content .modal-body .pf-modal-verificacion__form .pf-form__submit {
+          color: #f2f2f2;
+          font-size: 1.8rem;
+          background-color: #24BFA3;
+          border: none;
+          outline: none;
+          border-radius: 35px;
+          padding: 10px;
+          width: 280px;
+          font-weight: bold;
+          cursor: pointer; }
+          .pf-modal-verificacion .modal-dialog .modal-content .modal-body .pf-modal-verificacion__form .pf-form__submit:hover {
+            background-color: #2E5056; }

@@ -10,9 +10,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import modelos.Comprador;
 import modelos.Empresa;
+import utils.Cifrado;
 
 /**
  * Servlet implementation class registrar
@@ -25,10 +27,25 @@ public class registrar extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
+	
+	HttpSession session;
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		response.sendRedirect("hello");
+		
+		session = request.getSession();
+		
+		if (session.isNew()) {
+			session.setAttribute("usuario", null);
+			session.setAttribute("email-verificacion", null);
+			session.setAttribute("codigo-verificacion", null);
+
+
+		}
+		
+		response.sendRedirect("inicio");
+		
 	}
 
 	/**
@@ -42,7 +59,7 @@ public class registrar extends HttpServlet {
 		String email;
 		String password;
 		String confirm_password;
-		String pass_cifrada;
+		
 		Comprador comprador;
 		Empresa empresa;
 		String user;
@@ -50,6 +67,7 @@ public class registrar extends HttpServlet {
 		PrintWriter out;
 		response.setContentType("text/plain");
 		out = response.getWriter();
+		session = request.getSession();
 
 		nombre = request.getParameter("nombre");
 		email = request.getParameter("email");
@@ -61,7 +79,6 @@ public class registrar extends HttpServlet {
 
 		if (password.equals(confirm_password)) {
 
-		
 			if (!user.equals("Cliente") && !user.equals("Empresa")) {
 				out.print("{ \"error\" : \"Debes seleccionar un tipo de cliente válido : Cliente o Empresa\" }");
 			}
@@ -69,57 +86,48 @@ public class registrar extends HttpServlet {
 			if (user.equals("Cliente")) {
 
 				if (comprador.leer("email", email)) {
+					
+					
+					comprador.leersiguiente();
 					out.print("{ \"error\" : \"El correo electrónico ya esta en uso\" }");
+					
+				
 				} else {
-						
+					Comprador compr;
+					String pass_cifrada;
+					
+					pass_cifrada = Cifrado.cifrado(password);
+					compr = new Comprador(email,nombre,0,pass_cifrada,null, null,null,null,false);
+					
+					if (!compr.insertar()) out.print("{ \"ok\" : 1 }");
 				}
 
 			} else if (user.equals("Empresa")) {
-				System.out.println(empresa.leer("email", email));
 				
+
 				if (empresa.leer("email", email)) {
+					empresa.leersiguiente();
 					out.print("{ \"error\" : \"El correo electrónico ya esta en uso\" }");
 				} else {
-					
 					Empresa empr;
-					empr = new Empresa(0,nombre,0,password,null,null,null,null,false,email);
+					String pass_cifrada;
 					
-					//if(empr.insertar()) System.out.println("adios");
+					pass_cifrada = Cifrado.cifrado(password);
 					
-					
+					empr = new Empresa(nombre, 0, pass_cifrada, null, null, null, null, false, email);
+
+					if (!empr.insertar()) out.print("{ \"ok\" : 1 }");
+						
+			
 				}
 
 			}
-		}else {
+		} else {
 			out.print("{ \"error\" : \"Las contraseñas no coinciden.\" }");
 		}
 
 	}
 
-	public String cifrado(String password) {
-		String password_cifrada;
-		MessageDigest md = null;
-		byte[] digest = null;
 
-		try {
-			md = MessageDigest.getInstance("SHA-256");
-			md.update(password.getBytes());
-			digest = md.digest();
-
-		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
-		}
-
-		StringBuffer sb;
-		sb = new StringBuffer();
-
-		for (byte b : digest) {
-			sb.append(String.format("%02x", b));
-		}
-
-		password_cifrada = sb.toString();
-
-		return password_cifrada;
-	}
 
 }

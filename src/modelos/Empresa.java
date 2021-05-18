@@ -37,9 +37,8 @@ public class Empresa {
 	 * @param direccion
 	 * @param foto
 	 */
-	public Empresa(int cID_empresa, String cnombre, int ctelefono, String cpassword, String cconfirm_password,
+	public Empresa(String cnombre, int ctelefono, String cpassword, String cconfirm_password,
 			String cdescripcion, String cdireccion, byte[] cfoto, boolean cverificado, String cemail) {
-		ID_empresa = cID_empresa;
 		nombre = cnombre;
 		telefono = ctelefono;
 		password = cpassword;
@@ -49,6 +48,8 @@ public class Empresa {
 		foto = cfoto;
 		verificado = cverificado;
 		email = cemail;
+		
+		con = new CConexion();
 	}
 
 	/**
@@ -67,22 +68,22 @@ public class Empresa {
 		String sql;
 		resultado = false;
 
-		con.iniciarConexion("ns3034756.ip-91-121-81.eu:5432/a20-denrbae?currentSchema=proyecto", "a20-denrbae",
-				"a20-denrbae");
+		con.iniciarConexion("ns3034756.ip-91-121-81.eu:5432/a20-denrbae", "a20-denrbae", "a20-denrbae");
 
 		if (columna.equals("") || valor.equals("") || columna.equals(null) || valor.equals(null)) {
-			sql = "SELECT * FROM proyecto.EMPRESA";
+			sql = "SELECT * FROM proyecto.empresa";
 		} else {
-			sql = "SELECT * FROM proyecto.EMPRESA where "+columna+"= ?";
+			sql = "SELECT * FROM proyecto.empresa where " + columna + "= '" + valor + "';";
 		}
+		
 
 		try {
 
 			ps = con.getConnection().prepareStatement(sql);
 
-			ps.setString(1, valor);
-			System.out.println(valor);
+			// ps.setString(1, valor);
 			rs = ps.executeQuery();
+
 			if (rs.next()) {
 				ID_empresa = rs.getInt("ID_empresa");
 				nombre = rs.getString("nombre");
@@ -92,11 +93,11 @@ public class Empresa {
 				descripcion = rs.getString("descripcion");
 				verificado = rs.getBoolean("verificado");
 				email = rs.getString("email");
-			
+
 				// falta coger las fotos
 				resultado = true;
 
-			}else {
+			} else {
 				rs.close();
 				ps.close();
 				con.cerrarConexion();
@@ -104,7 +105,7 @@ public class Empresa {
 
 		} catch (SQLException e) {
 
-			resultado = false;
+			e.printStackTrace();
 		}
 
 		return resultado;
@@ -137,16 +138,15 @@ public class Empresa {
 	}
 
 	public boolean insertar() {
-		boolean resultado = false;
+		boolean resultado;
 
 		String sql;
 		resultado = false;
+		sql = "insert into proyecto.empresa(email, nombre, password, verificado) VALUES(?,?,?,?)";
 
-		con.iniciarConexion("ns3034756.ip-91-121-81.eu:5432/a20-denrbae?currentSchema=proyecto", "a20-denrbae",
-				"a20-denrbae");
+		con.iniciarConexion("ns3034756.ip-91-121-81.eu:5432/a20-denrbae", "a20-denrbae", "a20-denrbae");
 
-		sql = "INSERT INTO EMPRESA(email, nombre, password, verificado) VALUES(?,?,?,?)";
-
+		
 		try {
 
 			ps = con.getConnection().prepareStatement(sql);
@@ -155,13 +155,16 @@ public class Empresa {
 			ps.setString(2, nombre);
 			ps.setString(3, password);
 			ps.setBoolean(4, verificado);
+			
 			if (ps.execute()) {
 				resultado = true;
 			}
+			
+			ps.close();
+			con.cerrarConexion();
 
 		} catch (SQLException e) {
-
-			resultado = false;
+			e.printStackTrace();
 		}
 
 		return resultado;

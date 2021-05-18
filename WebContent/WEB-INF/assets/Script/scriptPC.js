@@ -46,6 +46,10 @@ $(document).ready(function () {
   $(".pf-modal-sign-up__close").on("click", function () {
     $(this).parents(".pf-modal-sign-up").css("display", "none");
   });
+
+  $(".pf-modal-verificacion__close").on("click", function () {
+    $(this).parents(".pf-modal-verificacion").css("display", "none");
+  });
   $(".pf-container__desplegable").on("click", function () {
     $(".pf-nav__desplegable").toggleClass("show");
   });
@@ -84,9 +88,9 @@ $(document).ready(function () {
 
   //// METODO PARA HACER POST DE REGISTRAR
 
-  $(".pf-modal-sign-up__form").submit(function (e) {  
-e.preventDefault();
-    
+  $(".pf-modal-sign-up__form").submit(function (e) {
+    e.preventDefault();
+
     let nombre = $(".pf-modal-sign-up__form input[name='nombre']").val();
     let email = $(".pf-modal-sign-up__form input[name='email']").val();
     let password = $(".pf-modal-sign-up__form input[name='password']").val();
@@ -106,21 +110,102 @@ e.preventDefault();
           usuario: usuario,
         },
         function (data, textStatus, jqXHR) {
-          console.log(data);
           if (data != "") {
-            var json = JSON.parse(data);
+            let json = JSON.parse(data);
 
             if (json.error != "") {
               $("#error_registro").text(json.error);
             }
-          }else{
-            alert("Registro completado");
+
+            if (json.ok == 1) {
+              alert("Registro completo");
+
+              document.location.href = "/inicio";
+            } else {
+              alert("No se ha podido completar la acción - Intentelo de nuevo");
+            }
           }
         }
       );
-
     } else {
       $("#error_registro").text("Las contraseñas no coinciden");
     }
   });
+
+  //METODO PARA HACER POST DE LOGIN
+
+  $(".pf-modal-sign-in__form").submit(function (e) {
+    e.preventDefault();
+
+    let email = $(".pf-modal-sign-in__form input[name='email']").val();
+    let password = $(".pf-modal-sign-in__form input[name='password']").val();
+    let usuario = $(".pf-modal-sign-in__form select[name='r_user']").val();
+
+    $.post(
+      "iniciarsesion",
+      {
+        email: email,
+        password: password,
+        usuario: usuario,
+      },
+      function (data, textStatus, jqXHR) {
+        if (data != "") {
+          let json = JSON.parse(data);
+
+          if (json.error != "") {
+            $("#error_login").text(json.error);
+          }
+
+          if (json.ok == 1) {
+            alert("Contraseña correcta - no verificado ");
+            //DISPLAY BLOCK EL MODAL PARA LA VERIFICACION
+            $(".pf-modal-verificacion").css("display", "block");
+
+      
+          } else if (json.ok == 2) {
+            //saltar al inicio con el usuario iniciado
+            document.location.href = "/inicio";
+          } else {
+            alert("No se ha podido completar la acción - Intentelo de nuevo");
+          }
+        }
+      }
+    );
+  });
+
+//metodo post para la verificacion
+  $(".pf-modal-verificacion__form").submit(function (e) {
+    e.preventDefault();
+
+    console.log("hola");
+
+    let codigo = $(
+      ".pf-modal-verificacion__form input[name='codigo']"
+    ).val();
+
+    
+    $.post(
+      "verificacion",
+      {
+        codigo: codigo,
+      },
+      function (data, textStatus, jqXHR) {
+        if (data != "") {
+          let json = JSON.parse(data);
+          if (json.error != "") {
+            $("#error_verificacion").text(json.error);
+          }
+
+          if (json.ok == 1) {
+            alert("Verificacion exitosa");
+            document.location.href = "/inicio";
+          }
+        }
+      }
+    );
+
+    
+  });
+
+
 });

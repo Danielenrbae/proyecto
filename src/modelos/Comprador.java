@@ -39,6 +39,7 @@ public class Comprador {
 		direccion = cdireccion;
 		foto = cfoto;
 		verificado = cverificado;
+		con = new CConexion();
 	}
 
 	
@@ -91,7 +92,7 @@ public class Comprador {
 				}
 				
 			} catch (SQLException e) {
-				
+				e.printStackTrace();
 				resultado = false;
 			}
 		
@@ -120,6 +121,40 @@ public class Comprador {
 		}
 		
 		return resultado;
+	}
+	
+	public boolean insertar() {
+		boolean resultado;
+
+		String sql;
+		resultado = false;
+		sql = "insert into proyecto.comprador(email, nombre, password, verificado) VALUES(?,?,?,?)";
+
+		con.iniciarConexion("ns3034756.ip-91-121-81.eu:5432/a20-denrbae", "a20-denrbae", "a20-denrbae");
+
+		
+		try {
+
+			ps = con.getConnection().prepareStatement(sql);
+
+			ps.setString(1, email);
+			ps.setString(2, nombre);
+			ps.setString(3, password);
+			ps.setBoolean(4, verificado);
+			
+			if (ps.execute()) {
+				resultado = true;
+			}
+			
+			ps.close();
+			con.cerrarConexion();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return resultado;
+
 	}
 	
 	public String getEmail() {
