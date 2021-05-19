@@ -2,8 +2,7 @@ package controlador;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

@@ -6,28 +6,41 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class hello
+ * Servlet implementation class contacto
  */
-@WebServlet("/hello")
-public class hello extends HttpServlet {
+@WebServlet("/contacto")
+public class contacto extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-  
+    HttpSession session;
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
 		
-		request.getRequestDispatcher("/WEB-INF/HelloWorld.jsp").forward(request, response);
+		session = request.getSession();
+		
+		if (session.isNew()) {
+			session.setAttribute("usuario", null);
+			session.setAttribute("email-verificacion", null);
+			session.setAttribute("codigo-verificacion", null);
+			session.setAttribute("tipo_usuario", null);
+
+		}
+		
+		request.getRequestDispatcher("/WEB-INF/modules/style-guide/Contacto.jsp").forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		doGet(request, response);
 	}
 

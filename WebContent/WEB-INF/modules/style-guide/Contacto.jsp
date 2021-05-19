@@ -53,11 +53,6 @@
 
 
 
-
-		
-
-
-
 <nav class="pf-nav">
     <div class="pf-nav__logo">
     	<a href="inicio">
@@ -104,7 +99,7 @@
 			%>
 				<jsp:useBean id="usuario" class="modelos.Comprador" scope="session"></jsp:useBean>
 			
-				  <img class="pf-auth__icon" src="./Img/icons/icon-user.svg" alt="Icono usuario">
+				  <img class="pf-auth__icon" src="./Img/icons/icon-user.svg" alt="Icono usuario"">
 	
 		         <div class="pf-auth__options">
 		           <ul class="pf-options__menu">
@@ -163,10 +158,7 @@
 					
 					
 			%>
-				
-			
-				 
-	
+											
 		          <div class="pf-auth__logged">
                     <ul class="pf-logged__menu">
                         <li class="pf-menu__item"><span>¡Hola! <jsp:getProperty property="nombre" name="usuario"/></span></li>
@@ -184,106 +176,63 @@
         </div>
     </div>
     
-        <nav class="pf-breadcrumb" aria-label="breadcrumb">
+    <nav class="pf-breadcrumb" aria-label="breadcrumb">
 	  <ol class="breadcrumb">
 	    <li class="breadcrumb-item" aria-current="page"><a href="inicio">Inicio</a></li>
+	    <li class="breadcrumb-item" aria-current="page"><a href="contacto">Contacto</a></li>
 	  </ol>
 	</nav>
     
     
     
-    <header class="pf-header">
+    <img src="./Img/common/cabecera.png" style="width: 100vw;" alt="cabecera pagina contacto hamburguesas">
 
-    <div class="pf-header__info">
-        <h1 class="pf-info__title">Hacemos la vida más facil a todos.</h1>
+<form class="pf-form-contac">
+    <div class="form-row">
+      <div class="form-group col-sm-12 col-lg-6">
+        <label for="email">CORREO ELECTRÓNICO</label>
+        <input type="email" class="form-control" name="email" aria-describedby="emailHelp" required placeholder="Correo electrónico corporativo">
+        
+      </div>
 
-        <div class="pf-button-primary " data-id="registrar">
-    <a class="pf-button-primary__text" >Únete ya</a>
-</div>  
+      <div class="form-group col-sm-12 col-lg-6">
+        <label for="telefono">TELÉFONO</label>
+        <input type="tel" class="form-control" name="telefono" aria-describedby="telHelp" placeholder="Teléfono">
+        
+      </div>
     </div>
 
-    <div class="pf-header__img">
-        <img src="./Img/common/portada.png" alt="Imagen cabecera hombre sosteniendo un hamburguesa" />
-    </div>
-
-</header>
-    
-    
-<section class="pf-info1">
-    <h2 class="pf-info1__title">¿QUÉ OFRECEMOS?</h2>
-    <h3 class="pf-info1__subtitle">TU SOCIO DE ENTREGA DE COMIDA A DOMICILIO</h3>
-
-    <div class="pf-info1__container">
-        <div class="pf-container__card">
-            <img src="./Img/common/easy-to-use.svg" alt="icono easy to use"/>
-            <h3 class="pf-card__text">Fácil de usar</h3 class="pf-card__text">
-        </div>
-
-        <div class="pf-container__card">
-            <img src="./Img/common/truck.svg" alt="icono camion"/>
-            <h3 class="pf-card__text">Entrega más rápida</h3 class="pf-card__text">
-        </div>
-
-        <div class="pf-container__card">
-            <img src="./Img/common/medal.svg" alt="icono medalla"/>
-            <h3 class="pf-card__text">Mejor calidad</h3 class="pf-card__text">
+    <div class="form-row">
+        <div class="form-group col">
+            <label for="asunto">ASUNTO</label>
+            <input type="email" class="form-control" name="asunto" aria-describedby="asuntoHelp" required placeholder="Asunto">
         </div>
     </div>
-</section>
-<section class="pf-info2">
+    <div class="form-row">
+        <div class="form-group col ">
+            <textarea class="form-control" placeholder="Cuéntanos" required></textarea>
+            <!-- <input type="text" class="form-control pf-form-group__cuerpo"  aria-describedby="cuerpohelp" required > -->
+            <span>Máximo 500 caracteres</span>
+        </div>
+    </div>
 
-   <div class="pf-info2__title"> <h2>EXAMINA LOS PRODUCTOS</h2></div>
-   <div class="pf-info2__subtitle">
-       <h3 class="pf-subtitle__text">Categorías Destacadas</h3>
-       <a href="#"> Todos los productos </a>
-   </div>
-
-   <div class="pf-info2__container">
-       <div class="pf-container__item"><a href="#"><img src="./Img/dynamic/categoria1.jpg" alt="Imagen comida Japonesa"><p class="pf-item__text">Comida Japonesa</p class="pf-item__text"></a></div>
-       <div class="pf-container__item"><a href="#"><img src="./Img/dynamic/categoria2.jpg" alt="Imagen comida Americana"><p class="pf-item__text">Comida Americana</p class="pf-item__text"></a></div>
-       <div class="pf-container__item"><a href="#"><img src="./Img/dynamic/categoria3.jpg" alt="Imagen comida Italiana"><p class="pf-item__text">Comida Italiana</p class="pf-item__text"></a></div>
-       <div class="pf-container__item"><a href="#"><img src="./Img/dynamic/categoria4.jpg" alt="Imagen comida Mexicana"><p class="pf-item__text">Comida Mexicana</p class="pf-item__text"></a></div>
-   </div>
-
-</section><section class="pf-info3">
-  <h2 class="pf-info3__title">Nuestros Socios</h2>
-  <div class="pf-info3__container">
-          <div class="pf-container__item img-fluid"><img src="./Img/common/sushiko.svg" alt="Logo empresa sushiko" /></div>
-          <div class="pf-container__item img-fluid"><img src="./Img/common/burger-king.svg" alt="Logo empresa burger king" /></div>
-          <div class="pf-container__item img-fluid"><img src="./Img/common/pizza-hut.svg" alt="Logo empresa pizza hut" /></div>
-          <div class="pf-container__item img-fluid"><img src="./Img/common/coca-cola.svg" alt="Logo empresa coca cola" /></div>
-</section>
-
-<section class="pf-info4">
-    <h2 class="pf-info4__title">PARA LAS EMPRESAS</h2>
-    <h3 class="pf-info4__subtitle">Empieza tu Camino Aquí</h3>
-
-    <div class="pf-info4__container">
-        <div class="pf-container__info">
-            <div class="pf-info__text">
-                <p>Controla tu pedido desde la preparación hasta la entrega</p>
-                <p>Haz que tu marca crezca gracias a nuetra base de datos</p>
-                <p>Mejora tus ventas y aumenta tus beneficios</p>
-                <p>Entrega tus pedidos de forma rápida y sencilla</p>
-            </div>
-
-            <div class="pf-info__buttons">
-                <h3 class="pf-buttons__title">¡No esperes más!</h3>
-
-                
-
-
-
-<div class="pf-button-primary  pf-button-primary--fill " data-id="registrar">
-    <a class="pf-button-primary__text" >Únete ya</a>
-</div>
+    <div class="form-row">
+        <div class="form-group col">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="acepto"/>
+              <label class="form-check-label" for="acepto">
+                He leído, comprendo y acepto el tratamiento de datos personales
+              </label>
             </div>
         </div>
-        <div class="pf-container__img">
-            <img src="./Img/common/info4.jpg" alt="Imagen hombre realizando un pedido">
-        </div>
     </div>
-</section>
+
+    <div class="form-row">
+        <input class="pf-form-contac__submit" type="submit" value="Contactar">
+    </div>
+  </form>
+
+
 <footer class="pf-footer">
 
     <div class="pf-footer__container">

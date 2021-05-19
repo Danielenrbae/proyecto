@@ -96,11 +96,11 @@ public class verificacion extends HttpServlet {
 					session.setAttribute("usuario", email);
 				} else {
 					out.print("{ \"error\" : \"Ha ocurrido un error. Inténtelo de nuevo\" }");
-					
+
 				}
 			} else {
 				out.print("{ \"error\" : \"Ha ocurrido un error. Inténtelo de nuevo\" }");
-				
+
 			}
 
 		} else {
