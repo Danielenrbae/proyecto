@@ -21,31 +21,34 @@ import utils.EnvioCorreo;
 @WebServlet("/iniciarsesion")
 public class iniciarsesion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
 	HttpSession session;
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		session = request.getSession();
-		
+
 		if (session.isNew()) {
 			session.setAttribute("usuario", null);
 			session.setAttribute("email-verificacion", null);
 			session.setAttribute("codigo-verificacion", null);
-
+			session.setAttribute("tipo_usuario", null);
 
 		}
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		String email;
 		String password;
 		String usuario;
@@ -60,70 +63,101 @@ public class iniciarsesion extends HttpServlet {
 		String asunto;
 		String mensaje;
 		String to;
-		
+
 		response.setContentType("text/plain");
 		out = response.getWriter();
 		session = request.getSession();
 		email = request.getParameter("email");
 		password = request.getParameter("password");
 		usuario = request.getParameter("usuario");
-		
+
 		comprador = new Comprador();
 		empresa = new Empresa();
-		
-		
-	
+
 		if (!usuario.equals("Cliente") && !usuario.equals("Empresa")) {
 			out.print("{ \"error\" : \"Debes seleccionar un tipo de cliente válido : Cliente o Empresa\" }");
 		}
-		
+
 		if (usuario.equals("Cliente")) {
-			
+
 			if (comprador.leer("email", email)) {
-				
+
 				pass_cifrada = Cifrado.cifrado(password);
-				
+
 				if (comprador.getPassword().equals(pass_cifrada)) {
-					
-					
-					if (!comprador.isVerificado()) {
-						
-						codigo = Cifrado.generarCodigo(); //cambiar cuenta
+
+					if (comprador.isVerificado().equals("F")) {
+
+						codigo = Cifrado.generarCodigo(); // cambiar cuenta
 						from = "danieloffi00@gmail.com";
 						clave = "15enri12";
 						asunto = "Código de verificación";
 						mensaje = "El código es: " + codigo;
 						to = email;
-						
+
 						correo = new EnvioCorreo();
-						
-					//	correo.enviar(from, clave, to, asunto, mensaje);
-						
+
+						// correo.enviar(from, clave, to, asunto, mensaje);
+
 						session.setAttribute("email-verificacion", email);
 						session.setAttribute("codigo-verificacion", codigo);
+						session.setAttribute("tipo_usuario", "Cliente");
 						System.out.println(codigo);
 						out.print("{ \"ok\" : 1 }");
-						
-					}else {
+
+					} else {
 						session.setAttribute("usuario", comprador);
 						out.print("{ \"ok\" : 2 }");
 					}
-					
-					
-				}else {
+
+				} else {
 					out.print("{ \"error\" : \"Los datos son erróneos\" }");
 				}
-				
-				
-			}else {
+
+			} else {
 				out.print("{ \"error\" : \"Los datos son erróneos\" }");
 			}
-			
-		}else if (usuario.equals("Empresa")){
-			
+
+		} else if (usuario.equals("Empresa")) {
+			if (empresa.leer("email", email)) {
+
+				pass_cifrada = Cifrado.cifrado(password);
+
+				if (empresa.getPassword().equals(pass_cifrada)) {
+
+					if (empresa.isVerificado().equals("F")) {
+
+						codigo = Cifrado.generarCodigo(); // cambiar cuenta
+						from = "danieloffi00@gmail.com";
+						clave = "15enri12";
+						asunto = "Código de verificación";
+						mensaje = "El código es: " + codigo;
+						to = email;
+
+						correo = new EnvioCorreo();
+
+						// correo.enviar(from, clave, to, asunto, mensaje);
+
+						session.setAttribute("email-verificacion", email);
+						session.setAttribute("codigo-verificacion", codigo);
+						session.setAttribute("tipo_usuario", "Empresa");
+						System.out.println(codigo);
+						out.print("{ \"ok\" : 1 }");
+
+					} else {
+						session.setAttribute("usuario", empresa);
+						out.print("{ \"ok\" : 2 }");
+					}
+
+				} else {
+					out.print("{ \"error\" : \"Los datos son erróneos\" }");
+				}
+
+			} else {
+				out.print("{ \"error\" : \"Los datos son erróneos\" }");
+			}
 		}
-		
-		
+
 	}
 
 }

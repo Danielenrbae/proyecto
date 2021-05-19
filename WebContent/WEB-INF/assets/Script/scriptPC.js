@@ -160,8 +160,6 @@ $(document).ready(function () {
             alert("Contraseña correcta - no verificado ");
             //DISPLAY BLOCK EL MODAL PARA LA VERIFICACION
             $(".pf-modal-verificacion").css("display", "block");
-
-      
           } else if (json.ok == 2) {
             //saltar al inicio con el usuario iniciado
             document.location.href = "/inicio";
@@ -173,17 +171,14 @@ $(document).ready(function () {
     );
   });
 
-//metodo post para la verificacion
+  //metodo post para la verificacion
   $(".pf-modal-verificacion__form").submit(function (e) {
     e.preventDefault();
 
-    console.log("hola");
 
-    let codigo = $(
-      ".pf-modal-verificacion__form input[name='codigo']"
-    ).val();
 
-    
+    let codigo = $(".pf-modal-verificacion__form input[name='codigo']").val();
+
     $.post(
       "verificacion",
       {
@@ -198,14 +193,10 @@ $(document).ready(function () {
 
           if (json.ok == 1) {
             alert("Verificacion exitosa");
-            document.location.href = "/inicio";
+            document.location.href = json.url;
           }
         }
       }
     );
-
-    
   });
-
-
 });

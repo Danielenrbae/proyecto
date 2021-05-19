@@ -1247,6 +1247,10 @@ a {
 	z-index: 99999;
 }
 
+.modal{
+	z-index:9999;
+}
+
 .delete .pf-modal-delete__confirm {
 	margin-top: 30px;
 	width: 100%;

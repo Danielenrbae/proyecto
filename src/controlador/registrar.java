@@ -40,7 +40,7 @@ public class registrar extends HttpServlet {
 			session.setAttribute("usuario", null);
 			session.setAttribute("email-verificacion", null);
 			session.setAttribute("codigo-verificacion", null);
-
+			session.setAttribute("tipo_usuario", null);
 
 		}
 		
@@ -97,7 +97,7 @@ public class registrar extends HttpServlet {
 					String pass_cifrada;
 					
 					pass_cifrada = Cifrado.cifrado(password);
-					compr = new Comprador(email,nombre,0,pass_cifrada,null, null,null,null,false);
+					compr = new Comprador(email,nombre,0,pass_cifrada,null, null,null,null,"F");
 					
 					if (!compr.insertar()) out.print("{ \"ok\" : 1 }");
 				}
@@ -114,7 +114,7 @@ public class registrar extends HttpServlet {
 					
 					pass_cifrada = Cifrado.cifrado(password);
 					
-					empr = new Empresa(nombre, 0, pass_cifrada, null, null, null, null, false, email);
+					empr = new Empresa(nombre, 0, pass_cifrada, null, null, null, null, "F", email);
 
 					if (!empr.insertar()) out.print("{ \"ok\" : 1 }");
 						

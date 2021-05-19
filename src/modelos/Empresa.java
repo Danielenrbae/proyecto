@@ -17,7 +17,7 @@ public class Empresa {
 	private String direccion;
 	private byte[] foto;
 	private String email;
-	private boolean verificado;
+	private String verificado;
 
 	CConexion con;
 	PreparedStatement ps;
@@ -38,7 +38,7 @@ public class Empresa {
 	 * @param foto
 	 */
 	public Empresa(String cnombre, int ctelefono, String cpassword, String cconfirm_password,
-			String cdescripcion, String cdireccion, byte[] cfoto, boolean cverificado, String cemail) {
+			String cdescripcion, String cdireccion, byte[] cfoto, String cverificado, String cemail) {
 		nombre = cnombre;
 		telefono = ctelefono;
 		password = cpassword;
@@ -91,7 +91,7 @@ public class Empresa {
 				password = rs.getString("password");
 				direccion = rs.getString("direccion");
 				descripcion = rs.getString("descripcion");
-				verificado = rs.getBoolean("verificado");
+				verificado = rs.getString("verificado");
 				email = rs.getString("email");
 
 				// falta coger las fotos
@@ -122,7 +122,7 @@ public class Empresa {
 				password = rs.getString("password");
 				direccion = rs.getString("direccion");
 				descripcion = rs.getString("descripcion");
-				verificado = rs.getBoolean("verificado");
+				verificado = rs.getString("verificado");
 				email = rs.getString("email");
 				resultado = true;
 			} else {
@@ -154,7 +154,7 @@ public class Empresa {
 			ps.setString(1, email);
 			ps.setString(2, nombre);
 			ps.setString(3, password);
-			ps.setBoolean(4, verificado);
+			ps.setString(4, verificado);
 			
 			if (ps.execute()) {
 				resultado = true;
@@ -169,6 +169,45 @@ public class Empresa {
 
 		return resultado;
 
+	}
+	
+	/**
+	 * 
+	 * 
+	 * 
+	 * */
+	public boolean update(String columna, String valor, String columna_condicion, String valor_condicion) {
+		boolean resultado= false;
+		String sql;
+		
+		
+		con.iniciarConexion("ns3034756.ip-91-121-81.eu:5432/a20-denrbae?currentSchema=proyecto", "a20-denrbae", "a20-denrbae");
+		
+		sql = "UPDATE empresa set "+columna+"= ? where "+columna_condicion+"= ? ;";
+		
+		
+		try {
+			
+			ps= con.getConnection().prepareStatement(sql);
+			
+			ps.setString(1, valor);
+			ps.setString(2, valor_condicion);
+			
+			
+			if (ps.executeUpdate() == 1) {
+				resultado = true;
+			}
+			
+			
+			ps.close();
+			con.cerrarConexion();
+			
+		} catch (SQLException e) {
+			resultado = false;
+			e.printStackTrace();
+		}
+		
+		return resultado;
 	}
 
 	public int getID_empresa() {
@@ -239,16 +278,18 @@ public class Empresa {
 		this.email = email;
 	}
 
-	public boolean isVerificado() {
+	public String isVerificado() {
 		return verificado;
 	}
 
-	public void setVerificado(boolean verificado) {
+	public void setVerificado(String verificado) {
 		this.verificado = verificado;
 	}
 
 	public void setFoto(byte[] foto) {
 		this.foto = foto;
 	}
+
+
 
 }

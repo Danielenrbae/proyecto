@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="modelos.Comprador"%>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -52,6 +53,11 @@
 
 
 
+
+		
+
+
+
 <nav class="pf-nav">
     <div class="pf-nav__logo">
     	<a href="inicio">
@@ -77,16 +83,40 @@
         
                 <div class="pf-container__auth">
 
-                                            <div class="pf-auth__buttons">
+            <%
+				Comprador comprador;
+			
+				if(session.getAttribute("usuario") == null){
+			%>
+			           <div class="pf-auth__buttons">
                 
                             <span class="pf-auth__login" data-id="login">INICIAR SESIÓN</span>
                             
-
-
-
-<div class="pf-button-primary" data-id="registrar">
-    <span class="pf-button-primary__text" >REGISTRAR</span>
-</div>                        </div>
+							<div class="pf-button-primary" data-id="registrar">
+							    <span class="pf-button-primary__text" >REGISTRAR</span>
+							</div>                       
+ 						</div>
+			<%
+				}else{
+					comprador = (Comprador) session.getAttribute("usuario");
+					
+					
+			%>
+				<jsp:useBean id="usuario" class="modelos.Comprador" scope="session"></jsp:useBean>
+			
+				  <img class="pf-auth__icon" src="./Img/icons/icon-user.svg" alt="Icono usuario">
+	
+		         <div class="pf-auth__options">
+		           <ul class="pf-options__menu">
+		               <li class="pf-menu__item"><span>¡Hola! <jsp:getProperty property="nombre" name="usuario"/></span></li>
+		               <li class="pf-menu__item"><a href="#">Mi Perfil</a></li>
+		               <li class="pf-menu__item"><a href="#">Mis Pedidos</a></li>
+		                <li class="pf-menu__item"><a href="cerrarSesion">Cerrar Sesión <img src="./Img/icons/log-out.svg" alt="Icono cerrar sesion"></a></li>
+		           </ul>
+		        </div>	
+			<%
+				}
+			%>
                     
                 </div>
        
@@ -113,17 +143,43 @@
 
      
         <div class="pf-container__auth">
-      
-                            <div class="pf-auth__buttons">
         
-                    <a class="pf-auth__login" data-id="login">INICIAR SESIÓN</a>
-                    
-
-
-
-<div class="pf-button-primary " data-id="registrar">
-    <a class="pf-button-primary__text" >REGISTRAR</a>
-</div>                </div>
+        <%
+        
+        if(session.getAttribute("usuario") == null){
+			%>
+			           <div class="pf-auth__buttons">
+			        
+			 	  <a class="pf-auth__login" data-id="login">INICIAR SESIÓN</a>
+			                    
+			
+					<div class="pf-button-primary " data-id="registrar">
+					    <a class="pf-button-primary__text" >REGISTRAR</a>
+					</div>                
+			</div>
+			<%
+				}else{
+					comprador = (Comprador) session.getAttribute("usuario");
+					
+					
+			%>
+				
+			
+				 
+	
+		          <div class="pf-auth__logged">
+                    <ul class="pf-logged__menu">
+                        <li class="pf-menu__item"><span>¡Hola! <jsp:getProperty property="nombre" name="usuario"/></span></li>
+                        <li class="pf-menu__item"><a href="#">Mi Perfil</a></li>
+                        <li class="pf-menu__item"><a href="#">Mis Pedidos</a></li>
+                        <li class="pf-menu__item"><a href="cerrarSesion">Cerrar Sesión <img src="./Img/icons/log-out.svg" alt="Icono cerrar sesion"></a></li>
+                    </ul>
+                </div>
+			<%
+				}
+			%>
+      
+         
                     
         </div>
     </div>

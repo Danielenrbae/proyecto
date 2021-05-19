@@ -16,7 +16,7 @@ public class Comprador {
 	private String localidad;
 	private String direccion;
 	private byte[] foto;
-	private boolean verificado;
+	private String verificado;
 	
 	CConexion con;
 	PreparedStatement ps;
@@ -29,7 +29,7 @@ public class Comprador {
 
 
 	public Comprador(String cemail, String cnombre, int ctelefono, String cpassword, String cconfirm_password,
-			String clocalidad, String cdireccion, byte[] cfoto, boolean cverificado) {
+			String clocalidad, String cdireccion, byte[] cfoto, String cverificado) {
 		email = cemail;
 		nombre = cnombre;
 		telefono = ctelefono;
@@ -81,7 +81,7 @@ public class Comprador {
 					password = rs.getString("password");
 					localidad = rs.getString("localidad");
 					direccion = rs.getString("direccion");
-					verificado =rs.getBoolean("verificado");
+					verificado =rs.getString("verificado");
 					//falta coger las fotos
 					resultado = true;
 					
@@ -109,7 +109,7 @@ public class Comprador {
 				password = rs.getString("password");
 				localidad = rs.getString("localidad");
 				direccion = rs.getString("direccion");
-				verificado =rs.getBoolean("verificado");
+				verificado =rs.getString("verificado");
 				resultado = true;
 			}else {
 				rs.close();
@@ -122,6 +122,15 @@ public class Comprador {
 		
 		return resultado;
 	}
+	
+	
+	/**
+	 * 	Metodo para insertar al comprador en la base de datos
+	 * 
+	 * 	
+	 * 
+	 * @return boolean 
+	 */
 	
 	public boolean insertar() {
 		boolean resultado;
@@ -140,7 +149,7 @@ public class Comprador {
 			ps.setString(1, email);
 			ps.setString(2, nombre);
 			ps.setString(3, password);
-			ps.setBoolean(4, verificado);
+			ps.setString(4, verificado);
 			
 			if (ps.execute()) {
 				resultado = true;
@@ -155,6 +164,48 @@ public class Comprador {
 
 		return resultado;
 
+	}
+	
+	
+	
+	
+	/** Método para actualizar los campos del comprador
+	 * 
+	 * 
+	 * @return boolean true si se ha realizado correctamente
+	 */
+	
+	public boolean update(String columna , String valor , String columna_condicion , String valor_condicion) {
+		boolean resultado= false;
+		String sql;
+		
+		
+		con.iniciarConexion("ns3034756.ip-91-121-81.eu:5432/a20-denrbae?currentSchema=proyecto", "a20-denrbae", "a20-denrbae");
+		
+		sql = "UPDATE comprador set "+columna+"= ? where "+columna_condicion+"= ? ;";
+		
+		
+		try {
+			
+			ps= con.getConnection().prepareStatement(sql);
+			
+			ps.setString(1, valor);
+			ps.setString(2, valor_condicion);
+			
+			if (ps.executeUpdate() == 1) {
+				resultado = true;
+			}
+			
+			
+			ps.close();
+			con.cerrarConexion();
+			
+		} catch (SQLException e) {
+			resultado = false;
+			e.printStackTrace();
+		}
+		
+		return resultado;
 	}
 	
 	public String getEmail() {
@@ -223,13 +274,13 @@ public class Comprador {
 
 
 
-	public boolean isVerificado() {
+	public String isVerificado() {
 		return verificado;
 	}
 
 
 
-	public void setVerificado(boolean verificado) {
+	public void setVerificado(String verificado) {
 		this.verificado = verificado;
 	}
 	
