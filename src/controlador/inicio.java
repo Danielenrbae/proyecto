@@ -42,37 +42,23 @@ public class inicio extends HttpServlet {
 
 		tipo = (String) session.getAttribute("tipo_usuario");
 
-		
 		if (tipo != null) {
-			email = (String) session.getAttribute("usuario");
+
 			if (tipo.equals("Empresa")) {
 
-				empresa = new Empresa();
-
-				if (empresa.leer("email", email)) {
-
-					if (!empresa.leersiguiente()) {
-						session.setAttribute("usuario", empresa);
-						request.getRequestDispatcher("/WEB-INF/modules/style-guide/Resumen.jsp").forward(request,
-								response);
-					}
-
-				}
+				response.sendRedirect("resumen");
 
 			} else if (tipo.equals("Cliente")) {
-				comprador = new Comprador();
+				request.getRequestDispatcher("/WEB-INF/modules/style-guide/Inicio.jsp").forward(request, response);
 
-				if (comprador.leer("email", email)) {
-					if (!comprador.leersiguiente()) {
-						session.setAttribute("usuario", comprador);
 
-					}
-				}
 			}
+
+		}else {
+			request.getRequestDispatcher("/WEB-INF/modules/style-guide/Inicio.jsp").forward(request, response);
 
 		}
 
-		request.getRequestDispatcher("/WEB-INF/modules/style-guide/Inicio.jsp").forward(request, response);
 	}
 
 	/**

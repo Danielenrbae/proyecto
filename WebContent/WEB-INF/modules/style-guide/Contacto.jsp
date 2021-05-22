@@ -184,8 +184,8 @@
 	</nav>
     
     
-    
-    <img src="./Img/common/cabecera.png" style="width: 100vw;" alt="cabecera pagina contacto hamburguesas">
+	<div class="pf-cabecera-contacto"> 
+	</div>    
 
 <form class="pf-form-contac">
     <div class="form-row">

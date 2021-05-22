@@ -106,8 +106,9 @@ public class iniciarsesion extends HttpServlet {
 						out.print("{ \"ok\" : 1 }");
 
 					} else {
+						session.setAttribute("tipo_usuario", "Cliente");
 						session.setAttribute("usuario", comprador);
-						out.print("{ \"ok\" : 2 }");
+						out.print("{ \"ok\" : 2 ,\"url\" : \"/inicio\"}");
 					}
 
 				} else {
@@ -145,8 +146,9 @@ public class iniciarsesion extends HttpServlet {
 						out.print("{ \"ok\" : 1 }");
 
 					} else {
+						session.setAttribute("tipo_usuario", "Empresa");
 						session.setAttribute("usuario", empresa);
-						out.print("{ \"ok\" : 2 }");
+						out.print("{ \"ok\" : 2 ,\"url\" : \"/resumen\"  }");
 					}
 
 				} else {

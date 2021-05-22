@@ -35,10 +35,32 @@ $(document).ready(function () {
     $(".modal").css("display", "none");
     $(".pf-modal-forgot").css("display", "block");
   });
+  
+  $("#addProduct").on("click", function () {
+	    $(".modal").css("display", "none");
+	    $(".pf-modal-producto").css("display", "block");
+  });
+  
+ 
+  $(".pf-buttons__trash").on("click", function () {
+	    $(".modal").css("display", "none");
+	    $(".pf-modal-producto.delete").css("display", "block");
+  });
+
+
+  $("*[data-id='delete']").on("click", function () {
+	    $(this).parents(".pf-modal-producto.delete").css("display", "none");
+  });
+
+
 
   $(".pf-modal-forgot__close").on("click", function () {
     $(this).parents(".pf-modal-forgot").css("display", "none");
   });
+  
+  $(".pf-modal-producto__close").on("click", function () {
+	    $(this).parents(".pf-modal-producto").css("display", "none");
+	  });
 
   $(".pf-modal-sign-in__close").on("click", function () {
     $(this).parents(".pf-modal-sign-in").css("display", "none");
@@ -57,6 +79,8 @@ $(document).ready(function () {
   $(".pf-auth__icon").on("click", function () {
     $(".pf-auth__options").toggle();
   });
+  
+  
 
   $(".pf-container__desplegable").on("click", function () {
     $(".pf-nav-bussiness__desplegable").toggleClass("show");
@@ -86,7 +110,7 @@ $(document).ready(function () {
     return result;
   }
 
-  //// METODO PARA HACER POST DE REGISTRAR
+  // // METODO PARA HACER POST DE REGISTRAR
 
   $(".pf-modal-sign-up__form").submit(function (e) {
     e.preventDefault();
@@ -132,7 +156,7 @@ $(document).ready(function () {
     }
   });
 
-  //METODO PARA HACER POST DE LOGIN
+  // METODO PARA HACER POST DE LOGIN
 
   $(".pf-modal-sign-in__form").submit(function (e) {
     e.preventDefault();
@@ -158,11 +182,11 @@ $(document).ready(function () {
 
           if (json.ok == 1) {
             alert("Contraseña correcta - no verificado ");
-            //DISPLAY BLOCK EL MODAL PARA LA VERIFICACION
+            // DISPLAY BLOCK EL MODAL PARA LA VERIFICACION
             $(".pf-modal-verificacion").css("display", "block");
           } else if (json.ok == 2) {
-            //saltar al inicio con el usuario iniciado
-            document.location.href = "/inicio";
+            // saltar al inicio con el usuario iniciado
+            document.location.href = json.url;
           } else {
             alert("No se ha podido completar la acción - Intentelo de nuevo");
           }
@@ -171,7 +195,7 @@ $(document).ready(function () {
     );
   });
 
-  //metodo post para la verificacion
+  // metodo post para la verificacion
   $(".pf-modal-verificacion__form").submit(function (e) {
     e.preventDefault();
 
@@ -199,4 +223,57 @@ $(document).ready(function () {
       }
     );
   });
+  
+
+  //metodo post INSERTAR PRODUCTO
+
+  
+  
+  
+  
+  //config
+  
+  const labels = ["January", "February", "March", "April", "May", "June"];
+  const data = {
+    labels: labels,
+    datasets: [
+      {
+        label: "Pedidos recibidos",
+        backgroundColor: "#2E5056",
+        borderColor: "#2E5056",
+        data: [20, 10, 7, 2, 77, 15, 100],
+      },
+      {
+          label: "Pedidos entregados",
+          backgroundColor: "#24BFA3",
+          borderColor: "#24BFA3",
+          data: [0, 10, 5, 2, 20, 30, 45],
+      },
+      {
+          label: "Pedidos rechazados",
+          backgroundColor: "#011F26",
+          borderColor: "#011F26",
+          data: [4, 2, 5, 8, 1, 5, 4],
+      }
+
+    ],
+  };
+
+  const config = {
+    type: "line",
+    data,
+    options: {},
+  };
+
+  var myChart = new Chart(
+      document.getElementById('chart_resumen'),
+      config
+    );
+
+
+    $('#table_id').DataTable();
+    $('#table_id2').DataTable();
+    
+
+  
 });
