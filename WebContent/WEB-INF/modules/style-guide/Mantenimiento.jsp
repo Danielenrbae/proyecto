@@ -484,12 +484,32 @@
                         <div class="row">
                             <div class="form-group">
                                 <label for="categoria">CATEGORIA</label>
-                                <select class="form-control pf-form__select" name="categoria" placeholder="Seleccione un tipo de usuario" title="Seleccione un tipo de usuario" required>
+                                <select class="form-control pf-form__select" name="categoria" placeholder="Seleccione una categoria" title="Seleccione una categoria" required>
                                  <option selected>Seleccione una categoria</option>
-                                  <option>Mexicana</option>
-                                  <option>Italiana</option>
-                                  <option>China</option>
-                                  <option>Japonesa </option>
+                             
+                          	<%
+                          		String[] categorias;
+                            	int contador_categorias;
+                            	boolean salir_categorias;
+                            		
+                            	contador_categorias = 0;
+                            	salir_categorias= false;
+                            	
+                            	categorias = (String[]) session.getAttribute("categorias");
+                            		
+                            	while(!salir_categorias){
+                            		
+                            		if(categorias[contador_categorias] != null){                            			                            			
+                            			%>
+                            				<option> <%= categorias[contador_categorias]%> </option>
+                            			<%
+                            			contador_categorias++;
+                            		}else{                            		
+                            			salir_categorias= true;
+                            		}                            		
+                            	}                            		
+                          	%>
+                          	
                                 </select>
                             </div>
                         </div>
@@ -599,28 +619,22 @@
                           
                           
                           	<%
-                          		String[] categorias;
-                            	int contador_categorias;
-                            	boolean salir_categorias;
-                            		
+                          		                            		
                             	contador_categorias = 0;
                             	salir_categorias= false;
-                            	
-                            	categorias = (String[]) session.getAttribute("categorias");
+                            	                            
                             		
-                            	while(salir_categorias){
+                            	while(!salir_categorias){
                             		
-                            		if(categorias[contador_categorias] != null){
+                            		if(categorias[contador_categorias] != null){                            			                            			
                             			%>
-                                		<option><%=categorias[contador_categorias] %></option>
-                                		<%
-                                		contador_categorias++;
-                                		
-                            		}else{
+                            				<option> <%= categorias[contador_categorias]%> </option>
+                            			<%
+                            			contador_categorias++;
+                            		}else{                            		
                             			salir_categorias= true;
-                            		}
-                            	}
-                            		
+                            		}                            		
+                            	}                            		
                           	%>
                           	
                           	

@@ -33,10 +33,10 @@ public class Producto {
 	 * @param id_empresa
 	 * @param id_categoria
 	 */
-	public Producto(int cid_producto, String cnombre, String cdescripcion, float cprecio, byte[] cfoto, int cid_empresa,
+	public Producto(String cnombre, String cdescripcion, float cprecio, byte[] cfoto, int cid_empresa,
 			int cid_categoria) {
 
-		id_producto = cid_producto;
+	
 		nombre = cnombre;
 		descripcion = cdescripcion;
 		precio = cprecio;
@@ -152,6 +152,64 @@ public class Producto {
 
 		return resultado;
 	}
+
+	public int getId_producto() {
+		return id_producto;
+	}
+
+	public void setId_producto(int id_producto) {
+		this.id_producto = id_producto;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+	public float getPrecio() {
+		return precio;
+	}
+
+	public void setPrecio(float precio) {
+		this.precio = precio;
+	}
+
+	public byte[] getFoto() {
+		return foto;
+	}
+
+	public void setFoto(byte[] foto) {
+		this.foto = foto;
+	}
+
+	public int getId_empresa() {
+		return id_empresa;
+	}
+
+	public void setId_empresa(int id_empresa) {
+		this.id_empresa = id_empresa;
+	}
+
+	public int getId_categoria() {
+		return id_categoria;
+	}
+
+	public void setId_categoria(int id_categoria) {
+		this.id_categoria = id_categoria;
+	}
+	
+	
 	
 
 }
