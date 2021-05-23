@@ -42,7 +42,7 @@ public class insertarproducto extends HttpServlet {
 		float precio;
 		//foto
 		
-		int energia;
+		String energia;
 		int peso;
 		int valorkj;
 		int valorkcal;
@@ -93,45 +93,48 @@ public class insertarproducto extends HttpServlet {
 				precio = Float.parseFloat(request.getParameter("precio"));
 				//foto
 				
-				producto = new Producto(nombre,descripcion,precio, null,id_empresa, id_categoria);
-				
+				producto = new Producto(nombre,descripcion,precio,id_empresa, id_categoria);
+				System.out.println(producto.toString());
 				if (producto.insertar()) {
 					
+					System.out.println(producto.getNombre());
 					if (producto.leer("nombre", nombre, true)) {
-						
+						System.out.println(producto.getNombre());
+
 						//coger la id del producto y coger los parametros de la informacion nutricional
 						id_producto = producto.getId_producto();
 						
-						energia = Integer.parseInt(request.getParameter("energia"));
-						peso = Integer.parseInt(request.getParameter("peso"));
-						valorkj = Integer.parseInt(request.getParameter("valorkj"));
-						valorkcal = Integer.parseInt(request.getParameter("valorkcal"));
-						proteinas = Integer.parseInt(request.getParameter("proteinas"));
-						hidratos = Integer.parseInt(request.getParameter("hidratos"));
-						fibra = Integer.parseInt(request.getParameter("fibra"));
-						azucares = Integer.parseInt(request.getParameter("azucares"));
-						sal = Integer.parseInt(request.getParameter("sal"));
-						grasas = Integer.parseInt(request.getParameter("grasas"));
-						grasos_saturados = Integer.parseInt(request.getParameter("grasos_saturados"));
-						
-						info_nutri = new InformacionNutricional(energia, peso, valorkj, valorkcal, proteinas, hidratos, fibra, azucares, sal, grasas, grasos_saturados, id_producto);
-						
-						if (info_nutri.insertar()) {
-							out.print("{ \"ok\" : 1 }");
-							//response.sendRedirect("mantenimiento");
-						}else {
-							out.print("{ \"error\" : \"Algo ha salido mal, inténtelo de nuevo\" }");
-
-						}
+						energia =  request.getParameter("energia");
+						System.out.println(energia);
+//						peso = Integer.parseInt(request.getParameter("peso"));
+//						valorkj = Integer.parseInt(request.getParameter("valorkj"));
+//						valorkcal = Integer.parseInt(request.getParameter("valorkcal"));
+//						proteinas = Integer.parseInt(request.getParameter("proteinas"));
+//						hidratos = Integer.parseInt(request.getParameter("hidratos"));
+//						fibra = Integer.parseInt(request.getParameter("fibra"));
+//						azucares = Integer.parseInt(request.getParameter("azucares"));
+//						sal = Integer.parseInt(request.getParameter("sal"));
+//						grasas = Integer.parseInt(request.getParameter("grasas"));
+//						grasos_saturados = Integer.parseInt(request.getParameter("grasos_saturados"));
+//						
+						//info_nutri = new InformacionNutricional(energia, peso, valorkj, valorkcal, proteinas, hidratos, fibra, azucares, sal, grasas, grasos_saturados, id_producto);
+//						
+//						if (info_nutri.insertar()) {
+//							out.print("{ \"ok\" : 1 }");
+//							//response.sendRedirect("mantenimiento");
+//						}else {
+//							out.print("{ \"error\" : \"Algo ha salido mal, inténtelo de nuevo 1\" }");
+//
+//						}
 						
 					}else {
-						out.print("{ \"error\" : \"Algo ha salido mal, inténtelo de nuevo\" }");
+						out.print("{ \"error\" : \"Algo ha salido mal, inténtelo de nuevo 2\" }");
 					}					
 				}else {
-					out.print("{ \"error\" : \"Algo ha salido mal, inténtelo de nuevo\" }");
+					out.print("{ \"error\" : \"Algo ha salido mal, inténtelo de nuevo 3\" }");
 				}				
 			}else {
-				out.print("{ \"error\" : \"Algo ha salido mal, inténtelo de nuevo\" }");
+				out.print("{ \"error\" : \"Algo ha salido mal, inténtelo de nuevo 4\" }");
 			}
 			
 			

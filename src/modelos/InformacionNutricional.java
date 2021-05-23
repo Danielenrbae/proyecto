@@ -47,18 +47,18 @@ public class InformacionNutricional {
 	public InformacionNutricional(int cenergia, int cpeso, int cvalorkj, int cvalorkcal, int cproteinas, int chidratos,
 			int cfibra, int cazucares, int csal, int cgrasas, int cgrasos_saturados, int cid_producto) {
 
-		energia = energia;
-		peso = peso;
-		valorkj = valorkj;
-		valorkcal = valorkcal;
-		proteinas = proteinas;
-		hidratos = hidratos;
-		fibra = fibra;
-		azucares = azucares;
-		sal = sal;
-		grasas = grasas;
-		grasos_saturados = grasos_saturados;
-		id_producto = id_producto;
+		energia = cenergia;
+		peso = cpeso;
+		valorkj = cvalorkj;
+		valorkcal = cvalorkcal;
+		proteinas = cproteinas;
+		hidratos = chidratos;
+		fibra = cfibra;
+		azucares = cazucares;
+		sal = csal;
+		grasas = cgrasas;
+		grasos_saturados = cgrasos_saturados;
+		id_producto = cid_producto;
 		con = new CConexion();
 	}
 	
@@ -96,7 +96,7 @@ public class InformacionNutricional {
 			
 				
 			
-			if (ps.execute()) {
+			if (ps.executeUpdate() == 1) {
 				resultado = true;
 			}
 			

@@ -33,14 +33,14 @@ public class Producto {
 	 * @param id_empresa
 	 * @param id_categoria
 	 */
-	public Producto(String cnombre, String cdescripcion, float cprecio, byte[] cfoto, int cid_empresa,
+	public Producto(String cnombre, String cdescripcion, float cprecio, int cid_empresa,
 			int cid_categoria) {
 
 	
 		nombre = cnombre;
 		descripcion = cdescripcion;
 		precio = cprecio;
-		foto = cfoto;
+		//foto = cfoto;
 		id_empresa = cid_empresa;
 		id_categoria = cid_categoria;
 		con = new CConexion();
@@ -57,7 +57,7 @@ public class Producto {
 
 		String sql;
 		resultado = false;
-		sql = "insert into proyecto.producto(nombre, descripcion, precio , foto , id_empresa , id_categoria) VALUES(?,?,?,?,?,?)";
+		sql = "insert into proyecto.producto(nombre, descripcion, precio  , id_empresa , id_categoria) VALUES(?,?,?,?,?)";
 
 		con.iniciarConexion("ns3034756.ip-91-121-81.eu:5432/a20-denrbae", "a20-denrbae", "a20-denrbae");
 
@@ -69,11 +69,12 @@ public class Producto {
 			ps.setString(1, nombre);
 			ps.setString(2, descripcion);
 			ps.setFloat(3, precio);
-			ps.setBinaryStream(4, null);
-			ps.setInt(5, id_empresa);
-			ps.setInt(6, id_categoria);
+			//ps.setBinaryStream(4, null, 0);
+			ps.setInt(4, id_empresa);
+			ps.setInt(5, id_categoria);
 			
-			if (ps.execute()) {
+			if (ps.executeUpdate() == 1 ) {
+				System.out.println("1");
 				resultado = true;
 			}
 			
@@ -107,9 +108,9 @@ public class Producto {
 		con.iniciarConexion("ns3034756.ip-91-121-81.eu:5432/a20-denrbae", "a20-denrbae", "a20-denrbae");
 
 		if (columna.equals("") || valor.equals("") || columna.equals(null) || valor.equals(null)) {
-			sql = "SELECT * FROM proyecto.empresa";
+			sql = "SELECT * FROM proyecto.producto";
 		} else {
-			sql = "SELECT * FROM proyecto.empresa where " + columna + "= '" + valor + "';";
+			sql = "SELECT * FROM proyecto.producto where " + columna + "= '" + valor + "';";
 		}
 		
 
@@ -208,6 +209,14 @@ public class Producto {
 	public void setId_categoria(int id_categoria) {
 		this.id_categoria = id_categoria;
 	}
+
+	@Override
+	public String toString() {
+		return "Producto [id_producto=" + id_producto + ", nombre=" + nombre + ", descripcion=" + descripcion
+				+ ", precio=" + precio + ", id_empresa=" + id_empresa + ", id_categoria=" + id_categoria + "]";
+	}
+	
+	
 	
 	
 	

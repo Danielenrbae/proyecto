@@ -245,10 +245,12 @@ $(document).ready(function () {
     let acsaturados = $(".pf-modal-producto__principal input[name='ac-saturados']").val();
     let hcarbono = $(".pf-modal-producto__principal input[name='h-carbono']").val();
     let sal = $(".pf-modal-producto__principal input[name='sal']").val();
-    let energia = $(".pf-modal-producto__principal input[name='energia']").val();
+    let energia = $(".pf-modal-producto__principal input[name='energia']").val(); // arreglar undefined
 
+    console.log(energia+ "2");
     //comprobar que ninguno esta vacio excepto la foto
 
+    /*
     $.post("insertarproducto", 
     {
       nombre : nombre,
@@ -259,14 +261,28 @@ $(document).ready(function () {
       peso : peso,
       valorkj: venergeticokj,
       valorkcal: venergeticokcal,
+      fibra: fibra,
+      proteinas: proteinas,
+      grasas: grasas,
+      sal: sal,
+      hidratos: hcarbono,
+      grasos_saturados: acsaturados
       
 
     },
       function (data, textStatus, jqXHR) {
-        
-      }
-    );
 
+        if (data != "") {
+          let json = JSON.parse(data);
+          
+         
+          } else {
+            alert("No se ha podido completar la acción - Intentelo de nuevo");
+          }
+        }
+      
+    );
+*/
 
   });
   
