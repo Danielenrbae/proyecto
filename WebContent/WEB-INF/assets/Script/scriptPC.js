@@ -227,7 +227,48 @@ $(document).ready(function () {
 
   //metodo post INSERTAR PRODUCTO
 
-  
+  $("#insertar").on("click", function (e){
+    e.preventDefault();
+
+    let nombre = $(".pf-modal-producto__principal input[name='nombre']").val();
+    let categoria = $(".pf-modal-producto__principal select[name='categoria']").val();
+    let precio = $(".pf-modal-producto__principal input[name='precio']").val();
+    let descripcion = $(".pf-modal-producto__principal textarea[name='descripcion']").val();
+    let foto = $(".pf-modal-producto__principal input[name='imgproducto']").val();
+
+    let peso = $(".pf-modal-producto__principal input[name='peso']").val();
+    let fibra = $(".pf-modal-producto__principal input[name='fibra']").val();
+    let venergeticokj = $(".pf-modal-producto__principal input[name='v-energeticokj']").val();
+    let venergeticokcal = $(".pf-modal-producto__principal input[name='v-energeticokc']").val();
+    let grasas = $(".pf-modal-producto__principal input[name='grasas']").val();
+    let proteinas = $(".pf-modal-producto__principal input[name='proteinas']").val();
+    let acsaturados = $(".pf-modal-producto__principal input[name='ac-saturados']").val();
+    let hcarbono = $(".pf-modal-producto__principal input[name='h-carbono']").val();
+    let sal = $(".pf-modal-producto__principal input[name='sal']").val();
+    let energia = $(".pf-modal-producto__principal input[name='energia']").val();
+
+    //comprobar que ninguno esta vacio excepto la foto
+
+    $.post("insertarproducto", 
+    {
+      nombre : nombre,
+      categoria : categoria,
+      descripcion : descripcion,
+      precio: precio,
+      energia: energia,
+      peso : peso,
+      valorkj: venergeticokj,
+      valorkcal: venergeticokcal,
+      
+
+    },
+      function (data, textStatus, jqXHR) {
+        
+      }
+    );
+
+
+  });
   
   
   

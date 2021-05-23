@@ -646,7 +646,7 @@
                     <div class="form-row">
                         <div class="form-group">
                             <label for="precio">PRECIO</label>
-                            <input type="number" class="form-control" name="precio" placeholder="Precio">
+                            <input type="number" class="form-control" name="precio" placeholder="Precio" required> 
                         </div>
                     </div>
                 </div>
@@ -669,7 +669,7 @@
              <form class="pf-second__form">
 
                 <div class="pf-form__energy">
-                    <input type="text" name="energia">
+                    <input type="text" name="energia" required>
                     <label for="energia">Energía</label>
                 </div>
 
@@ -678,61 +678,61 @@
                         <li>
                             <div class="form-group">
                                 <label for="peso">Peso(g)</label>
-                                <input type="text" name="peso">
+                                <input type="text" name="peso" required >
                             </div>
                         </li>
                         <li>   
                             <div class="form-group">
                                 <label for="fibra">Fibra(g)</label>
-                                <input type="text" name="fibra">
+                                <input type="text" name="fibra" required>
                             </div>
                         </li>
                         <li>
                             <div class="form-group">
                                 <label for="v-energeticokj">Valor Energético(kJ)</label>
-                                <input type="text" name="v-energeticokj">
+                                <input type="text" name="v-energeticokj" required>
                             </div>
                         </li>
                         <li>
                             <div class="form-group">
                                 <label for="azucares">Azúcares(g)</label>
-                                <input type="text" name="azucares">
+                                <input type="text" name="azucares" required>
                             </div>
                         </li>
                         <li>
                             <div class="form-group">
                                 <label for="v-energeticokc">Valor Energético(kcal)</label>
-                                <input type="text" name="v-energeticokc">
+                                <input type="text" name="v-energeticokc" required>
                             </div>
                         </li>
                         <li>
                             <div class="form-group">
                                 <label for="grasas">Grasas(g)</label>
-                                <input type="text" name="grasas">
+                                <input type="text" name="grasas" required>
                             </div>
                         </li>
                         <li>
                             <div class="form-group">
                                 <label for="proteinas">Proteínas(g)</label>
-                                <input type="text" name="proteinas">
+                                <input type="text" name="proteinas" required>
                             </div>
                         </li>
                         <li>
                             <div class="form-group">
                                 <label for="ac-saturados">Ác. Grasos Saturados(g)</label>
-                                <input type="text" name="ac-saturados">
+                                <input type="text" name="ac-saturados" required>
                             </div>
                         </li>
                         <li>
                             <div class="form-group">
                                 <label for="h-carbono">Hidratos de Carbono(g)</label>
-                                <input type="text" name="h-carbono">
+                                <input type="text" name="h-carbono" required>
                             </div>
                         </li>
                         <li>
                             <div class="form-group">
                                 <label for="sal">Sal(g)</label>
-                                <input type="text" name="Sal">
+                                <input type="text" name="sal" required>
                             </div>
                         </li>
                     </ul>
@@ -740,8 +740,8 @@
 
                 
 
-                <div class="">
-                    <input type="submit" value="Insertar producto">
+                <div >
+                    <input id="insertar" type="submit" value="Insertar producto">
                 </div>
              </form>
 

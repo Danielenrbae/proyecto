@@ -118,7 +118,7 @@ public class insertarproducto extends HttpServlet {
 						
 						if (info_nutri.insertar()) {
 							out.print("{ \"ok\" : 1 }");
-							response.sendRedirect("mantenimiento");
+							//response.sendRedirect("mantenimiento");
 						}else {
 							out.print("{ \"error\" : \"Algo ha salido mal, inténtelo de nuevo\" }");
 
@@ -137,7 +137,7 @@ public class insertarproducto extends HttpServlet {
 			
 				
 		}else {
-			response.sendRedirect("inicio");
+			//response.sendRedirect("inicio");
 		}
 		
 		
