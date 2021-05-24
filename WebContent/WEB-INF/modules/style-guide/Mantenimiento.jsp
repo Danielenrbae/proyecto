@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="modelos.Empresa"%>
+<%@page import="modelos.Producto"%>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -147,6 +148,7 @@
     <a id="addProduct" class="pf-button-primary__text" >Añadir Producto</a>
 </div>
     <article class="pf-mantenimiento__table">
+             
         <table id="table_id2" class="pf-table">
             <thead>
                 <tr>
@@ -158,16 +160,28 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>DATO</td>
+            
+            	<%
+          			Producto[] productos;
+            	
+            		productos = (Producto[]) session.getAttribute("productos");
+            		
+            		for(int i = 0; i < productos.length; i++){
+            			            			
+            			%>
+            			 <tr>
+                    <td><%= productos[i].getId_producto() %></td>
+                    <td><%= productos[i].getNombre() %></td>
+                    
+                    <!--  ENCONTRAR EL NOMBRE DE LA CATEGORIA -->
+                    <td><%= productos[i].getId_categoria() %></td>
+                    
+                    <td><%= productos[i].getPrecio() %></td>
                     <td>
                         <div class="pf-table__buttons">
 
                             
-                            <button data-id="numeroProducto">
+                            <button data-id="<%= productos[i].getId_producto() %>">
                                 Ver producto
                             </button>
 
@@ -179,275 +193,13 @@
 
                     </td>
                 </tr>
-                <tr>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>
-                        <div class="pf-table__buttons">
-
-                          
-
-                            <button data-id="numeroProducto">
-                                Ver producto
-                            </button>
-                            <div class="pf-buttons__trash">
-                            </div>
-
-                        </div>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>
-                        <div class="pf-table__buttons">
-
-                            
-                            <button data-id="numeroProducto">
-                                Ver producto
-                            </button>
-                            
-                            <div class="pf-buttons__trash">
-                            </div>
-                        </div>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>
-                        <div class="pf-table__buttons">
-
-                            
-                            <button data-id="numeroProducto">
-                                Ver producto
-                            </button>
-                            <div class="pf-buttons__trash">
-                            </div>
-                        
-                        </div>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td>DANI</td>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>
-                        <div class="pf-table__buttons">
-
-                            
-                            <button data-id="numeroProducto">
-                                Ver producto
-                            </button>
-                            <div class="pf-buttons__trash">
-                            </div>
-                        
-                        </div>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>
-                        <div class="pf-table__buttons">
-
-                            
-                            <button data-id="numeroProducto">
-                                Ver producto
-                            </button>
-                            <div class="pf-buttons__trash">
-                            </div>
-                        
-                        </div>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>
-                        <div class="pf-table__buttons">
-
-                            
-                            <button data-id="numeroProducto">
-                                Ver producto
-                            </button>
-                            <div class="pf-buttons__trash">
-                            </div>
-                        
-                        </div>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>
-                        <div class="pf-table__buttons">
-
-                            
-                            <button data-id="numeroProducto">
-                                Ver producto
-                            </button>
-                            <div class="pf-buttons__trash">
-                            </div>
-                        
-                        </div>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>
-                        <div class="pf-table__buttons">
-
-                            
-                            <button data-id="numeroProducto">
-                                Ver producto
-                            </button>
-                            
-                            <div class="pf-buttons__trash">
-                            </div>
-                        </div>
-
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>
-                        <div class="pf-table__buttons">
-
-                            
-                            <button data-id="numeroProducto">
-                                Ver producto
-                            </button>
-                            <div class="pf-buttons__trash">
-                            </div>
-                        
-                        </div>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>
-                        <div class="pf-table__buttons">
-
-                            
-                            <button data-id="numeroProducto">
-                                Ver producto
-                            </button>
-                            <div class="pf-buttons__trash">
-                            </div>
-                        
-                        </div>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>
-                        <div class="pf-table__buttons">
-
-                            
-                            <button data-id="numeroProducto">
-                                Ver producto
-                            </button>
-                            <div class="pf-buttons__trash">
-                            </div>
-                        
-                        </div>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>
-                        <div class="pf-table__buttons">
-
-                            
-                            <button data-id="numeroProducto">
-                                Ver producto
-                            </button>
-                            <div class="pf-buttons__trash">
-                            </div>
-                        
-                        </div>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>
-                        <div class="pf-table__buttons">
-
-                            
-                            <button data-id="numeroProducto">
-                                Ver producto
-                            </button>
-                            <div class="pf-buttons__trash">
-                            </div>
-                        
-                        </div>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>
-                        <div class="pf-table__buttons">
-
-                            
-                            <button data-id="numeroProducto">
-                                Ver producto
-                            </button>
-                            <div class="pf-buttons__trash">
-                            </div>
-                        
-                        </div>
-
-                    </td>
-                </tr>
+            			<%
+            		}
+            	
+            	%>
+            
                 
+   
             </tbody>
         </table>
 
@@ -596,13 +348,20 @@
       <span class="pf-modal-producto__close"></span>
       <div class="modal-body">
         <h2 class="pf-modal-producto__title">Datos del Producto</h2>
-
-        <form class="pf-modal-producto__principal">
+        
+	      
+			<form id="imagen_Form" name="fileinfo">  
+	                    <input type="file" name="foto"/>
+	         </form>
+        <form id="form_multipart" class="pf-modal-producto__principal">
 
             <div class="pf-principal__principal row">
                 <div class="pf-principal__img">
+               
+               
                     <img src="./Img/common/pf-default-image.png" alt="Icono default">
-                    <input type="file" name="imgproducto">
+         
+                    
                 </div>
                 <div class="pf-principal__data">
                     <div class="form-row">
@@ -636,10 +395,7 @@
                             		}                            		
                             	}                            		
                           	%>
-                          	
-                          	
-                          
-                          
+                          	                          	                                                  
                             </select>
                         </div>
                     </div>
@@ -738,12 +494,15 @@
                     </ul>
                 </div>
 
-                
-
+                           
+              
                 <div >
                     <input id="insertar" type="submit" value="Insertar producto">
                 </div>
              </form>
+             
+              
+             
 
             
         </div>

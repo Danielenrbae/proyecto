@@ -234,7 +234,7 @@ $(document).ready(function () {
     let categoria = $(".pf-modal-producto select[name='categoria']").val();
     let precio = $(".pf-modal-producto input[name='precio']").val();
     let descripcion = $(".pf-modal-producto textarea[name='descripcion']").val();
-    let foto = $(".pf-modal-producto input[name='imgproducto']").val();
+    //let foto = $(".pf-modal-producto input[name='foto']").val();
 
     let peso = $(".pf-modal-producto input[name='peso']").val();
     let fibra = $(".pf-modal-producto input[name='fibra']").val();
@@ -248,11 +248,26 @@ $(document).ready(function () {
     let energia = $(".pf-modal-producto input[name='energia']").val(); 
     let azucares = $(".pf-modal-producto input[name='azucares']").val(); 
 
-    
+    let formulario = document.getElementById("imagen_Form");
+
+
     
     //comprobar que ninguno esta vacio excepto la foto
 
-    
+    let formimg = new FormData(document.forms.namedItem("fileinfo"));
+    $.ajax({
+      type: "POST",
+      url: "subirFoto",
+      data:  formimg,
+      processData: false,
+      contentType: false,
+      cache: false,
+      success: function (response) {
+          alert("correcto");
+      }
+    });
+
+      
     $.post("insertarproducto", 
     {
       nombre : nombre,
@@ -280,6 +295,8 @@ $(document).ready(function () {
           
           if (json.ok == 1) {
 
+          
+
             alert("Producto insertado correctamente");
 
             $(".pf-modal-producto__principal")[0].reset();
@@ -297,7 +314,11 @@ $(document).ready(function () {
     );
 
 
-  });
+
+}); 
+
+  
+   
   
   
   

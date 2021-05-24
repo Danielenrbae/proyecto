@@ -1,5 +1,6 @@
 package controlador;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -36,6 +37,8 @@ public class insertarproducto extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		File file;
 		
 		String nombre;
 		String descripcion;
@@ -92,11 +95,12 @@ public class insertarproducto extends HttpServlet {
 				descripcion = (String) request.getParameter("descripcion");
 				precio = Float.parseFloat(request.getParameter("precio"));
 				//foto
+				file = (File) session.getAttribute("file");
 				
-				producto = new Producto(nombre,descripcion,precio,id_empresa, id_categoria);
+				producto = new Producto(nombre,descripcion,precio,id_empresa, id_categoria ,file );
 				if (producto.insertar()) {
 					
-					if (producto.leer("nombre", nombre, true)) {
+					if (producto.leer("nombre", nombre, true, false, false)) {
 
 						//coger la id del producto y coger los parametros de la informacion nutricional
 						id_producto = producto.getId_producto();
@@ -117,7 +121,10 @@ public class insertarproducto extends HttpServlet {
 						info_nutri = new InformacionNutricional(energia, peso, valorkj, valorkcal, proteinas, hidratos, fibra, azucares, sal, grasas, grasos_saturados, id_producto);
 						
 						if (info_nutri.insertar()) {
-							out.print("{ \"ok\" : 1 }");
+														
+							if (file.delete()) {
+								out.print("{ \"ok\" : 1 }");
+							}
 							//response.sendRedirect("mantenimiento");
 						}else {
 							out.print("{ \"error\" : \"Algo ha salido mal, inténtelo de nuevo 1\" }");
