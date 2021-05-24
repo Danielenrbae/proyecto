@@ -8,17 +8,17 @@ import utils.CConexion;
 
 public class InformacionNutricional {
 
-	private int energia;
-	private int peso;
-	private int valorkj;
-	private int valorkcal;
-	private int proteinas;
-	private int hidratos;
-	private int fibra;
-	private int azucares;
-	private int sal;
-	private int grasas;
-	private int grasos_saturados;
+	private double energia;
+	private double peso;
+	private double valorkj;
+	private double valorkcal;
+	private double proteinas;
+	private double hidratos;
+	private double fibra;
+	private double azucares;
+	private double sal;
+	private double grasas;
+	private double grasos_saturados;
 
 	private int id_producto;
 
@@ -44,8 +44,8 @@ public class InformacionNutricional {
 	 * @param grasos_saturados
 	 * @param id_producto
 	 */
-	public InformacionNutricional(int cenergia, int cpeso, int cvalorkj, int cvalorkcal, int cproteinas, int chidratos,
-			int cfibra, int cazucares, int csal, int cgrasas, int cgrasos_saturados, int cid_producto) {
+	public InformacionNutricional(double cenergia, double cpeso, double cvalorkj, double cvalorkcal, double cproteinas, double chidratos,
+			double cfibra, double cazucares, double csal, double cgrasas, double cgrasos_saturados, int cid_producto) {
 
 		energia = cenergia;
 		peso = cpeso;
@@ -81,17 +81,17 @@ public class InformacionNutricional {
 
 			ps = con.getConnection().prepareStatement(sql);
 
-			ps.setInt(1, energia);
-			ps.setInt(2, peso);
-			ps.setInt(3, valorkj);
-			ps.setInt(4, valorkcal);
-			ps.setInt(5, proteinas);
-			ps.setInt(6, hidratos);
-			ps.setInt(7, fibra);
-			ps.setInt(8, azucares);
-			ps.setInt(9, sal);
-			ps.setInt(10, grasas);
-			ps.setInt(11, grasos_saturados);
+			ps.setDouble(1, energia);
+			ps.setDouble(2, peso);
+			ps.setDouble(3, valorkj);
+			ps.setDouble(4, valorkcal);
+			ps.setDouble(5, proteinas);
+			ps.setDouble(6, hidratos);
+			ps.setDouble(7, fibra);
+			ps.setDouble(8, azucares);
+			ps.setDouble(9, sal);
+			ps.setDouble(10, grasas);
+			ps.setDouble(11, grasos_saturados);
 			ps.setInt(12, id_producto);
 			
 				
@@ -105,6 +105,7 @@ public class InformacionNutricional {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+			resultado = false;
 		}
 
 		return resultado;

@@ -74,7 +74,7 @@ public class Producto {
 			ps.setInt(5, id_categoria);
 			
 			if (ps.executeUpdate() == 1 ) {
-				System.out.println("1");
+				
 				resultado = true;
 			}
 			
