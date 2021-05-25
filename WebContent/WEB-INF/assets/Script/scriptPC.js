@@ -35,38 +35,33 @@ $(document).ready(function () {
     $(".modal").css("display", "none");
     $(".pf-modal-forgot").css("display", "block");
   });
-  
+
   $("#addProduct").on("click", function () {
-	    $(".modal").css("display", "none");
-	    $(".pf-modal-producto").css("display", "block");
+    $(".modal").css("display", "none");
+    $(".pf-modal-producto").css("display", "block");
   });
-  
- 
-  $(".pf-buttons__trash").on("click", function () {
-	    $(".modal").css("display", "none");
-	    $(".pf-modal-producto.delete").css("display", "block");
-  });
-
-
-  $("*[data-id='delete']").on("click", function () {
-	    $(this).parents(".pf-modal-producto.delete").css("display", "none");
-  });
-
-
 
   $(".pf-modal-forgot__close").on("click", function () {
     $(this).parents(".pf-modal-forgot").css("display", "none");
   });
-  
+
   $(".pf-modal-producto__close").on("click", function () {
-	    $(this).parents(".pf-modal-producto").css("display", "none");
-	  });
+    $(this).parents(".pf-modal-producto").css("display", "none");
+  });
 
   $(".pf-modal-sign-in__close").on("click", function () {
     $(this).parents(".pf-modal-sign-in").css("display", "none");
   });
   $(".pf-modal-sign-up__close").on("click", function () {
     $(this).parents(".pf-modal-sign-up").css("display", "none");
+  });
+
+  $(".pf-modal-delete__close").on("click", function () {
+    $(this).parents(".pf-modal-delete").css("display", "none");
+  });
+
+  $("#cancelarDelete").on("click", function () {
+    $(this).parents(".pf-modal-delete").css("display", "none");
   });
 
   $(".pf-modal-verificacion__close").on("click", function () {
@@ -79,8 +74,6 @@ $(document).ready(function () {
   $(".pf-auth__icon").on("click", function () {
     $(".pf-auth__options").toggle();
   });
-  
-  
 
   $(".pf-container__desplegable").on("click", function () {
     $(".pf-nav-bussiness__desplegable").toggleClass("show");
@@ -199,8 +192,6 @@ $(document).ready(function () {
   $(".pf-modal-verificacion__form").submit(function (e) {
     e.preventDefault();
 
-
-
     let codigo = $(".pf-modal-verificacion__form input[name='codigo']").val();
 
     $.post(
@@ -223,107 +214,139 @@ $(document).ready(function () {
       }
     );
   });
-  
 
-  //metodo post INSERTAR PRODUCTO
+  // metodo post INSERTAR PRODUCTO
 
-  $("#insertar").on("click", function (e){
+  $("#insertar").on("click", function (e) {
     e.preventDefault();
 
     let nombre = $(".pf-modal-producto input[name='nombre']").val();
     let categoria = $(".pf-modal-producto select[name='categoria']").val();
     let precio = $(".pf-modal-producto input[name='precio']").val();
-    let descripcion = $(".pf-modal-producto textarea[name='descripcion']").val();
-    //let foto = $(".pf-modal-producto input[name='foto']").val();
+    let descripcion = $(
+      ".pf-modal-producto textarea[name='descripcion']"
+    ).val();
+    // let foto = $(".pf-modal-producto input[name='foto']").val();
 
     let peso = $(".pf-modal-producto input[name='peso']").val();
     let fibra = $(".pf-modal-producto input[name='fibra']").val();
-    let venergeticokj = $(".pf-modal-producto input[name='v-energeticokj']").val();
-    let venergeticokcal = $(".pf-modal-producto input[name='v-energeticokc']").val();
+    let venergeticokj = $(
+      ".pf-modal-producto input[name='v-energeticokj']"
+    ).val();
+    let venergeticokcal = $(
+      ".pf-modal-producto input[name='v-energeticokc']"
+    ).val();
     let grasas = $(".pf-modal-producto input[name='grasas']").val();
     let proteinas = $(".pf-modal-producto input[name='proteinas']").val();
     let acsaturados = $(".pf-modal-producto input[name='ac-saturados']").val();
     let hcarbono = $(".pf-modal-producto input[name='h-carbono']").val();
     let sal = $(".pf-modal-producto input[name='sal']").val();
-    let energia = $(".pf-modal-producto input[name='energia']").val(); 
-    let azucares = $(".pf-modal-producto input[name='azucares']").val(); 
+    let energia = $(".pf-modal-producto input[name='energia']").val();
+    let azucares = $(".pf-modal-producto input[name='azucares']").val();
 
     let formulario = document.getElementById("imagen_Form");
 
-
-    
-    //comprobar que ninguno esta vacio excepto la foto
+    // comprobar que ninguno esta vacio excepto la foto
 
     let formimg = new FormData(document.forms.namedItem("fileinfo"));
     $.ajax({
       type: "POST",
       url: "subirFoto",
-      data:  formimg,
+      data: formimg,
       processData: false,
       contentType: false,
       cache: false,
       success: function (response) {
-          alert("correcto");
-      }
+        alert("correcto");
+      },
     });
 
-      
-    $.post("insertarproducto", 
-    {
-      nombre : nombre,
-      categoria : categoria,
-      descripcion : descripcion,
-      precio: precio,
-      energia: energia,
-      peso : peso,
-      valorkj: venergeticokj,
-      valorkcal: venergeticokcal,
-      fibra: fibra,
-      proteinas: proteinas,
-      grasas: grasas,
-      sal: sal,
-      hidratos: hcarbono,
-      grasos_saturados: acsaturados,
-      azucares: azucares
-      
-
-    },
+    $.post(
+      "insertarproducto",
+      {
+        nombre: nombre,
+        categoria: categoria,
+        descripcion: descripcion,
+        precio: precio,
+        energia: energia,
+        peso: peso,
+        valorkj: venergeticokj,
+        valorkcal: venergeticokcal,
+        fibra: fibra,
+        proteinas: proteinas,
+        grasas: grasas,
+        sal: sal,
+        hidratos: hcarbono,
+        grasos_saturados: acsaturados,
+        azucares: azucares,
+      },
       function (data, textStatus, jqXHR) {
-
         if (data != "") {
           let json = JSON.parse(data);
-          
+
           if (json.ok == 1) {
-
-          
-
             alert("Producto insertado correctamente");
 
             $(".pf-modal-producto__principal")[0].reset();
             $(".pf-second__form")[0].reset();
-
-          }else{
-            alert("No se ha podido completar la acción - Intentelo de nuevo");
-          }
-          
           } else {
             alert("No se ha podido completar la acción - Intentelo de nuevo");
           }
+        } else {
+          alert("No se ha podido completar la acción - Intentelo de nuevo");
         }
-      
+      }
+    );
+  });
+
+  //Metodo para borrar un producto
+
+  $(".pf-buttons__trash").on("click", function () {
+    let id_producto;
+
+    id_producto = $(this).siblings(".seeProduct").attr("data-id");
+
+    //coger foto del producto
+
+    $.get(
+      "eliminarProducto",
+      {
+        idproducto: id_producto,
+      },
+      function (data, textStatus, jqXHR) {
+
+        
+        if (data != null) {
+          let json = JSON.parse(data);
+
+          if (json.ok == 1) {
+            document.location.href = "/mantenimiento?delete=true"
+            
+            $.get("bajarFoto", {
+              idproducto : id_producto,
+              param_img : "producto"
+            },
+              function (data, textStatus, jqXHR) {
+                
+              }
+            );
+        
+            
+          }
+        }
+      }
     );
 
 
+       
 
-}); 
 
-  
-   
-  
-  
-  
-  //config
-  
+
+    
+  });
+
+  // config
+
   const labels = ["January", "February", "March", "April", "May", "June"];
   const data = {
     labels: labels,
@@ -335,18 +358,17 @@ $(document).ready(function () {
         data: [20, 10, 7, 2, 77, 15, 100],
       },
       {
-          label: "Pedidos entregados",
-          backgroundColor: "#24BFA3",
-          borderColor: "#24BFA3",
-          data: [0, 10, 5, 2, 20, 30, 45],
+        label: "Pedidos entregados",
+        backgroundColor: "#24BFA3",
+        borderColor: "#24BFA3",
+        data: [0, 10, 5, 2, 20, 30, 45],
       },
       {
-          label: "Pedidos rechazados",
-          backgroundColor: "#011F26",
-          borderColor: "#011F26",
-          data: [4, 2, 5, 8, 1, 5, 4],
-      }
-
+        label: "Pedidos rechazados",
+        backgroundColor: "#011F26",
+        borderColor: "#011F26",
+        data: [4, 2, 5, 8, 1, 5, 4],
+      },
     ],
   };
 
@@ -356,15 +378,8 @@ $(document).ready(function () {
     options: {},
   };
 
-  var myChart = new Chart(
-      document.getElementById('chart_resumen'),
-      config
-    );
+  var myChart = new Chart(document.getElementById("chart_resumen"), config);
 
-
-    $('#table_id').DataTable();
-    $('#table_id2').DataTable();
-    
-
-  
+  $("#table_id").DataTable();
+  $("#table_id2").DataTable();
 });

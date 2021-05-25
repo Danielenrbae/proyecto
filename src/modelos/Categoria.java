@@ -29,6 +29,7 @@ public class Categoria {
 		id_categoria = cid_categoria;
 		nombre = cnombre;
 		descripcion = cdescripcion;
+		con = new CConexion();
 	}
 
 	/**
@@ -63,6 +64,8 @@ public class Categoria {
 			rs = ps.executeQuery();
 
 			if (rs.next()) {
+				
+				
 
 				id_categoria = rs.getInt("id_categoria");
 				nombre = rs.getString("nombre");

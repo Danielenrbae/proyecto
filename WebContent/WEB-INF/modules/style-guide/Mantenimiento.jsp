@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@page import="modelos.Empresa"%>
 <%@page import="modelos.Producto"%>
+<%@page import="java.io.OutputStream"%>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -13,7 +14,7 @@
     <meta name="robots" content="index, follow">
     <meta charset="utf-8" />
     <meta name="application-name" content="Inicio" />
-    <title>Inicio</title>
+    <title>Mantenimiento</title>
 
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
@@ -34,9 +35,6 @@
 
 <style>
 
-
-	<%@ include file="/WEB-INF/assets/Script/owl-carousel-2.3.4/owl.carousel.min.css"%>
-	<%@ include file="/WEB-INF/assets/Script/owl-carousel-2.3.4/owl.theme.default.min.css"%>
 	<%@ include file="/WEB-INF/assets/CSS/themes/theme.css"%>
 	<%@ include file="/WEB-INF/assets/CSS/stylesPC.css"%>
 
@@ -53,12 +51,16 @@
 
 <nav class="pf-nav-bussines">
   <div class="pf-nav-bussines__logo">
+  <a href="resumen">
     <img
       class="img-fluid"
       src="./Img/common/favicon.png"
       alt="Logo"
     />
+     </a>
   </div>
+  
+ 
 
   <div class="pf-nav-bussines__container">
     <span class="pf-container__desplegable">
@@ -173,15 +175,14 @@
                     <td><%= productos[i].getId_producto() %></td>
                     <td><%= productos[i].getNombre() %></td>
                     
-                    <!--  ENCONTRAR EL NOMBRE DE LA CATEGORIA -->
-                    <td><%= productos[i].getId_categoria() %></td>
+                    <td><%= productos[i].getCategoria()%></td>
                     
                     <td><%= productos[i].getPrecio() %></td>
                     <td>
                         <div class="pf-table__buttons">
 
                             
-                            <button data-id="<%= productos[i].getId_producto() %>">
+                            <button class="seeProduct" data-id="<%= productos[i].getId_producto() %>">
                                 Ver producto
                             </button>
 
@@ -334,7 +335,7 @@
 </footer>
 
 
-<!-- Modal -->
+<!-- Modal insertar producto -->
 <div 
   class="modal pf-modal-producto"
   id="exampleModal"
@@ -511,7 +512,108 @@
   </div>
 </div>
 
+<!-- Modal producto delete -->
 
+
+
+	<jsp:useBean id="delete_producto" class="modelos.Producto" scope="session"></jsp:useBean>
+<%
+	boolean param;
+	param = Boolean.parseBoolean(request.getParameter("delete"));
+	
+	if(param) { 
+  %>
+  		
+  
+<div 
+  class="modal pf-modal-delete delete"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+  style="display: block"
+  
+>
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <span data-id="delete" class="pf-modal-delete__close"></span>
+      <div class="modal-body">
+        <h2 class="pf-modal-delete__title">Datos del Producto</h2>
+
+        <form class="pf-modal-delete__principal">
+
+            <div class="pf-principal__principal row">
+                <div class="pf-principal__img">
+<!--                     <img src="./Img/dynamic/mcextreme.png" alt="Icono default"> -->
+		
+					<div>
+						<%	
+						Producto produc = (Producto) session.getAttribute("delete_producto");					
+						
+						if(produc.getFoto() != null){
+							
+							%>
+						
+							<img src="bajarFoto?param_img=producto&idproducto=<%=produc.getId_producto() %>" />
+							<%
+						}else{
+							%>
+							<img src="./Img/common/pf-default-image.png" alt="foto por defectp de no existencia" />
+							<%
+						}
+						%>
+						
+					</div>
+
+                </div>
+                <div class="pf-principal__data">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="nombre">NOMBRE DEL PRODUCTO</label>
+                            <p> <jsp:getProperty property="nombre" name="delete_producto"/> </p>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="categoria">CATEGORIA</label>
+                            <p><jsp:getProperty property="categoria" name="delete_producto"/></p>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="precio">PRECIO</label>
+                            <p><jsp:getProperty property="precio" name="delete_producto"/></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pf-principal__second row">
+                <div class="form-group">
+                    <label for="descripcion">DESCRIPCION</label>
+                    <p><jsp:getProperty property="descripcion" name="delete_producto"/></p>
+                </div>
+                
+            </div>
+        </form>
+
+        <div class="pf-modal-delete__confirm">
+            <h3 class="pf-confirm__title">¿ESTAS SEGURO QUE QUIERES ELIMINAR ESTE PRODUCTO?</h3>
+
+            <div class="pf-confirm__buttons">
+                <a id="cancelarDelete">Cancelar</a>
+                <a class="pf-button__confirm">Confirmar</a>
+            </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<%
+	}
+  %>
 
 
 

@@ -21,6 +21,7 @@ public class Producto {
 	private File file;
 	private FileInputStream input;
 	private int numeroTotal;
+	private String categoria;
 
 	CConexion con;
 	PreparedStatement ps;
@@ -82,7 +83,7 @@ public class Producto {
 			if (ps.executeUpdate() == 1) {
 
 				resultado = true;
-				
+
 			}
 
 			ps.close();
@@ -109,7 +110,7 @@ public class Producto {
 	 * @return Devuelve true o false dependiendo del resultado de la consulta
 	 */
 
-	public boolean leer(String columna, String valor, boolean unico, boolean all , boolean count) {
+	public boolean leer(String columna, String valor, boolean unico, boolean all, boolean count) {
 		boolean resultado;
 		String sql;
 		resultado = false;
@@ -117,31 +118,29 @@ public class Producto {
 		con.iniciarConexion("ns3034756.ip-91-121-81.eu:5432/a20-denrbae", "a20-denrbae", "a20-denrbae");
 
 		if (!columna.equals("") || !valor.equals("") || !columna.equals(null) || !valor.equals(null)) {
-		
-			sql = "SELECT * FROM proyecto.producto where " + columna + "= "+valor;
+
+			sql = "SELECT * FROM proyecto.producto where " + columna + "= " + valor;
 		} else {
 			sql = "SELECT * FROM proyecto.producto";
 		}
-		
+
 		if (count) {
-			sql = "SELECT count(*) FROM proyecto.producto where "+columna+ " = ?";
+			sql = "SELECT count(*) FROM proyecto.producto where " + columna + " = ?";
 			unico = true;
 		}
-		
+
 		if (all) {
 			sql = "SELECT * FROM proyecto.producto";
 		}
-		
 
 		try {
 
 			ps = con.getConnection().prepareStatement(sql);
-			
-			
+
 			if (count) {
 				ps.setInt(1, Integer.parseInt(valor));
 			}
-			
+
 			if (all) {
 				ps.setInt(1, Integer.parseInt(valor));
 			}
@@ -152,7 +151,7 @@ public class Producto {
 
 				if (count) {
 					numeroTotal = rs.getInt(1);
-				}else {
+				} else {
 					id_producto = rs.getInt("id_producto");
 					nombre = rs.getString("nombre");
 					descripcion = rs.getString("descripcion");
@@ -161,7 +160,7 @@ public class Producto {
 					id_empresa = rs.getInt("id_empresa");
 					id_categoria = rs.getInt("id_categoria");
 				}
-				
+
 				resultado = true;
 
 				if (unico) {
@@ -183,7 +182,7 @@ public class Producto {
 
 		return resultado;
 	}
-	
+
 	public boolean leersiguiente() {
 		boolean resultado = false;
 
@@ -281,6 +280,22 @@ public class Producto {
 		this.numeroTotal = numeroTotal;
 	}
 
+	public String getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
+	}
+
+	public CConexion getCon() {
+		return con;
+	}
+
+	public void setCon(CConexion con) {
+		this.con = con;
+	}
 	
 	
+
 }

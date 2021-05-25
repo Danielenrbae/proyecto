@@ -29,18 +29,20 @@ public class mantenimiento extends HttpServlet {
 		String tipo;
 		Categoria categoria;
 		String[] categorias;
-		Producto producto ;
+		Producto producto , aux_producto ;
 		Empresa empresa;
 		int contador;
 		boolean salir;
 		Producto[] productos;
 		int sizeProductos;
 		
+		
 		session = request.getSession();
 		categorias = new String[MAX_SIZE];
 		contador = 1;
 		salir = false;
 		productos = null;
+		aux_producto = null;
 		
 		tipo = (String) session.getAttribute("tipo_usuario");
 		
@@ -75,14 +77,45 @@ public class mantenimiento extends HttpServlet {
 				
 				if (producto.leer("id_empresa", String.valueOf(empresa.getID_empresa()) , false, false, false)) {
 					contador = 1;
-					productos[0] = producto;
 					
+					
+					aux_producto = new Producto();
+					
+					aux_producto.setId_producto(producto.getId_producto());
+					aux_producto.setNombre(producto.getNombre());	
+					
+					if (categoria.leer("id_categoria", String.valueOf(producto.getId_categoria()), true)) {
+						aux_producto.setCategoria(categoria.getNombre());
+					}
+					
+					aux_producto.setPrecio(producto.getPrecio());
+					
+					productos[0] = aux_producto;
+											
 					while(contador < sizeProductos) {
 						if (producto.leersiguiente()) {
-							productos[contador] = producto;
+							
+							
+							aux_producto = new Producto();
+							
+							aux_producto.setId_producto(producto.getId_producto());
+							aux_producto.setNombre(producto.getNombre());
+							
+							if (categoria.leer("id_categoria", String.valueOf(producto.getId_categoria()), true)) {
+								aux_producto.setCategoria(categoria.getNombre());
+							}
+							aux_producto.setPrecio(producto.getPrecio());
+							
+							
+							productos[contador] = aux_producto;
 							contador++;
 						}
+						
+						 
 					}
+
+					producto.getCon().cerrarConexion();
+					
 						
 				}
 					
@@ -90,7 +123,7 @@ public class mantenimiento extends HttpServlet {
 			
 			session.setAttribute("productos", productos);
 			session.setAttribute("categorias", categorias);
-						
+			
 			request.getRequestDispatcher("/WEB-INF/modules/style-guide/Mantenimiento.jsp").forward(request, response);
 			
 		}else {
