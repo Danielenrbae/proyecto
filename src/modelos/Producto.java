@@ -207,6 +207,58 @@ public class Producto {
 		}
 		return resultado;
 	}
+	
+	
+	/**
+	 * Método para insertar un producto con foto en la base de datos
+	 */
+
+	public boolean delete(String columna , String valor , String columna2, String valor2) {
+		boolean resultado;
+
+		String sql;
+		resultado = false;
+		
+		
+		sql = "delete from proyecto.producto where "+columna+ " = ?";
+		
+		if (!columna2.equals("") || !columna2.equals(null) || !valor2.equals("") || !valor2.equals(null)) {
+			sql = "delete from proyecto.producto where "+columna+ "= ? and "+columna2+" = ?";
+				
+		}
+		
+
+		con.iniciarConexion("ns3034756.ip-91-121-81.eu:5432/a20-denrbae", "a20-denrbae", "a20-denrbae");
+
+		try {
+
+			ps = con.getConnection().prepareStatement(sql);
+			
+			ps.setInt(1, Integer.parseInt(valor));
+			
+			if (!columna2.equals("") || !columna2.equals(null) || !valor2.equals("") || !valor2.equals(null)) {
+				ps.setInt(2, Integer.parseInt(valor2));
+			}
+
+
+			if (ps.executeUpdate() == 1) {
+
+				resultado = true;
+
+			}
+
+			ps.close();
+			con.cerrarConexion();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return resultado;
+
+	}
+	
+	
 
 	public int getId_producto() {
 		return id_producto;

@@ -74,6 +74,33 @@ public class eliminarProducto extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		String tipo;
+		PrintWriter out;
+		Producto producto;
+		
+		
+		session = request.getSession();
+		response.setContentType("text/plain");
+		out = response.getWriter();
+		
+		tipo = (String) session.getAttribute("tipo_usuario");
+		producto = (Producto) session.getAttribute("delete_producto"); 
+		
+		if(tipo != null && !tipo.equals("Cliente")) {
+							
+			if (producto.delete("id_producto", String.valueOf(producto.getId_producto()), "id_empresa", String.valueOf(producto.getId_empresa()))) {
+				out.print("{ \"ok\" : 1 }");
+				session.setAttribute("delete_producto", null);
+			}else {
+				out.print("{ \"error\" : \"No existe el producto que intenta borrar\" }");
+			}
+			
+
+		}else {
+			out.print("{ \"error\" : \"Error! Intentelo de nuevo\" }");
+				
+		}
+
 	}
 
 }

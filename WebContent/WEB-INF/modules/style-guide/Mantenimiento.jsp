@@ -596,13 +596,15 @@
                 
             </div>
         </form>
+        
+        <span id="errorDelete"></span>
 
         <div class="pf-modal-delete__confirm">
             <h3 class="pf-confirm__title">¿ESTAS SEGURO QUE QUIERES ELIMINAR ESTE PRODUCTO?</h3>
 
             <div class="pf-confirm__buttons">
                 <a id="cancelarDelete">Cancelar</a>
-                <a class="pf-button__confirm">Confirmar</a>
+                <a id="pf-button__confirm-delete" class="pf-button__confirm">Confirmar</a>
             </div>
         </div>
 

@@ -327,7 +327,7 @@ $(document).ready(function () {
               param_img : "producto"
             },
               function (data, textStatus, jqXHR) {
-                
+                console.log("Todo correcto");
               }
             );
         
@@ -336,14 +336,33 @@ $(document).ready(function () {
         }
       }
     );
-
-
-       
-
-
-
-    
   });
+
+  //metodo para eliminar un producto
+
+$("#pf-button__confirm-delete").on("click", function () {
+ 
+  $.post("eliminarProducto", {},
+    function (data, textStatus, jqXHR) {
+       
+      if (data != null) {
+        let json = JSON.parse(data);
+
+        if (json.error != "") {
+            $("#errorDelete").val(json.error);
+        }
+
+        if (json.ok == 1) {
+          alert("Eliminador correctamente");
+          document.location.href = "mantenimiento";
+          
+        }
+      }
+    },
+  );
+
+});
+      
 
   // config
 
