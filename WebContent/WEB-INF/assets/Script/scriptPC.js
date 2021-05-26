@@ -358,7 +358,7 @@ $("#pf-button__confirm-delete").on("click", function () {
           
         }
       }
-    },
+    }
   );
 
 });

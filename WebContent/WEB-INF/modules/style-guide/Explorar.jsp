@@ -11,10 +11,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="index, follow">
     <meta charset="utf-8" />
-    <meta name="application-name" content="Contacto" />
+    <meta name="application-name" content="Inicio" />
         <link rel="shortcut icon" href="./Img/dynamic/bigmac.png" type="image/png" >
     
-    <title>Contacto</title>
+    <title>Explorar</title>
 
 <!--     <link rel="stylesheet" href="/WEB-INF/assets/Script/jquery-ui-1.12.1/jquery-ui.css" media="all"> -->
 <!--     <link rel="stylesheet" href="/WEB-INF/assets/Script/jquerymodal/jquerymodal.css" media="all"> -->
@@ -50,18 +50,45 @@
 <%@ include file="/WEB-INF/assets/Script/scriptPC.js"%>
 </script>
 
-    
+  
 <%
+
+	
 	Comprador comprador;
-	boolean iniciado = false;
+	boolean iniciado;
+	boolean bcategoria;
+	
+	String[] categorias;
+	int contador_categorias;
+	boolean salir_categorias;
+	
+	iniciado = false;
+	bcategoria = false;
+	
+	contador_categorias = 0;
+	salir_categorias= false;
+	categorias = null;
+	
+	/**
+	Control del usuario
+	*/
 	
 	if(session.getAttribute("usuario") != null){
 		iniciado = true;
 		comprador = (Comprador) session.getAttribute("usuario");
 	}
+	
+	if(session.getAttribute("categoriasDisponibles") != null){
+		bcategoria = true;
+		categorias = (String[]) session.getAttribute("categoriasDisponibles");
+	}
+	
+	
+	/**
+		Control de las categorias
+		
+	*/
 %>
-
-
 
 <nav class="pf-nav">
     <div class="pf-nav__logo">
@@ -77,7 +104,7 @@
         <ul class="pf-container__menu">
 
             <li class="pf-menu__item"><a href="inicio">INICIO</a></li>
-            <li class="pf-menu__item"><a href="explorar">EXPLORAR</a></li>
+            <li class="pf-menu__item"><a href="#">EXPLORAR</a></li>
             <li class="pf-menu__item"><a href="#">SOBRE NOSOTROS</a></li>
             <li class="pf-menu__item"><a href="contacto">CONTACTO</a></li>
 
@@ -89,7 +116,6 @@
                 <div class="pf-container__auth">
 
             <%
-		
 			
 				if(!iniciado){
 			%>
@@ -103,11 +129,11 @@
  						</div>
 			<%
 				}else{
-															
+	
 			%>
 				<jsp:useBean id="usuario" class="modelos.Comprador" scope="session"></jsp:useBean>
 			
-				  <img class="pf-auth__icon" src="./Img/icons/icon-user.svg" alt="Icono usuario"">
+				  <img class="pf-auth__icon" src="./Img/icons/icon-user.svg" alt="Icono usuario">
 	
 		         <div class="pf-auth__options">
 		           <ul class="pf-options__menu">
@@ -138,7 +164,7 @@
         <ul class="pf-container__menu">
 
             <li class="pf-menu__item"><a href="inicio">INICIO</a></li>
-            <li class="pf-menu__item"><a href="explorar">EXPLORAR</a></li>
+            <li class="pf-menu__item"><a href="#">EXPLORAR</a></li>
             <li class="pf-menu__item"><a href="#">SOBRE NOSOTROS</a></li>
             <li class="pf-menu__item"><a href="contacto">CONTACTO</a></li>
 
@@ -162,9 +188,9 @@
 			</div>
 			<%
 				}else{
-								
+	
 			%>
-											
+				
 		          <div class="pf-auth__logged">
                     <ul class="pf-logged__menu">
                         <li class="pf-menu__item"><span>¡Hola! <jsp:getProperty property="nombre" name="usuario"/></span></li>
@@ -182,63 +208,47 @@
         </div>
     </div>
     
-    <nav class="pf-breadcrumb" aria-label="breadcrumb">
+        <nav class="pf-breadcrumb" aria-label="breadcrumb">
 	  <ol class="breadcrumb">
 	    <li class="breadcrumb-item" aria-current="page"><a href="inicio">Inicio</a></li>
-	    <li class="breadcrumb-item" aria-current="page"><a href="contacto">Contacto</a></li>
+	    <li class="breadcrumb-item" aria-current="page"><a href="explora">Explora</a></li>
 	  </ol>
 	</nav>
     
     
-	<div class="pf-cabecera-contacto"> 
-	</div>    
+      <section >
+    	<ul>
+<!--     CATEGORIAS  -->
+	<%
 
-<form class="pf-form-contac">
-    <div class="form-row">
-      <div class="form-group col-sm-12 col-lg-6">
-        <label for="email">CORREO ELECTRÓNICO</label>
-        <input type="email" class="form-control" name="email" aria-describedby="emailHelp" required placeholder="Correo electrónico corporativo">
-        
-      </div>
-
-      <div class="form-group col-sm-12 col-lg-6">
-        <label for="telefono">TELÉFONO</label>
-        <input type="tel" class="form-control" name="telefono" aria-describedby="telHelp" placeholder="Teléfono">
-        
-      </div>
-    </div>
-
-    <div class="form-row">
-        <div class="form-group col">
-            <label for="asunto">ASUNTO</label>
-            <input type="email" class="form-control" name="asunto" aria-describedby="asuntoHelp" required placeholder="Asunto">
-        </div>
-    </div>
-    <div class="form-row">
-        <div class="form-group col ">
-            <textarea class="form-control" placeholder="Cuéntanos" required></textarea>
-            <!-- <input type="text" class="form-control pf-form-group__cuerpo"  aria-describedby="cuerpohelp" required > -->
-            <span>Máximo 500 caracteres</span>
-        </div>
-    </div>
-
-    <div class="form-row">
-        <div class="form-group col">
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" name="acepto"/>
-              <label class="form-check-label" for="acepto">
-                He leído, comprendo y acepto el tratamiento de datos personales
-              </label>
-            </div>
-        </div>
-    </div>
-
-    <div class="form-row">
-        <input class="pf-form-contac__submit" type="submit" value="Contactar">
-    </div>
-  </form>
-
-
+	
+		if (bcategoria){
+			
+        	while(!salir_categorias){
+        		
+        		if(categorias[contador_categorias] != null){                            			                            			
+        			%>
+        				<li> <a href="explorar?cat=<%= categorias[contador_categorias]%>"><%= categorias[contador_categorias]%> </a> </li>
+        			<%
+        			contador_categorias++;
+        		}else{                            		
+        			salir_categorias= true;
+        		}                            		
+        	}                            		
+			
+			
+		}else{
+			%>
+			<h3> Lista de categorias no disponible en este momento.</h3>
+			<h4>Perdone las molestias</h4>
+			<%
+		}
+	
+	%>	
+  		</ul>
+			 
+    </section>
+   
 <footer class="pf-footer">
 
     <div class="pf-footer__container">
@@ -248,14 +258,14 @@
         
 
 
+
 		<%if(!iniciado){
 			%>
 		  <div class="pf-button-primary  pf-button-primary--fill " data-id="registrar">
 			    <a data-id="registrar" class="pf-button-primary__text" >Únete ya</a>
 			</div>  
 		<%
-		}else{
-								
+		}else{					
 		%>
 		 <div class="pf-button-primary  pf-button-primary--fill " >
 			    <a href="explorar" class="pf-button-primary__text" >Explora</a>
@@ -263,8 +273,7 @@
 		<%
 		}
 		%>
-
-</div>
+ </div>
 
     <div class="pf-footer__nav">
         <div class="pf-nav__logo">
@@ -276,7 +285,7 @@
             <ul class="pf-container__menu">
     
                 <li class="pf-menu__item"><a href="inicio">INICIO</a></li>
-                <li class="pf-menu__item"><a href="explorar">EXPLORAR</a></li>
+                <li class="pf-menu__item"><a href="#">EXPLORAR</a></li>
                 <li class="pf-menu__item"><a href="#">SOBRE NOSOTROS</a></li>
                 <li class="pf-menu__item"><a href="contacto">CONTACTO</a></li>
             </ul>
@@ -475,4 +484,4 @@
 
 </body>
 
-</html>
+</html> 

@@ -6,15 +6,14 @@
 
 
 <head>
+    <link rel="shortcut icon" href="./Img/dynamic/bigmac.png" type="image/png" >
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="index, follow">
     <meta charset="utf-8" />
-    <meta name="application-name" content="Contacto" />
-        <link rel="shortcut icon" href="./Img/dynamic/bigmac.png" type="image/png" >
-    
-    <title>Contacto</title>
+    <meta name="application-name" content="Carrito" />
+    <title>Carrito</title>
 
 <!--     <link rel="stylesheet" href="/WEB-INF/assets/Script/jquery-ui-1.12.1/jquery-ui.css" media="all"> -->
 <!--     <link rel="stylesheet" href="/WEB-INF/assets/Script/jquerymodal/jquerymodal.css" media="all"> -->
@@ -50,7 +49,7 @@
 <%@ include file="/WEB-INF/assets/Script/scriptPC.js"%>
 </script>
 
-    
+
 <%
 	Comprador comprador;
 	boolean iniciado = false;
@@ -60,8 +59,6 @@
 		comprador = (Comprador) session.getAttribute("usuario");
 	}
 %>
-
-
 
 <nav class="pf-nav">
     <div class="pf-nav__logo">
@@ -89,7 +86,7 @@
                 <div class="pf-container__auth">
 
             <%
-		
+				
 			
 				if(!iniciado){
 			%>
@@ -102,12 +99,11 @@
 							</div>                       
  						</div>
 			<%
-				}else{
-															
+				}else{													
 			%>
 				<jsp:useBean id="usuario" class="modelos.Comprador" scope="session"></jsp:useBean>
 			
-				  <img class="pf-auth__icon" src="./Img/icons/icon-user.svg" alt="Icono usuario"">
+				  <img class="pf-auth__icon" src="./Img/icons/icon-user.svg" alt="Icono usuario">
 	
 		         <div class="pf-auth__options">
 		           <ul class="pf-options__menu">
@@ -162,9 +158,9 @@
 			</div>
 			<%
 				}else{
-								
+		
 			%>
-											
+			
 		          <div class="pf-auth__logged">
                     <ul class="pf-logged__menu">
                         <li class="pf-menu__item"><span>¡Hola! <jsp:getProperty property="nombre" name="usuario"/></span></li>
@@ -182,72 +178,42 @@
         </div>
     </div>
     
-    <nav class="pf-breadcrumb" aria-label="breadcrumb">
+        <nav class="pf-breadcrumb" aria-label="breadcrumb">
 	  <ol class="breadcrumb">
 	    <li class="breadcrumb-item" aria-current="page"><a href="inicio">Inicio</a></li>
-	    <li class="breadcrumb-item" aria-current="page"><a href="contacto">Contacto</a></li>
+	     <li class="breadcrumb-item" aria-current="page"><a href="inicio">Carrito</a></li>
 	  </ol>
 	</nav>
     
     
-	<div class="pf-cabecera-contacto"> 
-	</div>    
+    
+    
+	<section class="pf-carrito">
+	
+		<%
+			if(!iniciado){
+				%>
+			<h2 class="pf-carrito__title">Carrito</h2>
 
-<form class="pf-form-contac">
-    <div class="form-row">
-      <div class="form-group col-sm-12 col-lg-6">
-        <label for="email">CORREO ELECTRÓNICO</label>
-        <input type="email" class="form-control" name="email" aria-describedby="emailHelp" required placeholder="Correo electrónico corporativo">
-        
-      </div>
+            <div class="pf-carrito__container--nocontent">
+	            <p>Primero debes iniciar sesión para poder utilizar el carrito</p>
+	            <a href="inicio">Volver al inicio</a>
+	     	</div>
+				<%
+			}
+		%>
+	
+	    
+	</section> 
+    
 
-      <div class="form-group col-sm-12 col-lg-6">
-        <label for="telefono">TELÉFONO</label>
-        <input type="tel" class="form-control" name="telefono" aria-describedby="telHelp" placeholder="Teléfono">
-        
-      </div>
-    </div>
-
-    <div class="form-row">
-        <div class="form-group col">
-            <label for="asunto">ASUNTO</label>
-            <input type="email" class="form-control" name="asunto" aria-describedby="asuntoHelp" required placeholder="Asunto">
-        </div>
-    </div>
-    <div class="form-row">
-        <div class="form-group col ">
-            <textarea class="form-control" placeholder="Cuéntanos" required></textarea>
-            <!-- <input type="text" class="form-control pf-form-group__cuerpo"  aria-describedby="cuerpohelp" required > -->
-            <span>Máximo 500 caracteres</span>
-        </div>
-    </div>
-
-    <div class="form-row">
-        <div class="form-group col">
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" name="acepto"/>
-              <label class="form-check-label" for="acepto">
-                He leído, comprendo y acepto el tratamiento de datos personales
-              </label>
-            </div>
-        </div>
-    </div>
-
-    <div class="form-row">
-        <input class="pf-form-contac__submit" type="submit" value="Contactar">
-    </div>
-  </form>
-
-
-<footer class="pf-footer">
+	<footer class="pf-footer">
 
     <div class="pf-footer__container">
         <h2 class="pf-container__title">PARA UNA MEJOR VIDA</h2>
         <h3 class="pf-container__subtitle">Conviértete en Parte de Nuestro Viaje</h3>
 
         
-
-
 		<%if(!iniciado){
 			%>
 		  <div class="pf-button-primary  pf-button-primary--fill " data-id="registrar">
@@ -255,7 +221,7 @@
 			</div>  
 		<%
 		}else{
-								
+							
 		%>
 		 <div class="pf-button-primary  pf-button-primary--fill " >
 			    <a href="explorar" class="pf-button-primary__text" >Explora</a>
@@ -264,7 +230,8 @@
 		}
 		%>
 
-</div>
+
+    </div>
 
     <div class="pf-footer__nav">
         <div class="pf-nav__logo">

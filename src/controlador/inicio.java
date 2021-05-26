@@ -38,6 +38,7 @@ public class inicio extends HttpServlet {
 			session.setAttribute("email-verificacion", null);
 			session.setAttribute("codigo-verificacion", null);
 			session.setAttribute("tipo_usuario", null);
+			session.setAttribute("categoriasDisponibles", null);
 		}
 
 		tipo = (String) session.getAttribute("tipo_usuario");

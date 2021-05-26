@@ -46,6 +46,51 @@
 	<%@ include file="/WEB-INF/assets/Script/scriptPC.js"%>
 </script>
 
+
+<%
+	Producto[] productos;
+	boolean bproductos;
+	
+	String[] categorias;
+	int contador_categorias;
+	boolean salir_categorias;
+	boolean bcategorias;
+	
+	boolean param;
+	
+	Producto product_delete;
+	boolean bproducto_delete;
+	
+
+	bproductos = false;
+	productos = null;
+	
+	contador_categorias = 0;
+	salir_categorias= false;
+	bcategorias = false;
+	categorias = null;
+	
+	param = Boolean.parseBoolean(request.getParameter("delete"));
+	
+	bproducto_delete= false;
+	product_delete= null;
+	
+	if(session.getAttribute("productos") != null){
+		bproductos = true;
+		productos = (Producto[]) session.getAttribute("productos");
+	}
+	
+	if(session.getAttribute("categorias") != null){
+		bcategorias = true;
+    	categorias = (String[]) session.getAttribute("categorias");
+	}
+	
+	if(session.getAttribute("delete_producto") != null){
+		bproducto_delete= true;
+		product_delete= (Producto) session.getAttribute("delete_producto");
+	}
+%>
+
     
 <jsp:useBean id="usuario" scope="session" class="modelos.Empresa"></jsp:useBean>
 
@@ -164,10 +209,8 @@
             <tbody>
             
             	<%
-          			Producto[] productos;
-            	
-            		productos = (Producto[]) session.getAttribute("productos");
-            		
+          	if(bproductos){
+          		
             		for(int i = 0; i < productos.length; i++){
             			            			
             			%>
@@ -196,7 +239,11 @@
                 </tr>
             			<%
             		}
-            	
+          	}else{
+          		%>
+          			<h2> No existe ningún producto </h2>
+          		<%
+          	}
             	%>
             
                 
@@ -241,26 +288,22 @@
                                  <option selected>Seleccione una categoria</option>
                              
                           	<%
-                          		String[] categorias;
-                            	int contador_categorias;
-                            	boolean salir_categorias;
+                          		
                             		
-                            	contador_categorias = 0;
-                            	salir_categorias= false;
-                            	
-                            	categorias = (String[]) session.getAttribute("categorias");
-                            		
-                            	while(!salir_categorias){
-                            		
-                            		if(categorias[contador_categorias] != null){                            			                            			
-                            			%>
-                            				<option> <%= categorias[contador_categorias]%> </option>
-                            			<%
-                            			contador_categorias++;
-                            		}else{                            		
-                            			salir_categorias= true;
-                            		}                            		
-                            	}                            		
+                            
+                            	if(bcategorias){
+                            	 	while(!salir_categorias){
+                                		
+                                		if(categorias[contador_categorias] != null){                            			                            			
+                                			%>
+                                				<option> <%= categorias[contador_categorias]%> </option>
+                                			<%
+                                			contador_categorias++;
+                                		}else{                            		
+                                			salir_categorias= true;
+                                		}                            		
+                                	} 
+                            	}                              		                                              	
                           	%>
                           	
                                 </select>
@@ -379,10 +422,11 @@
                           
                           
                           	<%
-                          		                            		
+                          		  
+                          	if(bcategorias){                          		
+
                             	contador_categorias = 0;
-                            	salir_categorias= false;
-                            	                            
+                            	salir_categorias= false;                            	                            
                             		
                             	while(!salir_categorias){
                             		
@@ -394,7 +438,9 @@
                             		}else{                            		
                             			salir_categorias= true;
                             		}                            		
-                            	}                            		
+                            	}          
+                            	
+                        	}
                           	%>
                           	                          	                                                  
                             </select>
@@ -518,12 +564,13 @@
 
 	<jsp:useBean id="delete_producto" class="modelos.Producto" scope="session"></jsp:useBean>
 <%
-	boolean param;
-	param = Boolean.parseBoolean(request.getParameter("delete"));
+	
 	
 	if(param) { 
+		
+		if(bproducto_delete){
   %>
-  		
+  			
   
 <div 
   class="modal pf-modal-delete delete"
@@ -544,23 +591,22 @@
 
             <div class="pf-principal__principal row">
                 <div class="pf-principal__img">
-<!--                     <img src="./Img/dynamic/mcextreme.png" alt="Icono default"> -->
 		
 					<div>
 						<%	
-						Producto produc = (Producto) session.getAttribute("delete_producto");					
-						
-						if(produc.getFoto() != null){
+																												
+						if(product_delete.getFoto() != null){
 							
 							%>
 						
-							<img src="bajarFoto?param_img=producto&idproducto=<%=produc.getId_producto() %>" />
+							<img src="bajarFoto?param_img=producto&idproducto=<%=product_delete.getId_producto() %>" />
 							<%
 						}else{
 							%>
 							<img src="./Img/common/pf-default-image.png" alt="foto por defectp de no existencia" />
 							<%
 						}
+
 						%>
 						
 					</div>
@@ -614,6 +660,7 @@
 </div>
 
 <%
+		}
 	}
   %>
 

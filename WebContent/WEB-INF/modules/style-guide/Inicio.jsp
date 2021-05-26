@@ -10,7 +10,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="index, follow">
-    <meta charset="utf-8" />
+    <meta charset="utf-8" />        
+    <link rel="shortcut icon" href="./Img/dynamic/bigmac.png" type="image/png" >
+    
     <meta name="application-name" content="Inicio" />
     <title>Inicio</title>
 
@@ -50,13 +52,17 @@
 
     
 
-
-
-
+<%
+	Comprador comprador;
+	boolean iniciado = false;
+	
+	if(session.getAttribute("usuario") != null){
+		iniciado = true;
+		comprador = (Comprador) session.getAttribute("usuario");
+	}
+%>
 
 		
-
-
 
 <nav class="pf-nav">
     <div class="pf-nav__logo">
@@ -72,7 +78,7 @@
         <ul class="pf-container__menu">
 
             <li class="pf-menu__item"><a href="inicio">INICIO</a></li>
-            <li class="pf-menu__item"><a href="#">EXPLORAR</a></li>
+            <li class="pf-menu__item"><a href="explorar">EXPLORAR</a></li>
             <li class="pf-menu__item"><a href="#">SOBRE NOSOTROS</a></li>
             <li class="pf-menu__item"><a href="contacto">CONTACTO</a></li>
 
@@ -84,9 +90,9 @@
                 <div class="pf-container__auth">
 
             <%
-				Comprador comprador;
 			
-				if(session.getAttribute("usuario") == null){
+			
+				if(!iniciado){
 			%>
 			           <div class="pf-auth__buttons">
                 
@@ -98,9 +104,7 @@
  						</div>
 			<%
 				}else{
-					comprador = (Comprador) session.getAttribute("usuario");
-					
-					
+			
 			%>
 				<jsp:useBean id="usuario" class="modelos.Comprador" scope="session"></jsp:useBean>
 			
@@ -121,7 +125,7 @@
                 </div>
        
             <div class="pf-container__cart">
-                <a href="#"><img src="./Img/icons/shopping-bag.svg" alt="Carrito"/></a>
+                <a href="carrito"><img src="./Img/icons/shopping-bag.svg" alt="Carrito"/></a>
             </div>
      </div>
 
@@ -135,7 +139,7 @@
         <ul class="pf-container__menu">
 
             <li class="pf-menu__item"><a href="inicio">INICIO</a></li>
-            <li class="pf-menu__item"><a href="#">EXPLORAR</a></li>
+            <li class="pf-menu__item"><a href="explorar">EXPLORAR</a></li>
             <li class="pf-menu__item"><a href="#">SOBRE NOSOTROS</a></li>
             <li class="pf-menu__item"><a href="contacto">CONTACTO</a></li>
 
@@ -146,7 +150,7 @@
         
         <%
         
-        if(session.getAttribute("usuario") == null){
+        if(!iniciado){
 			%>
 			           <div class="pf-auth__buttons">
 			        
@@ -159,14 +163,9 @@
 			</div>
 			<%
 				}else{
-					comprador = (Comprador) session.getAttribute("usuario");
-					
-					
+
 			%>
 				
-			
-				 
-	
 		          <div class="pf-auth__logged">
                     <ul class="pf-logged__menu">
                         <li class="pf-menu__item"><span>¡Hola! <jsp:getProperty property="nombre" name="usuario"/></span></li>
@@ -198,8 +197,8 @@
         <h1 class="pf-info__title">Hacemos la vida más facil a todos.</h1>
 
         <div class="pf-button-primary " data-id="registrar">
-    <a class="pf-button-primary__text" >Únete ya</a>
-</div>  
+		    <a class="pf-button-primary__text" >Únete ya</a>
+		</div>  
     </div>
 
     <div class="pf-header__img">
@@ -235,7 +234,7 @@
    <div class="pf-info2__title"> <h2>EXAMINA LOS PRODUCTOS</h2></div>
    <div class="pf-info2__subtitle">
        <h3 class="pf-subtitle__text">Categorías Destacadas</h3>
-       <a href="#"> Todos los productos </a>
+       <a href="explorar"> Todos los productos </a>
    </div>
 
    <div class="pf-info2__container">
@@ -291,12 +290,23 @@
         <h3 class="pf-container__subtitle">Conviértete en Parte de Nuestro Viaje</h3>
 
         
+		<%if(!iniciado){
+			%>
+		  <div class="pf-button-primary  pf-button-primary--fill " data-id="registrar">
+			    <a data-id="registrar" class="pf-button-primary__text" >Únete ya</a>
+			</div>  
+		<%
+		}else{				
+		%>
+		 <div class="pf-button-primary  pf-button-primary--fill " >
+			    <a href="explorar" class="pf-button-primary__text" >Explora</a>
+			</div>  
+		<%
+		}
+		%>
 
 
-
-<div class="pf-button-primary  pf-button-primary--fill " data-id="registrar">
-    <a class="pf-button-primary__text" >Únete ya</a>
-</div>    </div>
+    </div>
 
     <div class="pf-footer__nav">
         <div class="pf-nav__logo">
@@ -308,7 +318,7 @@
             <ul class="pf-container__menu">
     
                 <li class="pf-menu__item"><a href="inicio">INICIO</a></li>
-                <li class="pf-menu__item"><a href="#">EXPLORAR</a></li>
+                <li class="pf-menu__item"><a href="explorar">EXPLORAR</a></li>
                 <li class="pf-menu__item"><a href="#">SOBRE NOSOTROS</a></li>
                 <li class="pf-menu__item"><a href="contacto">CONTACTO</a></li>
             </ul>
