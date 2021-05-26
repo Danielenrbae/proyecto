@@ -2,6 +2,12 @@ a {
 	cursor: pointer;
 }
 
+html{
+	min-height: 100%;
+  position: relative;
+  padding-bottom: 200px;
+}
+
 .pf-header {
 	width: 100%;
 	background-image: url("../../../Img/common/header.png");
@@ -51,6 +57,7 @@ a {
 }
 
 .pf-carrito {
+	
 	width: 100%;
 	font-family: "Open Sans";
 	padding: 0px 100px;
@@ -304,13 +311,13 @@ a {
 
 .pf-carrito .pf-carrito__container--nocontent>p {
 	color: #011F26;
-	font-size: 1.3rem;
+	font-size: 1.5rem;
 	font-weight: 600;
 }
 
 .pf-carrito .pf-carrito__container--nocontent>a {
 	color: #24BFA3;
-	font-size: 1.3rem;
+	font-size: 1.5rem;
 	font-weight: 600;
 }
 
@@ -333,13 +340,13 @@ a {
 
 .pf-carrito .pf-carrito__container--nocontent>p {
 	color: #011F26;
-	font-size: 1.3rem;
+	font-size: 1.5rem;
 	font-weight: 600;
 }
 
 .pf-carrito .pf-carrito__container--nocontent>a {
 	color: #24BFA3;
-	font-size: 1.3rem;
+	font-size: 1.5rem;
 	font-weight: 600;
 }
 
@@ -386,6 +393,7 @@ a {
 }
 
 .pf-footer {
+	
 	text-align: center;
 	font-family: "Open Sans";
 	width: 100%;
@@ -408,6 +416,9 @@ a {
 	background-position: center;
 	background-size: cover;
 	background-repeat: repeat-x;
+	position: absolute;
+	bottom: 0;
+
 }
 
 .pf-footer .pf-footer__container {
@@ -5424,5 +5435,19 @@ a {
         text-decoration: none; }
         .delete .pf-modal-delete__confirm .pf-confirm__buttons .pf-button__confirm:hover {
           background-color: #2E5056; }
+          
+          
+ .pf-categorias{
+ 	width: 100%;
+ 	padding: 0px 100px;
+ 	margin-top:40px;
+ 	
+ }
+ 
+ .pf-categorias .pf-categorias__list {
+ 	width: 100%;
+ 	list-style: none;
+ }
+ 
 
 

@@ -200,6 +200,20 @@
 	            <a href="inicio">Volver al inicio</a>
 	     	</div>
 				<%
+			}else{
+				
+				//faltaria la comprobacion si tiene pedidos realizados
+				%>
+				
+				
+				 <h2 class="pf-carrito__title">Carrito</h2>
+
+            
+		          <div class="pf-carrito__container--nocontent">
+		            <p>Actualmente el carrito se encuentra vacío.</p>
+		            <a href="explorar">¡Añade ya un producto!</a>
+		          </div>
+				<%
 			}
 		%>
 	

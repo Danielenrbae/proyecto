@@ -216,8 +216,8 @@
 	</nav>
     
     
-      <section >
-    	<ul>
+      <section class="pf-categorias" >
+    	<ul class="pf-categorias__list owl-carousel owl-theme" >
 <!--     CATEGORIAS  -->
 	<%
 
@@ -228,7 +228,7 @@
         		
         		if(categorias[contador_categorias] != null){                            			                            			
         			%>
-        				<li> <a href="explorar?cat=<%= categorias[contador_categorias]%>"><%= categorias[contador_categorias]%> </a> </li>
+        				<li class="pf-owl__item"> <a class="pf-list__item" href="explorar?cat=<%= categorias[contador_categorias]%>"><%= categorias[contador_categorias]%> </a> </li>
         			<%
         			contador_categorias++;
         		}else{                            		
