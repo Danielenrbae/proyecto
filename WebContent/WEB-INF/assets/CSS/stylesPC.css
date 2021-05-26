@@ -2,10 +2,10 @@ a {
 	cursor: pointer;
 }
 
-html{
+html {
 	min-height: 100%;
-  position: relative;
-  padding-bottom: 200px;
+	position: relative;
+	padding-bottom: 200px;
 }
 
 .pf-header {
@@ -57,7 +57,6 @@ html{
 }
 
 .pf-carrito {
-	
 	width: 100%;
 	font-family: "Open Sans";
 	padding: 0px 100px;
@@ -393,7 +392,6 @@ html{
 }
 
 .pf-footer {
-	
 	text-align: center;
 	font-family: "Open Sans";
 	width: 100%;
@@ -418,7 +416,6 @@ html{
 	background-repeat: repeat-x;
 	position: absolute;
 	bottom: 0;
-
 }
 
 .pf-footer .pf-footer__container {
@@ -4526,7 +4523,8 @@ html{
 
 .pf-resumen .pf-resumen__grafico {
 	width: 70%;
-	margin: 0 auto; margin-top : 40px;
+	margin: 0 auto;
+	margin-top: 40px;
 	margin-bottom: 100px;
 	margin-top: 40px;
 }
@@ -5179,275 +5177,444 @@ html{
 }
 
 .pf-modal-delete {
-  background-color: rgba(164, 226, 219, 0.25);
-  backdrop-filter: blur(14px);
-  font-family: "Open Sans";
-  overflow: auto; }
-  .pf-modal-delete .modal-dialog {
-    overflow: auto; }
-    @media (min-width: 576px) {
-      .pf-modal-delete .modal-dialog {
-        max-width: 800px;
-        overflow: auto; } }
-    .pf-modal-delete .modal-dialog .modal-content {
-      position: relative;
-      border-radius: 15px;
-      box-shadow: 0 3px 6px #D4D4D4;
-      border: none;
-      background-color: white;
-      overflow: auto; }
-      .pf-modal-delete .modal-dialog .modal-content .pf-modal-delete__close {
-        content: "";
-        background-image: url("../../../Img/icons/icon-close-gray.svg");
-        background-size: 100% 100%;
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        width: 16px;
-        height: 16px;
-        cursor: pointer;
-        z-index: 999; }
-      .pf-modal-delete .modal-dialog .modal-content .modal-body {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        padding: 50px 0px;
-        padding: 50px;
-        overflow: auto; }
-        .pf-modal-delete .modal-dialog .modal-content .modal-body .pf-modal-delete__title {
-          color: #2E5056;
-          width: 100%;
-          font-weight: bold;
-          font-size: 2.5rem;
-          margin-bottom: 50px;
-          align-self: flex-start;
-          position: relative; }
-          .pf-modal-delete .modal-dialog .modal-content .modal-body .pf-modal-delete__title::after {
-            content: "";
-            width: 100%;
-            height: 1px;
-            background-color: #D4D4D4;
-            position: absolute;
-            bottom: -5px;
-            left: 0; }
-        .pf-modal-delete .modal-dialog .modal-content .modal-body .pf-modal-delete__principal {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          width: 100%;
-          gap: 30px;
-          margin-bottom: 20px; }
-          .pf-modal-delete .modal-dialog .modal-content .modal-body .pf-modal-delete__principal .pf-principal__principal {
-            width: 100%;
-            gap: 50px;
-            display: flex;
-            justify-content: center;
-            align-items: center; }
-            .pf-modal-delete .modal-dialog .modal-content .modal-body .pf-modal-delete__principal .pf-principal__principal .pf-principal__img {
-              display: flex;
-              flex-direction: column;
-              align-items: center;
-              justify-content: center;
-              gap: 20px; }
-              .pf-modal-delete .modal-dialog .modal-content .modal-body .pf-modal-delete__principal .pf-principal__principal .pf-principal__img img {
-                width: 250px;
-                height: 200px; }
-            .pf-modal-delete .modal-dialog .modal-content .modal-body .pf-modal-delete__principal .pf-principal__principal .pf-principal__data {
-              width: 50%; }
-              @media screen and (max-width: 767px) {
-                .pf-modal-delete .modal-dialog .modal-content .modal-body .pf-modal-delete__principal .pf-principal__principal .pf-principal__data {
-                  width: 100%; } }
-              .pf-modal-delete .modal-dialog .modal-content .modal-body .pf-modal-delete__principal .pf-principal__principal .pf-principal__data .form-group > label {
-                color: #24BFA3;
-                font-size: 1.4rem;
-                margin-bottom: 5px;
-                font-weight: 600; }
-              .pf-modal-delete .modal-dialog .modal-content .modal-body .pf-modal-delete__principal .pf-principal__principal .pf-principal__data .form-group .form-control {
-                background-color: #f5f5f5;
-                border: none;
-                min-height: 40px;
-                font-size: 1.2rem; }
-                .pf-modal-delete .modal-dialog .modal-content .modal-body .pf-modal-delete__principal .pf-principal__principal .pf-principal__data .form-group .form-control:focus {
-                  box-shadow: none; }
-                .pf-modal-delete .modal-dialog .modal-content .modal-body .pf-modal-delete__principal .pf-principal__principal .pf-principal__data .form-group .form-control:focus {
-                  border: none;
-                  border-bottom: 1.5px solid #D4D4D4;
-                  outline: 0;
-                  box-shadow: none; }
-              .pf-modal-delete .modal-dialog .modal-content .modal-body .pf-modal-delete__principal .pf-principal__principal .pf-principal__data .form-row {
-                display: block;
-                margin-bottom: 25px; }
-          .pf-modal-delete .modal-dialog .modal-content .modal-body .pf-modal-delete__principal .pf-principal__second {
-            width: 100%; }
-            .pf-modal-delete .modal-dialog .modal-content .modal-body .pf-modal-delete__principal .pf-principal__second > .form-group {
-              width: 100%;
-              display: flex;
-              flex-direction: column;
-              align-items: flex-start;
-              justify-content: center;
-              font-weight: 600; }
-              .pf-modal-delete .modal-dialog .modal-content .modal-body .pf-modal-delete__principal .pf-principal__second > .form-group > textarea {
-                width: 100%;
-                background-color: #f5f5f5;
-                border: none;
-                min-height: 40px;
-                font-size: 1.2rem;
-                outline: none; }
-                .pf-modal-delete .modal-dialog .modal-content .modal-body .pf-modal-delete__principal .pf-principal__second > .form-group > textarea:focus {
-                  box-shadow: none; }
-              .pf-modal-delete .modal-dialog .modal-content .modal-body .pf-modal-delete__principal .pf-principal__second > .form-group > small {
-                align-self: flex-end; }
-              .pf-modal-delete .modal-dialog .modal-content .modal-body .pf-modal-delete__principal .pf-principal__second > .form-group > label {
-                color: #24BFA3;
-                font-size: 1.4rem;
-                margin-bottom: 5px; }
-        .pf-modal-delete .modal-dialog .modal-content .modal-body .pf-modal-delete__second {
-          width: 100%; }
-          .pf-modal-delete .modal-dialog .modal-content .modal-body .pf-modal-delete__second .pf-second__form {
-            width: 100%; }
-            .pf-modal-delete .modal-dialog .modal-content .modal-body .pf-modal-delete__second .pf-second__form .pf-form__energy {
-              display: flex;
-              flex-direction: column;
-              align-items: center;
-              justify-content: center;
-              margin-bottom: 10px; }
-              .pf-modal-delete .modal-dialog .modal-content .modal-body .pf-modal-delete__second .pf-second__form .pf-form__energy > label {
-                font-size: 1.2rem;
-                color: #979797;
-                font-weight: 600; }
-              .pf-modal-delete .modal-dialog .modal-content .modal-body .pf-modal-delete__second .pf-second__form .pf-form__energy > input {
-                background-color: #f5f5f5;
-                border: none;
-                min-height: 40px;
-                font-size: 1.2rem; }
-                .pf-modal-delete .modal-dialog .modal-content .modal-body .pf-modal-delete__second .pf-second__form .pf-form__energy > input:focus {
-                  box-shadow: none; }
-                .pf-modal-delete .modal-dialog .modal-content .modal-body .pf-modal-delete__second .pf-second__form .pf-form__energy > input:focus {
-                  border: none;
-                  border-bottom: 1.5px solid #D4D4D4;
-                  outline: 0;
-                  box-shadow: none; }
-            .pf-modal-delete .modal-dialog .modal-content .modal-body .pf-modal-delete__second .pf-second__form .pf-form__datos {
-              display: flex;
-              flex-direction: column;
-              align-items: center;
-              justify-content: center; }
-              .pf-modal-delete .modal-dialog .modal-content .modal-body .pf-modal-delete__second .pf-second__form .pf-form__datos ul {
-                margin-top: 20px;
-                margin-bottom: 20px;
-                width: 100%;
-                list-style: none;
-                display: grid;
-                grid-template-columns: repeat(2, 1fr);
-                align-content: center;
-                justify-content: center;
-                grid-gap: 20px; }
-                @media screen and (max-width: 767px) {
-                  .pf-modal-delete .modal-dialog .modal-content .modal-body .pf-modal-delete__second .pf-second__form .pf-form__datos ul {
-                    grid-template-columns: repeat(1, 1fr); }
-                    .pf-modal-delete .modal-dialog .modal-content .modal-body .pf-modal-delete__second .pf-second__form .pf-form__datos ul > li {
-                      width: 100%; } }
-                .pf-modal-delete .modal-dialog .modal-content .modal-body .pf-modal-delete__second .pf-second__form .pf-form__datos ul > li {
-                  border-bottom: 1px solid rgba(151, 151, 151, 0.4); }
-                  .pf-modal-delete .modal-dialog .modal-content .modal-body .pf-modal-delete__second .pf-second__form .pf-form__datos ul > li > .form-group {
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-                    gap: 10px; }
-                    .pf-modal-delete .modal-dialog .modal-content .modal-body .pf-modal-delete__second .pf-second__form .pf-form__datos ul > li > .form-group > input {
-                      background-color: #f5f5f5;
-                      border: none;
-                      min-height: 20px;
-                      font-size: 1.2rem; }
-            .pf-modal-delete .modal-dialog .modal-content .modal-body .pf-modal-delete__second .pf-second__form input[type="submit"] {
-              color: #f2f2f2;
-              font-size: 1.5rem;
-              background-color: #24BFA3;
-              border: none;
-              outline: none;
-              border-radius: 35px;
-              padding: 7px;
-              width: 200px;
-              font-weight: bold;
-              cursor: pointer;
-              float: right; }
-              .pf-modal-delete .modal-dialog .modal-content .modal-body .pf-modal-delete__second .pf-second__form input[type="submit"]:hover {
-                background-color: #2E5056; }
+	background-color: rgba(164, 226, 219, 0.25);
+	backdrop-filter: blur(14px);
+	font-family: "Open Sans";
+	overflow: auto;
+}
+
+.pf-modal-delete .modal-dialog {
+	overflow: auto;
+}
+
+@media ( min-width : 576px) {
+	.pf-modal-delete .modal-dialog {
+		max-width: 800px;
+		overflow: auto;
+	}
+}
+
+.pf-modal-delete .modal-dialog .modal-content {
+	position: relative;
+	border-radius: 15px;
+	box-shadow: 0 3px 6px #D4D4D4;
+	border: none;
+	background-color: white;
+	overflow: auto;
+}
+
+.pf-modal-delete .modal-dialog .modal-content .pf-modal-delete__close {
+	content: "";
+	background-image: url("../../../Img/icons/icon-close-gray.svg");
+	background-size: 100% 100%;
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	width: 16px;
+	height: 16px;
+	cursor: pointer;
+	z-index: 999;
+}
+
+.pf-modal-delete .modal-dialog .modal-content .modal-body {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 50px 0px;
+	padding: 50px;
+	overflow: auto;
+}
+
+.pf-modal-delete .modal-dialog .modal-content .modal-body .pf-modal-delete__title
+	{
+	color: #2E5056;
+	width: 100%;
+	font-weight: bold;
+	font-size: 2.5rem;
+	margin-bottom: 50px;
+	align-self: flex-start;
+	position: relative;
+}
+
+.pf-modal-delete .modal-dialog .modal-content .modal-body .pf-modal-delete__title::after
+	{
+	content: "";
+	width: 100%;
+	height: 1px;
+	background-color: #D4D4D4;
+	position: absolute;
+	bottom: -5px;
+	left: 0;
+}
+
+.pf-modal-delete .modal-dialog .modal-content .modal-body .pf-modal-delete__principal
+	{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	gap: 30px;
+	margin-bottom: 20px;
+}
+
+.pf-modal-delete .modal-dialog .modal-content .modal-body .pf-modal-delete__principal .pf-principal__principal
+	{
+	width: 100%;
+	gap: 50px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.pf-modal-delete .modal-dialog .modal-content .modal-body .pf-modal-delete__principal .pf-principal__principal .pf-principal__img
+	{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 20px;
+}
+
+.pf-modal-delete .modal-dialog .modal-content .modal-body .pf-modal-delete__principal .pf-principal__principal .pf-principal__img img
+	{
+	width: 250px;
+	height: 200px;
+}
+
+.pf-modal-delete .modal-dialog .modal-content .modal-body .pf-modal-delete__principal .pf-principal__principal .pf-principal__data
+	{
+	width: 50%;
+}
+
+@media screen and (max-width: 767px) {
+	.pf-modal-delete .modal-dialog .modal-content .modal-body .pf-modal-delete__principal .pf-principal__principal .pf-principal__data
+		{
+		width: 100%;
+	}
+}
+
+.pf-modal-delete .modal-dialog .modal-content .modal-body .pf-modal-delete__principal .pf-principal__principal .pf-principal__data .form-group>label
+	{
+	color: #24BFA3;
+	font-size: 1.4rem;
+	margin-bottom: 5px;
+	font-weight: 600;
+}
+
+.pf-modal-delete .modal-dialog .modal-content .modal-body .pf-modal-delete__principal .pf-principal__principal .pf-principal__data .form-group .form-control
+	{
+	background-color: #f5f5f5;
+	border: none;
+	min-height: 40px;
+	font-size: 1.2rem;
+}
+
+.pf-modal-delete .modal-dialog .modal-content .modal-body .pf-modal-delete__principal .pf-principal__principal .pf-principal__data .form-group .form-control:focus
+	{
+	box-shadow: none;
+}
+
+.pf-modal-delete .modal-dialog .modal-content .modal-body .pf-modal-delete__principal .pf-principal__principal .pf-principal__data .form-group .form-control:focus
+	{
+	border: none;
+	border-bottom: 1.5px solid #D4D4D4;
+	outline: 0;
+	box-shadow: none;
+}
+
+.pf-modal-delete .modal-dialog .modal-content .modal-body .pf-modal-delete__principal .pf-principal__principal .pf-principal__data .form-row
+	{
+	display: block;
+	margin-bottom: 25px;
+}
+
+.pf-modal-delete .modal-dialog .modal-content .modal-body .pf-modal-delete__principal .pf-principal__second
+	{
+	width: 100%;
+}
+
+.pf-modal-delete .modal-dialog .modal-content .modal-body .pf-modal-delete__principal .pf-principal__second>.form-group
+	{
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: center;
+	font-weight: 600;
+}
+
+.pf-modal-delete .modal-dialog .modal-content .modal-body .pf-modal-delete__principal .pf-principal__second>.form-group>textarea
+	{
+	width: 100%;
+	background-color: #f5f5f5;
+	border: none;
+	min-height: 40px;
+	font-size: 1.2rem;
+	outline: none;
+}
+
+.pf-modal-delete .modal-dialog .modal-content .modal-body .pf-modal-delete__principal .pf-principal__second>.form-group>textarea:focus
+	{
+	box-shadow: none;
+}
+
+.pf-modal-delete .modal-dialog .modal-content .modal-body .pf-modal-delete__principal .pf-principal__second>.form-group>small
+	{
+	align-self: flex-end;
+}
+
+.pf-modal-delete .modal-dialog .modal-content .modal-body .pf-modal-delete__principal .pf-principal__second>.form-group>label
+	{
+	color: #24BFA3;
+	font-size: 1.4rem;
+	margin-bottom: 5px;
+}
+
+.pf-modal-delete .modal-dialog .modal-content .modal-body .pf-modal-delete__second
+	{
+	width: 100%;
+}
+
+.pf-modal-delete .modal-dialog .modal-content .modal-body .pf-modal-delete__second .pf-second__form
+	{
+	width: 100%;
+}
+
+.pf-modal-delete .modal-dialog .modal-content .modal-body .pf-modal-delete__second .pf-second__form .pf-form__energy
+	{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 10px;
+}
+
+.pf-modal-delete .modal-dialog .modal-content .modal-body .pf-modal-delete__second .pf-second__form .pf-form__energy>label
+	{
+	font-size: 1.2rem;
+	color: #979797;
+	font-weight: 600;
+}
+
+.pf-modal-delete .modal-dialog .modal-content .modal-body .pf-modal-delete__second .pf-second__form .pf-form__energy>input
+	{
+	background-color: #f5f5f5;
+	border: none;
+	min-height: 40px;
+	font-size: 1.2rem;
+}
+
+.pf-modal-delete .modal-dialog .modal-content .modal-body .pf-modal-delete__second .pf-second__form .pf-form__energy>input:focus
+	{
+	box-shadow: none;
+}
+
+.pf-modal-delete .modal-dialog .modal-content .modal-body .pf-modal-delete__second .pf-second__form .pf-form__energy>input:focus
+	{
+	border: none;
+	border-bottom: 1.5px solid #D4D4D4;
+	outline: 0;
+	box-shadow: none;
+}
+
+.pf-modal-delete .modal-dialog .modal-content .modal-body .pf-modal-delete__second .pf-second__form .pf-form__datos
+	{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.pf-modal-delete .modal-dialog .modal-content .modal-body .pf-modal-delete__second .pf-second__form .pf-form__datos ul
+	{
+	margin-top: 20px;
+	margin-bottom: 20px;
+	width: 100%;
+	list-style: none;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	align-content: center;
+	justify-content: center;
+	grid-gap: 20px;
+}
+
+@media screen and (max-width: 767px) {
+	.pf-modal-delete .modal-dialog .modal-content .modal-body .pf-modal-delete__second .pf-second__form .pf-form__datos ul
+		{
+		grid-template-columns: repeat(1, 1fr);
+	}
+	.pf-modal-delete .modal-dialog .modal-content .modal-body .pf-modal-delete__second .pf-second__form .pf-form__datos ul>li
+		{
+		width: 100%;
+	}
+}
+
+.pf-modal-delete .modal-dialog .modal-content .modal-body .pf-modal-delete__second .pf-second__form .pf-form__datos ul>li
+	{
+	border-bottom: 1px solid rgba(151, 151, 151, 0.4);
+}
+
+.pf-modal-delete .modal-dialog .modal-content .modal-body .pf-modal-delete__second .pf-second__form .pf-form__datos ul>li>.form-group
+	{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 10px;
+}
+
+.pf-modal-delete .modal-dialog .modal-content .modal-body .pf-modal-delete__second .pf-second__form .pf-form__datos ul>li>.form-group>input
+	{
+	background-color: #f5f5f5;
+	border: none;
+	min-height: 20px;
+	font-size: 1.2rem;
+}
+
+.pf-modal-delete .modal-dialog .modal-content .modal-body .pf-modal-delete__second .pf-second__form input[type="submit"]
+	{
+	color: #f2f2f2;
+	font-size: 1.5rem;
+	background-color: #24BFA3;
+	border: none;
+	outline: none;
+	border-radius: 35px;
+	padding: 7px;
+	width: 200px;
+	font-weight: bold;
+	cursor: pointer;
+	float: right;
+}
+
+.pf-modal-delete .modal-dialog .modal-content .modal-body .pf-modal-delete__second .pf-second__form input[type="submit"]:hover
+	{
+	background-color: #2E5056;
+}
 
 .delete {
-  font-family: "Open Sans"; }
-  .delete p {
-    font-size: 1.4rem; }
-  .delete .close__delete {
-    z-index: 99999; }
-  .delete .pf-modal-delete__confirm {
-    margin-top: 30px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 25px; }
-    .delete .pf-modal-delete__confirm .pf-confirm__title {
-      font-size: 1.8rem;
-      color: #979797;
-      font-weight: 600; }
-    .delete .pf-modal-delete__confirm .pf-confirm__buttons {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 10px; }
-      .delete .pf-modal-delete__confirm .pf-confirm__buttons a {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #24BFA3;
-        font-size: 1.5rem;
-        background-color: #f2f2f2;
-        border: 1px solid #F5F5F5;
-        outline: none;
-        border-radius: 35px;
-        padding: 7px;
-        width: 200px;
-        font-weight: bold;
-        cursor: pointer;
-        text-decoration: none; }
-        .delete .pf-modal-delete__confirm .pf-confirm__buttons a:hover {
-          background-color: #2E5056;
-          color: #f2f2f2; }
-      .delete .pf-modal-delete__confirm .pf-confirm__buttons .pf-button__confirm {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #f2f2f2;
-        font-size: 1.5rem;
-        background-color: #24BFA3;
-        border: none;
-        outline: none;
-        border-radius: 35px;
-        padding: 7px;
-        width: 200px;
-        font-weight: bold;
-        cursor: pointer;
-        text-decoration: none; }
-        .delete .pf-modal-delete__confirm .pf-confirm__buttons .pf-button__confirm:hover {
-          background-color: #2E5056; }
-          
-          
- .pf-categorias{
- 	width: 100%;
- 	padding: 0px 100px;
- 	margin-top:40px;
- 	
- }
- 
- .pf-categorias .pf-categorias__list {
- 	width: 100%;
- 	list-style: none;
- }
- 
+	font-family: "Open Sans";
+}
 
+.delete p {
+	font-size: 1.4rem;
+}
 
+.delete .close__delete {
+	z-index: 99999;
+}
+
+.delete .pf-modal-delete__confirm {
+	margin-top: 30px;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 25px;
+}
+
+.delete .pf-modal-delete__confirm .pf-confirm__title {
+	font-size: 1.8rem;
+	color: #979797;
+	font-weight: 600;
+}
+
+.delete .pf-modal-delete__confirm .pf-confirm__buttons {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+}
+
+.delete .pf-modal-delete__confirm .pf-confirm__buttons a {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: #24BFA3;
+	font-size: 1.5rem;
+	background-color: #f2f2f2;
+	border: 1px solid #F5F5F5;
+	outline: none;
+	border-radius: 35px;
+	padding: 7px;
+	width: 200px;
+	font-weight: bold;
+	cursor: pointer;
+	text-decoration: none;
+}
+
+.delete .pf-modal-delete__confirm .pf-confirm__buttons a:hover {
+	background-color: #2E5056;
+	color: #f2f2f2;
+}
+
+.delete .pf-modal-delete__confirm .pf-confirm__buttons .pf-button__confirm
+	{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: #f2f2f2;
+	font-size: 1.5rem;
+	background-color: #24BFA3;
+	border: none;
+	outline: none;
+	border-radius: 35px;
+	padding: 7px;
+	width: 200px;
+	font-weight: bold;
+	cursor: pointer;
+	text-decoration: none;
+}
+
+.delete .pf-modal-delete__confirm .pf-confirm__buttons .pf-button__confirm:hover
+	{
+	background-color: #2E5056;
+}
+
+.pf-categorias {
+	width: 100%;
+	margin-top: 40px;
+	font-family: 'Open Sans';
+	font-weight: 600;
+	font-size: 2rem;
+	height: 100px;
+	display: flex;
+	align-items: center;
+	text-align: center
+}
+
+@media screen and (max-width: 1024px){
+	.pf-categorias{
+		
+	}
+}
+
+.pf-categorias .pf-categorias__list {
+	width: 100%;
+	list-style: none;
+}
+
+.pf-categorias .pf-categorias__list li {
+	border-left: 1px solid #f2f2f2;
+	border-right: 1px solid #f2f2f2;
+	min-width: 300px;
+}
+
+.pf-categorias .pf-categorias__list a {
+	display: block;
+	background-color: #2E5056;
+	min-width: 100px;
+	min-height: 80px;
+	max-height: 80px;
+	color: #f2f2f2;
+	padding: 30px;
+	text-decoration: none;
+	white-space: nowrap;
+	
+}
+
+.pf-categorias .pf-categorias__list a:hover {
+	background-color: #24BFA3;
+}

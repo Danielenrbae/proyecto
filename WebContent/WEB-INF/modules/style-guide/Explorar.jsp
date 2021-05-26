@@ -228,7 +228,7 @@
         		
         		if(categorias[contador_categorias] != null){                            			                            			
         			%>
-        				<li class="pf-owl__item"> <a class="pf-list__item" href="explorar?cat=<%= categorias[contador_categorias]%>"><%= categorias[contador_categorias]%> </a> </li>
+        				<li class="pf-owl__item"> <a  href="explorar?cat=<%= categorias[contador_categorias]%>"><%= categorias[contador_categorias]%> </a> </li>
         			<%
         			contador_categorias++;
         		}else{                            		

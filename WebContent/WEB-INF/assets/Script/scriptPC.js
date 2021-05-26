@@ -27,20 +27,8 @@ $(document).ready(function () {
 	    nav: false,
 	    dots: false,
 	    autoWidth: true,
-	    items: 5,
-	    mouseDrag: true,
-	    responsive: {
-	      0: {
-	        items: 1,
-	        dots: true,
-	      },
-	      600: {
-	        items: 2,
-	      },
-	      1000: {
-	        items: 3,
-	      },
-	    },
+	    items: 7,
+	    mouseDrag: true
 	  });
 
   $("*[data-id='login']").on("click", function () {
