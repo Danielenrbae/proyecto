@@ -119,7 +119,7 @@ public class Producto {
 
 		if (!columna.equals("") || !valor.equals("") || !columna.equals(null) || !valor.equals(null)) {
 
-			sql = "SELECT * FROM proyecto.producto where " + columna + "= " + valor;
+			sql = "SELECT * FROM proyecto.producto where " + columna + "= '" + valor+"'";
 		} else {
 			sql = "SELECT * FROM proyecto.producto";
 		}

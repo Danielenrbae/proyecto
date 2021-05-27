@@ -215,7 +215,6 @@ $(document).ready(function () {
           if (json.error != "") {
             $("#error_verificacion").text(json.error);
           }
-
           if (json.ok == 1) {
             alert("Verificacion exitosa");
             document.location.href = json.url;

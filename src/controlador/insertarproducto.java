@@ -100,7 +100,7 @@ public class insertarproducto extends HttpServlet {
 				producto = new Producto(nombre,descripcion,precio,id_empresa, id_categoria ,file );
 				if (producto.insertar()) {
 					
-					if (producto.leer("nombre", nombre, true, false, false)) {
+					if (producto.leer("nombre", producto.getNombre(), true, false, false)) {
 
 						//coger la id del producto y coger los parametros de la informacion nutricional
 						id_producto = producto.getId_producto();
@@ -115,7 +115,6 @@ public class insertarproducto extends HttpServlet {
 						azucares = Double.parseDouble(request.getParameter("azucares"));
 						sal = Double.parseDouble(request.getParameter("sal"));
 						grasas = Double.parseDouble(request.getParameter("grasas"));
-						System.out.println(request.getParameter("grasos_saturados"));
 						grasos_saturados = Double.parseDouble(request.getParameter("grasos_saturados"));
 						
 						info_nutri = new InformacionNutricional(energia, peso, valorkj, valorkcal, proteinas, hidratos, fibra, azucares, sal, grasas, grasos_saturados, id_producto);

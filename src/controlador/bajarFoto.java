@@ -62,7 +62,6 @@ public class bajarFoto extends HttpServlet {
 						out.flush();
 					}
 					
-					
 				}
 								
 				break;

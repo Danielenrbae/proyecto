@@ -85,16 +85,17 @@ public class verificacion extends HttpServlet {
 				comprador = new Comprador();
 				if (comprador.update("verificado", "T", "email", email)) {
 					out.print("{ \"ok\" : 1 , \"url\" : \"/inicio\" }");
-					session.setAttribute("usuario", email);
 				} else {
+					session.setAttribute("usuario", null);
 					out.print("{ \"error\" : \"Ha ocurrido un error. Inténtelo de nuevo\" }");
 				}
 			} else if (tipo_usuario.equals("Empresa")) {
 				empresa = new Empresa();
 				if (empresa.update("verificado", "T", "email", email)) {
+
 					out.print("{ \"ok\" : 1 , \"url\" : \"/resumen\" }");
-					session.setAttribute("usuario", email);
 				} else {
+					session.setAttribute("usuario", null);
 					out.print("{ \"error\" : \"Ha ocurrido un error. Inténtelo de nuevo\" }");
 
 				}

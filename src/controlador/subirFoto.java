@@ -48,8 +48,6 @@ public class subirFoto extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-
-
 		File file = null;
 		int maxFileSize = 5000 * 1024;
 		int maxMemSize = 5000 * 1024;
@@ -70,12 +68,9 @@ public class subirFoto extends HttpServlet {
 
 		out = response.getWriter();
 
-		
-
 		contentType = request.getContentType();
 		
 		if ((contentType.indexOf("multipart/form-data") >= 0)) {
-			System.out.println("1");
 
 			factory = new DiskFileItemFactory();
 			// maximum size that will be stored in memory
@@ -93,7 +88,6 @@ public class subirFoto extends HttpServlet {
 
 				// Process the uploaded file items
 				Iterator<FileItem> i = fileItems.iterator();
-				System.out.println(fileItems.size());
 				while (i.hasNext()) {
 					
 					fi = (FileItem) i.next();
@@ -121,7 +115,6 @@ public class subirFoto extends HttpServlet {
 				
 
 			} catch (Exception ex) {
-				System.out.println(ex);
 				ex.printStackTrace();
 			}
 		} else {
