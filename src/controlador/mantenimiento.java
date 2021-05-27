@@ -52,7 +52,6 @@ public class mantenimiento extends HttpServlet {
 			producto = new Producto();
 			//consultar todas las categorias
 			categoria = new Categoria();
-			//TODO crear nuevo objeto para qe no se repitan los objetos
 			if (categoria.leer("", "", false)) {
 				
 				categorias[0] = categoria.getNombre();
@@ -70,12 +69,12 @@ public class mantenimiento extends HttpServlet {
 			
 			
 //			encontrar todos los productos de la empresa
-			if  (producto.leer("id_empresa", String.valueOf(empresa.getID_empresa()), false, false, true)) {
+			if  (producto.leer("id_empresa", String.valueOf(empresa.getID_empresa()), false, false, true,0)) {
 				sizeProductos = producto.getNumeroTotal();
 				
 				productos = new Producto[sizeProductos];
 				
-				if (producto.leer("id_empresa", String.valueOf(empresa.getID_empresa()) , false, false, false)) {
+				if (producto.leer("id_empresa", String.valueOf(empresa.getID_empresa()) , false, false, false,0)) {
 					contador = 1;
 					
 					

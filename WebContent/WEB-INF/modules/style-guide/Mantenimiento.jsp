@@ -598,7 +598,7 @@
 						if(product_delete.getFoto() != null){
 							
 							%>
-						
+<!-- 						TODO: arreglar mostrar los productos -->
 							<img src="bajarFoto?param_img=producto&idproducto=<%=product_delete.getId_producto() %>" />
 							<%
 						}else{

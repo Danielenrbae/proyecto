@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import modelos.Categoria;
+import modelos.Producto;
 
 /**
  * Servlet implementation class explorar
@@ -30,12 +31,22 @@ public class explorar extends HttpServlet {
 		String[] categorias;
 		boolean salir;
 		int contador;
+		int page;
+		Producto producto , aux_producto;
+		Producto[] productos;
+		int totalProductos;
+
+		
 		
 		session = request.getSession();
 		categoria = new Categoria();
 		salir = false;
 		contador = 1;
 		categorias= new String[MAX_SIZE];
+		page = 1;
+		producto = new Producto();
+		productos = null;
+		
 		
 		if (session.isNew()) {
 			session.setAttribute("usuario", null);
@@ -44,6 +55,11 @@ public class explorar extends HttpServlet {
 			session.setAttribute("tipo_usuario", null);
 			session.setAttribute("categoriasDisponibles", null);
 		}
+		
+		if(request.getParameter("page") != null){
+			page= Integer.parseInt(request.getParameter("page"));
+		}
+		
 		//GET CATEGORIAS
 		
 		
@@ -63,7 +79,50 @@ public class explorar extends HttpServlet {
 		}
 		
 		//GET PRODUCTOS CON PAGINACION
+		contador = 1;
+		salir = false;
+		if (producto.leer("", "", false, true, false,page)) {
+			
+			productos = new Producto[MAX_SIZE];
+			aux_producto = new Producto();
+			
+			aux_producto.setId_producto(producto.getId_producto());
+			aux_producto.setNombre(producto.getNombre());										
+			aux_producto.setPrecio(producto.getPrecio());
+			
+			productos[0] = aux_producto;
+			
+			while(!salir) {
+				if (producto.leersiguiente()) {
+					aux_producto = new Producto();
+					
+					aux_producto.setId_producto(producto.getId_producto());
+					aux_producto.setNombre(producto.getNombre());										
+					aux_producto.setPrecio(producto.getPrecio());
+					
+					productos[contador] = aux_producto;
+					contador++;
+				}else {
+					salir = true;
+				}
+				
+			}
+			
+		}
+	
+		session.setAttribute("explora_productos", productos);
 		
+		if(producto.leer("", "", false, false, true, 0)) {
+			totalProductos = producto.getNumeroTotal();
+			
+			int res = (totalProductos / 25);
+			
+			
+			if(totalProductos % 25 != 0 ) {
+				res = res +1 ;
+			}
+			session.setAttribute("paginas", res);
+		}
 		
 		request.getRequestDispatcher("WEB-INF/modules/style-guide/Explorar.jsp").forward(request, response);
 	}
@@ -72,7 +131,6 @@ public class explorar extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

@@ -94,7 +94,6 @@ public class subirFoto extends HttpServlet {
 					
 					
 					if (!fi.isFormField()) {
-						System.out.println("hola");
 						// Get the uploaded file parameters
 						String fieldName = fi.getFieldName();
 						fileName = fi.getName();
@@ -111,9 +110,7 @@ public class subirFoto extends HttpServlet {
 						
 					}
 				}
-				
-				
-
+								
 			} catch (Exception ex) {
 				ex.printStackTrace();
 			}

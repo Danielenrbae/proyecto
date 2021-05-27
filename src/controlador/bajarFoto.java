@@ -51,7 +51,7 @@ public class bajarFoto extends HttpServlet {
 
 				producto = new Producto();
 				
-				if (producto.leer("id_producto", id_producto, true, false, false)) {
+				if (producto.leer("id_producto", id_producto, true, false, false, 0)) {
 					foto = producto.getFoto();
 					
 					if(foto != null) {											

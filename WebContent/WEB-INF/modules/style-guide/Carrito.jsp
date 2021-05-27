@@ -105,7 +105,7 @@
 			
 				  <img class="pf-auth__icon" src="./Img/icons/icon-user.svg" alt="Icono usuario">
 	
-		         <div class="pf-auth__options">
+		         <div class="pf-auth__options" style="z-index: 9999">
 		           <ul class="pf-options__menu">
 		               <li class="pf-menu__item"><span>¡Hola! <jsp:getProperty property="nombre" name="usuario"/></span></li>
 		               <li class="pf-menu__item"><a href="#">Mi Perfil</a></li>

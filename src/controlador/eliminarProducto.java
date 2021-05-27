@@ -47,7 +47,7 @@ public class eliminarProducto extends HttpServlet {
 						
 			
 			
-			if (producto.leer("id_producto", String.valueOf(id_producto), true, false, false)) {
+			if (producto.leer("id_producto", String.valueOf(id_producto), true, false, false,0)) {
 				 categoria  = new Categoria();
 				 
 				 if (categoria.leer("id_categoria", String.valueOf(producto.getId_categoria()), true)) {

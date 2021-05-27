@@ -79,8 +79,7 @@ public class insertarproducto extends HttpServlet {
 		tipo = (String) session.getAttribute("tipo_usuario");
 		
 		if (tipo.equals("Empresa") && tipo != null) {
-			
-			
+						
 			empresa = (Empresa) session.getAttribute("usuario");
 			id_empresa = empresa.getID_empresa();
 			
@@ -100,7 +99,7 @@ public class insertarproducto extends HttpServlet {
 				producto = new Producto(nombre,descripcion,precio,id_empresa, id_categoria ,file );
 				if (producto.insertar()) {
 					
-					if (producto.leer("nombre", producto.getNombre(), true, false, false)) {
+					if (producto.leer("nombre", producto.getNombre(), true, false, false,0)) {
 
 						//coger la id del producto y coger los parametros de la informacion nutricional
 						id_producto = producto.getId_producto();

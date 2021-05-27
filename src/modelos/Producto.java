@@ -110,41 +110,68 @@ public class Producto {
 	 * @return Devuelve true o false dependiendo del resultado de la consulta
 	 */
 
-	public boolean leer(String columna, String valor, boolean unico, boolean all, boolean count) {
+	public boolean leer(String columna, String valor, boolean unico, boolean all, boolean count, int pagina) {
 		boolean resultado;
 		String sql;
+		int numeroRegistros;
+		numeroRegistros = 25;
 		resultado = false;
+		sql = "";
 
 		con.iniciarConexion("ns3034756.ip-91-121-81.eu:5432/a20-denrbae", "a20-denrbae", "a20-denrbae");
-
-		if (!columna.equals("") || !valor.equals("") || !columna.equals(null) || !valor.equals(null)) {
+		
+		
+		if (!columna.isEmpty()|| !valor.isEmpty()) {
 
 			sql = "SELECT * FROM proyecto.producto where " + columna + "= '" + valor+"'";
-		} else {
-			sql = "SELECT * FROM proyecto.producto";
 		}
 
 		if (count) {
-			sql = "SELECT count(*) FROM proyecto.producto where " + columna + " = ?";
+			
+			sql = "SELECT count(*) FROM proyecto.producto";
+			
+			if (!columna.isEmpty()|| !valor.isEmpty()) {
+
+				sql = "SELECT count(*) FROM proyecto.producto where " + columna + "= '" + valor+"'";
+			}
+		
 			unico = true;
 		}
 
 		if (all) {
+				
 			sql = "SELECT * FROM proyecto.producto";
 		}
+		
+		if(pagina != 0) {
+			
+			if(pagina == 1) {
 
+				if(all) {
+					sql = "SELECT * from proyecto.producto offset " + numeroRegistros;
+				}else {
+					sql = "SELECT * FROM proyecto.producto where " + columna + " = " + valor + " offset " + numeroRegistros;
+
+				}
+			}else {
+				numeroRegistros = (pagina - 1) * numeroRegistros;
+				if(all) {
+					sql = "SELECT * from proyecto.producto offset " + numeroRegistros;
+				}else {
+					sql = "SELECT * FROM proyecto.producto where " + columna + " = " + valor + " offset " + numeroRegistros;
+
+				}
+			}
+		}
+		
+	
 		try {
 
 			ps = con.getConnection().prepareStatement(sql);
 
-			if (count) {
-				ps.setInt(1, Integer.parseInt(valor));
-			}
 
-			if (all) {
-				ps.setInt(1, Integer.parseInt(valor));
-			}
-
+			
+			System.out.println(sql);
 			rs = ps.executeQuery();
 
 			if (rs.next()) {

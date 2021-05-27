@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="modelos.Comprador"%>
+<%@page import="modelos.Producto"%>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -62,12 +64,23 @@
 	int contador_categorias;
 	boolean salir_categorias;
 	
+	int paginas;
+	
+	Producto[] productos; 
+	boolean explora_Productos;
+	
 	iniciado = false;
 	bcategoria = false;
 	
 	contador_categorias = 0;
 	salir_categorias= false;
 	categorias = null;
+	
+	paginas = 1;
+	
+	productos = null;
+	explora_Productos = false;
+	
 	
 	/**
 	Control del usuario
@@ -78,16 +91,36 @@
 		comprador = (Comprador) session.getAttribute("usuario");
 	}
 	
+	/**
+	Control de las categorias
+	
+*/
 	if(session.getAttribute("categoriasDisponibles") != null){
 		bcategoria = true;
 		categorias = (String[]) session.getAttribute("categoriasDisponibles");
 	}
 	
+	/**
+	Control de las paginas
+	
+	*/
+	
+	if(session.getAttribute("paginas") != null){
+		explora_Productos= true;
+		paginas = (int) (session.getAttribute("paginas"));
+	}
 	
 	/**
-		Control de las categorias
-		
+	Control de los productos
+	
 	*/
+	
+	if(session.getAttribute("explora_productos") != null){
+		productos = (Producto[]) session.getAttribute("explora_productos");
+	}
+	
+	
+	
 %>
 
 <nav class="pf-nav">
@@ -247,6 +280,54 @@
 	%>	
   		</ul>
 			 
+    </section>
+    
+    <section class="pf-productos">
+    
+    	<% 
+	    	if(explora_Productos){
+	    		
+	    		 for(int i = 1; i <= paginas; i++){
+	    				
+	    				%>
+	    					<div class="pf-productos__item">
+	    		    	
+	    		    			<img width="200" alt="imagen" src="bajarFoto?param_img=producto&idproducto=<%=productos[i].getId_producto() %>">
+	    		    		
+	    		    			<p> <%= productos[i].getNombre() %> </p>
+	    		    			
+	    		    			<p> <%= productos[i].getPrecio() %></p>
+	    		    		</div>
+	    				<%
+	    			}
+	    	}else{
+	    	
+	    		%>
+	    		<h3> No hay productos existentes</h3>
+	    		<%
+	    	}
+    	%>
+    
+    
+    
+    	
+    
+    </section>
+    
+    
+    <section> 
+    
+	<!-- paginacion -->
+	
+	<%
+		for(int i = 1; i <= paginas; i++){
+			
+			%>
+				<a href="explorar?page=<%= i%>"> <%= i %> </a>
+			<%
+		}
+		
+	%>
     </section>
    
 <footer class="pf-footer">
