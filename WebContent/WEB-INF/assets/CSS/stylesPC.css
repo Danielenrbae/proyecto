@@ -5,7 +5,7 @@ a {
 html {
 	min-height: 100%;
 	position: relative;
-	padding-bottom: 200px;
+
 }
 
 .pf-header {
@@ -18,6 +18,7 @@ html {
 	align-items: center;
 	justify-content: center;
 	font-family: "Open Sans";
+	
 }
 
 @media screen and (max-width:1024px) {
@@ -414,8 +415,7 @@ html {
 	background-position: center;
 	background-size: cover;
 	background-repeat: repeat-x;
-	position: absolute;
-	bottom: 0;
+	margin-top: 200px;
 }
 
 .pf-footer .pf-footer__container {
@@ -4482,7 +4482,8 @@ html {
 	background-color: #2E5056;
 }
 
-.pf-cabecera-contacto {content ="";
+.pf-cabecera-contacto {
+	content: "";
 	background-image: url("../../../Img/common/cabecera.png");
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -5585,8 +5586,8 @@ html {
 	text-align: center
 }
 
-@media screen and (max-width: 1024px){
-	.pf-categorias{
+@media screen and (max-width: 1024px) {
+	.pf-categorias {
 		
 	}
 }
@@ -5612,9 +5613,89 @@ html {
 	padding: 30px;
 	text-decoration: none;
 	white-space: nowrap;
-	
 }
 
 .pf-categorias .pf-categorias__list a:hover {
 	background-color: #24BFA3;
 }
+
+.pf-productos {
+	width: 100%;
+	font-family: 'Open Sans';
+	font-weight: 600;
+	color: #011f26;
+	font-size: 1.8rem;
+	display: grid;
+	justify-content: space-between;
+	align-items: center;
+	grid-template-columns: 300px 300px 300px 300px;
+	grid-row-gap: 50px;
+	text-align: center;
+	padding: 70px 80px;	
+
+}
+
+.pf-productos .pf-productos__item {
+	min-width: 300px;
+	max-width: 300px;
+	min-height: 400px;
+	max-height: 400px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	border: 1px solid #d4d4d4;
+}
+
+.pf-productos .pf-productos__item img {
+	width: 75%;
+}
+
+.pf-productos .pf-productos__item .card-body {
+	width: 100%;
+	max-height: 100px;
+	
+}
+
+
+.pf-productos .pf-productos__item .button-group{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 80%;
+	position: absolute;
+	bottom: 12px;
+	left: 35px;
+}
+
+.pf-productos .pf-productos__item .button-group .card-text{
+	
+	font-weight: bold;
+	font-size: 2.5rem;
+}
+
+.pf-productos .pf-productos__item .button-group .btn-primary{
+		display: flex;
+	align-items: center;
+	justify-content: center;
+	color: #f2f2f2;
+	font-size: 1.5rem;
+	background-color: #2E5056;
+	border: none;
+	outline: none;
+	border-radius: 35px;
+	padding: 7px;
+	width: fit-content;
+	white-space: nowrap;
+	font-weight: bold;
+	cursor: pointer;
+	text-decoration: none;
+	padding: 10px;
+	
+}
+
+.pf-productos .pf-productos__item .button-group .btn-primary:hover{
+	background-color: #24BFA3;
+}
+
+

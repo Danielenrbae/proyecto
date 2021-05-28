@@ -288,7 +288,7 @@
 			 
     </section>
     
-    <section class="pf-productos">
+    <section class="pf-productos container-fluid">
     
     	<%     	    		   
 	    	if(explora_Productos){
@@ -302,24 +302,44 @@
 	    				<% 
 	    					if(productos[contador].getFoto() != null){
 	    						%>
-	    						<div class="pf-productos__item" data-id="<%= productos[contador].getId_producto()%>">
-	    							<img class="content" src="bajarFoto?param_img=producto&idproducto=<%= productos[contador].getId_producto() %>"/> 
 	    						
-	    						</div>
+	    						
+	    						<div class="card pf-productos__item" data-id="<%= productos[contador].getId_producto()%>" >
+	    							   <img class="content card-img-top img-fluid" src="bajarFoto?param_img=producto&idproducto=<%= productos[contador].getId_producto() %>"/> 
+	    						
+							
+									  <div class="card-body">
+									    <p class="card-text" ><%= productos[contador].getNombre() %></p>
+								
+										<div class="button-group">
+											    <p class="card-text"><%= productos[contador].getPrecio() %></p>
+									        <a href="#" class="btn btn-primary">Añadir al carrito</a>
+										</div>
+									
+									  </div>
+									</div>
 	    						
 	    						<%
 	    					}else{
 	    						%>
-	    						<div class="pf-productos__item" >
+	    							<div class="card pf-productos__item">
+	    							   <img class="card-img-top img-fluid" src="./Img/common/pf-default-image.png"/> 
 	    						
-	    							<img width="200" src="./Img/common/pf-default-image.png" alt="foto por defectp de no existencia" />
-	    						</div>
+							
+									  <div class="card-body">
+									    <p class="card-text"><%= productos[contador].getNombre() %></p>
+									  
+										<div class="button-group">
+											    <p class="card-text"><%= productos[contador].getPrecio() %></p>
+									        <a href="#" class="btn btn-primary">Añadir al carrito</a>
+										</div>
+									  </div>
+									</div>
 
 	    						<%
 	    					}
 	    				%>
-	    					<p class="pf-item__name"> <%= productos[contador].getNombre() %> </p>
-	    					<p class="pf-item__prize"> <%= productos[contador].getPrecio() %> </p>
+	    					
 	    				<%
 	    				
 	    				contador++;
