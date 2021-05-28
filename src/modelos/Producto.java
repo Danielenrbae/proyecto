@@ -146,19 +146,25 @@ public class Producto {
 		if(pagina != 0) {
 			
 			if(pagina == 1) {
-
+				
 				if(all) {
-					sql = "SELECT * from proyecto.producto offset" + numeroRegistros;
+					sql = "SELECT * from proyecto.producto offset 0 rows fetch next 25 rows only";
 				}else {
-					sql = "SELECT * FROM proyecto.producto where " + columna + " = " + valor + " offset " + numeroRegistros;
+					
+					sql = "SELECT * FROM proyecto.producto where " + columna + " = " + valor + "offset 0 rows fetch next 25 rows only";
+
+					
+					
+					
 
 				}
 			}else {
 				numeroRegistros = (pagina - 1) * numeroRegistros;
+				System.out.println(numeroRegistros);
 				if(all) {
-					sql = "SELECT * from proyecto.producto offset" + numeroRegistros;
+					sql = "SELECT * from proyecto.producto offset " + numeroRegistros + "rows fetch next "+(numeroRegistros+25)+" only;";
 				}else {
-					sql = "SELECT * FROM proyecto.producto where " + columna + " = " + valor + " offset " + numeroRegistros;
+					sql = "SELECT * FROM proyecto.producto where " + columna + " = " + valor + " offset " + numeroRegistros + "rows fetch next "+(numeroRegistros+25)+"rows only;";
 
 				}
 			}

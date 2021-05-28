@@ -120,9 +120,9 @@ public class insertarproducto extends HttpServlet {
 						
 						if (info_nutri.insertar()) {
 														
-							if (file.delete()) {
+					
 								out.print("{ \"ok\" : 1 }");
-							}
+							
 							//response.sendRedirect("mantenimiento");
 						}else {
 							out.print("{ \"error\" : \"Algo ha salido mal, inténtelo de nuevo 1\" }");

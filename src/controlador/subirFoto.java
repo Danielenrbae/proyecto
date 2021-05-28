@@ -119,6 +119,8 @@ public class subirFoto extends HttpServlet {
 		}
 		session.setAttribute("file", file);
 		out.close();
+		
+		file.delete();
 
 		
 		

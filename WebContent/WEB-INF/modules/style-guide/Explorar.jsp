@@ -70,6 +70,7 @@
 	boolean explora_Productos;
 	boolean salir;
 	int contador;
+
 	
 	iniciado = false;
 	bcategoria = false;
@@ -84,6 +85,7 @@
 	explora_Productos = false;
 	salir= false;
 	contador = 0;
+
 	
 	
 	/**
@@ -124,6 +126,10 @@
 		explora_Productos = true;
 
 	}
+	
+
+	
+
 	
 	
 	
@@ -364,16 +370,23 @@
     </section>
     
     
-    <section> 
+    <section class="pf-paginacion"> 
     
 	<!-- paginacion -->
 	
 	<%
 		for(int i = 1; i <= paginas; i++){
-			
-			%>
-				<a href="explorar?page=<%= i%>"> <%= i %> </a>
+			if(i ==  (int) session.getAttribute("pageSession")){
+				%>
+				<a class="pf-paginacion__page active" href="explorar?page=<%= i%>"> <%= i %> </a>
 			<%
+			}else{
+				
+			%>
+				<a class="pf-paginacion__page" href="explorar?page=<%= i%>"> <%= i %> </a>
+			<%
+			
+			}
 		}
 		
 	%>

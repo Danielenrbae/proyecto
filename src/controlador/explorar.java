@@ -35,6 +35,7 @@ public class explorar extends HttpServlet {
 		Producto producto , aux_producto;
 		Producto[] productos;
 		int totalProductos;
+		int res = 0;
 
 		
 		
@@ -58,6 +59,9 @@ public class explorar extends HttpServlet {
 		
 		if(request.getParameter("page") != null){
 			page= Integer.parseInt(request.getParameter("page"));
+			session.setAttribute("pageSession", page);
+		}else {
+			session.setAttribute("pageSession", 1);
 		}
 		
 		//GET CATEGORIAS
@@ -118,8 +122,8 @@ public class explorar extends HttpServlet {
 		
 		if(producto.leer("", "", false, false, true, 0)) {
 			totalProductos = producto.getNumeroTotal();
-			
-			int res = (totalProductos / 25);
+			//totalProductos = 53; //prueba para mostrar 3 paginaciones
+			res = (totalProductos / 25);
 			
 			
 			if(totalProductos % 25 != 0 ) {
@@ -127,8 +131,14 @@ public class explorar extends HttpServlet {
 			}
 			session.setAttribute("paginas", res);
 		}
+	
+		if(page > res) {
+//			llevar al error 404 
+			request.getRequestDispatcher("WEB-INF/modules/style-guide/error404.jsp").forward(request, response);
+		}else {
+			request.getRequestDispatcher("WEB-INF/modules/style-guide/Explorar.jsp").forward(request, response);
+		}
 		
-		request.getRequestDispatcher("WEB-INF/modules/style-guide/Explorar.jsp").forward(request, response);
 	}
 
 	/**
