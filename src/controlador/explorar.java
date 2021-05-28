@@ -45,7 +45,7 @@ public class explorar extends HttpServlet {
 		categorias= new String[MAX_SIZE];
 		page = 1;
 		producto = new Producto();
-		productos = null;
+		productos = new Producto[MAX_SIZE];
 		
 		
 		if (session.isNew()) {
@@ -83,12 +83,13 @@ public class explorar extends HttpServlet {
 		salir = false;
 		if (producto.leer("", "", false, true, false,page)) {
 			
-			productos = new Producto[MAX_SIZE];
 			aux_producto = new Producto();
 			
 			aux_producto.setId_producto(producto.getId_producto());
 			aux_producto.setNombre(producto.getNombre());										
 			aux_producto.setPrecio(producto.getPrecio());
+			aux_producto.setFoto(producto.getFoto());
+			
 			
 			productos[0] = aux_producto;
 			
@@ -99,7 +100,8 @@ public class explorar extends HttpServlet {
 					aux_producto.setId_producto(producto.getId_producto());
 					aux_producto.setNombre(producto.getNombre());										
 					aux_producto.setPrecio(producto.getPrecio());
-					
+					aux_producto.setFoto(producto.getFoto());
+
 					productos[contador] = aux_producto;
 					contador++;
 				}else {
@@ -111,6 +113,8 @@ public class explorar extends HttpServlet {
 		}
 	
 		session.setAttribute("explora_productos", productos);
+		
+	
 		
 		if(producto.leer("", "", false, false, true, 0)) {
 			totalProductos = producto.getNumeroTotal();

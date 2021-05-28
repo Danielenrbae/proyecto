@@ -33,18 +33,16 @@ public class bajarFoto extends HttpServlet {
 		String tipo;
 		Producto producto;
 		String id_producto;
-		String tipo_usuario;
 		byte[] foto;
 		OutputStream out;
 
 		session = request.getSession();
 
-		tipo = (String) request.getParameter("param_img");
-		tipo_usuario = (String) session.getAttribute("tipo_usuario");
+		tipo = (String) request.getParameter("param_img");		
 		id_producto = request.getParameter("idproducto");
 		foto = null;
 		
-		if (tipo_usuario != null && !tipo_usuario.equals("Cliente")) {
+	
 
 			switch (tipo) {
 			case "producto":
@@ -54,12 +52,13 @@ public class bajarFoto extends HttpServlet {
 				if (producto.leer("id_producto", id_producto, true, false, false, 0)) {
 					foto = producto.getFoto();
 					
-					if(foto != null) {											
+					if(foto != null) {							
 						session.setAttribute("imagenP", foto);
-						response.setContentType("image /png");
+						response.setContentType("image/png");
 						out = response.getOutputStream();
 						out.write(foto);
 						out.flush();
+						out.close();
 					}
 					
 				}
@@ -70,9 +69,8 @@ public class bajarFoto extends HttpServlet {
 				break;
 			}
 			
-		} else {
+		
 
-		}
 
 	}
 

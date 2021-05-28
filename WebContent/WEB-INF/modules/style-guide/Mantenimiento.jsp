@@ -339,7 +339,7 @@
 
     <div class="pf-footer-bussiness__nav">
         <div class="pf-nav__logo">
-            <a href=""><img class="img-fluid" src="./Img/common/favicon-blanco.png" alt="Logo"/></a>
+            <a href="resumen"><img class="img-fluid" src="./Img/common/favicon-blanco.png" alt="Logo"/></a>
         </div>
     
         <div class="pf-nav__container">
@@ -598,7 +598,6 @@
 						if(product_delete.getFoto() != null){
 							
 							%>
-<!-- 						TODO: arreglar mostrar los productos -->
 							<img src="bajarFoto?param_img=producto&idproducto=<%=product_delete.getId_producto() %>" />
 							<%
 						}else{

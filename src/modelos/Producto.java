@@ -148,7 +148,7 @@ public class Producto {
 			if(pagina == 1) {
 
 				if(all) {
-					sql = "SELECT * from proyecto.producto offset " + numeroRegistros;
+					sql = "SELECT * from proyecto.producto offset" + numeroRegistros;
 				}else {
 					sql = "SELECT * FROM proyecto.producto where " + columna + " = " + valor + " offset " + numeroRegistros;
 
@@ -156,7 +156,7 @@ public class Producto {
 			}else {
 				numeroRegistros = (pagina - 1) * numeroRegistros;
 				if(all) {
-					sql = "SELECT * from proyecto.producto offset " + numeroRegistros;
+					sql = "SELECT * from proyecto.producto offset" + numeroRegistros;
 				}else {
 					sql = "SELECT * FROM proyecto.producto where " + columna + " = " + valor + " offset " + numeroRegistros;
 
@@ -171,7 +171,7 @@ public class Producto {
 
 
 			
-			System.out.println(sql);
+		
 			rs = ps.executeQuery();
 
 			if (rs.next()) {

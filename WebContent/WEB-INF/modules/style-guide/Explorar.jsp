@@ -68,6 +68,8 @@
 	
 	Producto[] productos; 
 	boolean explora_Productos;
+	boolean salir;
+	int contador;
 	
 	iniciado = false;
 	bcategoria = false;
@@ -80,6 +82,8 @@
 	
 	productos = null;
 	explora_Productos = false;
+	salir= false;
+	contador = 0;
 	
 	
 	/**
@@ -117,6 +121,8 @@
 	
 	if(session.getAttribute("explora_productos") != null){
 		productos = (Producto[]) session.getAttribute("explora_productos");
+		explora_Productos = true;
+
 	}
 	
 	
@@ -284,22 +290,45 @@
     
     <section class="pf-productos">
     
-    	<% 
+    	<%     	    		   
 	    	if(explora_Productos){
 	    		
-	    		 for(int i = 1; i <= paginas; i++){
-	    				
+	    		while(!salir){
+	    			
+	    			if(productos[contador] != null){
 	    				%>
-	    					<div class="pf-productos__item">
-	    		    	
-	    		    			<img width="200" alt="imagen" src="bajarFoto?param_img=producto&idproducto=<%=productos[i].getId_producto() %>">
-	    		    		
-	    		    			<p> <%= productos[i].getNombre() %> </p>
-	    		    			
-	    		    			<p> <%= productos[i].getPrecio() %></p>
-	    		    		</div>
+	    				
+	    				
+	    				<% 
+	    					if(productos[contador].getFoto() != null){
+	    						%>
+	    						<div class="pf-productos__item" data-id="<%= productos[contador].getId_producto()%>">
+	    							<img class="content" src="bajarFoto?param_img=producto&idproducto=<%= productos[contador].getId_producto() %>"/> 
+	    						
+	    						</div>
+	    						
+	    						<%
+	    					}else{
+	    						%>
+	    						<div class="pf-productos__item" >
+	    						
+	    							<img width="200" src="./Img/common/pf-default-image.png" alt="foto por defectp de no existencia" />
+	    						</div>
+
+	    						<%
+	    					}
+	    				%>
+	    					<p class="pf-item__name"> <%= productos[contador].getNombre() %> </p>
+	    					<p class="pf-item__prize"> <%= productos[contador].getPrecio() %> </p>
 	    				<%
+	    				
+	    				contador++;
+	    			}else{
+	    				salir = true;
 	    			}
+	    			
+	    		}
+	    		 	 
 	    	}else{
 	    	
 	    		%>

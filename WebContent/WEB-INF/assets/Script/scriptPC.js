@@ -20,16 +20,16 @@ $(document).ready(function () {
       },
     },
   });
-  
+
   $(".pf-categorias__list").owlCarousel({
-	    loop: true,
-	    margin: 0,
-	    nav: false,
-	    dots: false,
-	    autoWidth: true,
-	    items: 7,
-	    mouseDrag: true
-	  });
+    loop: true,
+    margin: 0,
+    nav: false,
+    dots: false,
+    autoWidth: true,
+    items: 7,
+    mouseDrag: true,
+  });
 
   $("*[data-id='login']").on("click", function () {
     $(".modal").css("display", "none");
@@ -323,24 +323,22 @@ $(document).ready(function () {
         idproducto: id_producto,
       },
       function (data, textStatus, jqXHR) {
-
-        
         if (data != null) {
           let json = JSON.parse(data);
 
           if (json.ok == 1) {
-            document.location.href = "/mantenimiento?delete=true"
-            
-            $.get("bajarFoto", {
-              idproducto : id_producto,
-              param_img : "producto"
-            },
+            document.location.href = "/mantenimiento?delete=true";
+
+            $.get(
+              "bajarFoto",
+              {
+                idproducto: id_producto,
+                param_img: "producto",
+              },
               function (data, textStatus, jqXHR) {
                 console.log("Todo correcto");
               }
             );
-        
-            
           }
         }
       }
@@ -349,29 +347,45 @@ $(document).ready(function () {
 
   //metodo para eliminar un producto
 
-$("#pf-button__confirm-delete").on("click", function () {
- 
-  $.post("eliminarProducto", {},
-    function (data, textStatus, jqXHR) {
-       
+  $("#pf-button__confirm-delete").on("click", function () {
+    $.post("eliminarProducto", {}, function (data, textStatus, jqXHR) {
       if (data != null) {
         let json = JSON.parse(data);
 
         if (json.error != "") {
-            $("#errorDelete").val(json.error);
+          $("#errorDelete").val(json.error);
         }
 
         if (json.ok == 1) {
           alert("Eliminador correctamente");
           document.location.href = "mantenimiento";
-          
         }
       }
-    }
-  );
+    });
+  });
 
-});
-      
+  //metodo para pintar todos los productos
+
+  let array_productos = $(".pf-productos__item[data-id]");
+
+  for (let i = 0; i < array_productos.length; i++) {
+    const element = array_productos[i];
+
+    $(element).on("change", onBajarFoto(element));
+    
+  }
+
+  function onBajarFoto(element){
+
+    let url = $(element).find("img").attr("src");
+
+    $.get(url,
+      function (data, textStatus, jqXHR) {
+        console.log("ok");
+      }
+    );
+  
+  }
 
   // config
 
