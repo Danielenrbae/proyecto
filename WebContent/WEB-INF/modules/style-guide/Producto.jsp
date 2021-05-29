@@ -12,23 +12,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="index, follow">
-    <meta charset="utf-8" />
-    <meta name="application-name" content="Inicio" />
-        <link rel="shortcut icon" href="./Img/dynamic/bigmac.png" type="image/png" >
+    <meta charset="utf-8" />        
+    <link rel="shortcut icon" href="./Img/dynamic/bigmac.png" type="image/png" >
     
-    <title>Explorar</title>
+    <meta name="application-name" content="Producto" />
+    <title>Producto</title>
 
-<!--     <link rel="stylesheet" href="/WEB-INF/assets/Script/jquery-ui-1.12.1/jquery-ui.css" media="all"> -->
-<!--     <link rel="stylesheet" href="/WEB-INF/assets/Script/jquerymodal/jquerymodal.css" media="all"> -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-
-<!--     <script src="/WEB-INF/assets/Script/jquery-ui-1.12.1/jquery.js"></script> -->
-<!--     <script src="/WEB-INF/assets/Script/jquery-ui-1.12.1/jquery-ui.js"></script> -->
-<!--     <script src="/WEB-INF/assets/Script/jquerymodal/jquerymodal.js"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
 
 
@@ -52,88 +46,34 @@
 <%@ include file="/WEB-INF/assets/Script/scriptPC.js"%>
 </script>
 
-  
-<%
+    
 
-	
+<%
 	Comprador comprador;
 	boolean iniciado;
-	boolean bcategoria;
 	
-	String[] categorias;
-	int contador_categorias;
-	boolean salir_categorias;
-	
-	int paginas;
-	
-	Producto[] productos; 
-	boolean explora_Productos;
-	boolean salir;
-	int contador;
-
+	Producto producto;
 	
 	iniciado = false;
-	bcategoria = false;
 	
-	contador_categorias = 0;
-	salir_categorias= false;
-	categorias = null;
-	
-	paginas = 1;
-	
-	productos = null;
-	explora_Productos = false;
-	salir= false;
-	contador = 0;
-
-	
-	
-	/**
-	Control del usuario
-	*/
+	producto= null;
 	
 	if(session.getAttribute("usuario") != null){
 		iniciado = true;
 		comprador = (Comprador) session.getAttribute("usuario");
 	}
 	
-	/**
-	Control de las categorias
-	
-*/
-	if(session.getAttribute("categoriasDisponibles") != null){
-		bcategoria = true;
-		categorias = (String[]) session.getAttribute("categoriasDisponibles");
+	if(session.getAttribute("product") != null){
+		producto = (Producto) session.getAttribute("product");
 	}
 	
-	/**
-	Control de las paginas
-	
-	*/
-	
-	if(session.getAttribute("paginas") != null){
-		explora_Productos= true;
-		paginas = (int) (session.getAttribute("paginas"));
-	}
-	
-	/**
-	Control de los productos
-	
-	*/
-	
-	if(session.getAttribute("explora_productos") != null){
-		productos = (Producto[]) session.getAttribute("explora_productos");
-		explora_Productos = true;
-
-	}
 	
 
-	
-
-	
-	
-	
 %>
+
+<jsp:useBean id="product" class="modelos.Producto" scope="session"></jsp:useBean>
+
+		
 
 <nav class="pf-nav">
     <div class="pf-nav__logo">
@@ -149,7 +89,7 @@
         <ul class="pf-container__menu">
 
             <li class="pf-menu__item"><a href="inicio">INICIO</a></li>
-            <li class="pf-menu__item"><a href="#">EXPLORAR</a></li>
+            <li class="pf-menu__item"><a href="explorar">EXPLORAR</a></li>
             <li class="pf-menu__item"><a href="#">SOBRE NOSOTROS</a></li>
             <li class="pf-menu__item"><a href="contacto">CONTACTO</a></li>
 
@@ -161,6 +101,7 @@
                 <div class="pf-container__auth">
 
             <%
+			
 			
 				if(!iniciado){
 			%>
@@ -174,7 +115,7 @@
  						</div>
 			<%
 				}else{
-	
+			
 			%>
 				<jsp:useBean id="usuario" class="modelos.Comprador" scope="session"></jsp:useBean>
 			
@@ -233,7 +174,7 @@
 			</div>
 			<%
 				}else{
-	
+
 			%>
 				
 		          <div class="pf-auth__logged">
@@ -256,142 +197,168 @@
         <nav class="pf-breadcrumb" aria-label="breadcrumb">
 	  <ol class="breadcrumb">
 	    <li class="breadcrumb-item" aria-current="page"><a href="inicio">Inicio</a></li>
-	    <li class="breadcrumb-item" aria-current="page"><a href="explora">Explora</a></li>
+	   	<li class="breadcrumb-item" aria-current="page"><a href="explorar">Explorar</a></li>
+	   	
+	   	<li class="breadcrumb-item" aria-current="page"><a href="compraProducto?id=<%=producto.getId_producto()%>"> <jsp:getProperty property="nombre" name="product"/> </a></li>
+	   	
+	    
 	  </ol>
 	</nav>
-    
-    
-      <section class="pf-categorias" >
-    	<ul class="pf-categorias__list owl-carousel owl-theme" >
-<!--     CATEGORIAS  -->
-	<%
-
 	
-		if (bcategoria){
-			
-        	while(!salir_categorias){
-        		
-        		if(categorias[contador_categorias] != null){                            			                            			
+	
+	<section class="pf-product">
+    <h2 class="pf-product__title"><jsp:getProperty property="nombre" name="product"/></h2>
+
+    <div class="pf-product__container">
+        <div class="pf-container__general">
+        
+        	<%
+        		if(producto.getFoto() != null){
+        			
         			%>
-        				<li class="pf-owl__item"> <a  href="explorar?cat=<%= categorias[contador_categorias]%>"><%= categorias[contador_categorias]%> </a> </li>
+        				<img src="bajarFoto?param_img=producto&idproducto=<%= producto.getId_producto()%>" alt=""/>
         			<%
-        			contador_categorias++;
-        		}else{                            		
-        			salir_categorias= true;
-        		}                            		
-        	}                            		
-			
-			
-		}else{
-			%>
-			<h3> Lista de categorias no disponible en este momento.</h3>
-			<h4>Perdone las molestias</h4>
-			<%
-		}
-	
-	%>	
-  		</ul>
-			 
-    </section>
-    
-    <section class="pf-productos container-fluid">
-    
-    	<%     	    		   
-	    	if(explora_Productos){
-	    		
-	    		while(!salir){
-	    			
-	    			if(productos[contador] != null){
-	    				%>
-	    				
-	    				
-	    				<% 
-	    					if(productos[contador].getFoto() != null){
-	    						%>
-	    						
-	    						
-	    						<div class="card pf-productos__item" data-id="<%= productos[contador].getId_producto()%>" >
-	    							   <img class="content card-img-top img-fluid" src="bajarFoto?param_img=producto&idproducto=<%= productos[contador].getId_producto() %>"/> 
-	    						
-							
-									  <div class="card-body">
-									    <p class="card-text" ><%= productos[contador].getNombre() %></p>
-								
-										<div class="button-group">
-											    <p class="card-text"><%= productos[contador].getPrecio() %></p>
-									        <a href="compraProducto?id=<%=productos[contador].getId_producto() %>" class="btn btn-primary">Añadir al carrito</a>
-										</div>
-									
-									  </div>
-									</div>
-	    						
-	    						<%
-	    					}else{
-	    						%>
-	    							<div class="card pf-productos__item">
-	    							   <img class="card-img-top img-fluid" src="./Img/common/pf-default-image.png"/> 
-	    						
-							
-									  <div class="card-body">
-									    <p class="card-text"><%= productos[contador].getNombre() %></p>
-									  
-										<div class="button-group">
-											    <p class="card-text"><%= productos[contador].getPrecio() %></p>
-									        <a href="compraProducto?id=<%=productos[contador].getId_producto() %>" class="btn btn-primary">Añadir al carrito</a>
-										</div>
-									  </div>
-									</div>
+        			
+        		}else{
+        			
+        			%>
+        				<img class="card-img-top img-fluid" src="./Img/common/pf-default-image.png"/>         	
+        			<%
+        		}
+        	%>
+        
+            <div class="pf-general__data">
+                <div class="pf-data__description">
+                    <span>DESCRIPCIÓN</span>
+                    <p> <jsp:getProperty property="descripcion" name="product"/> </p>
+                </div>
 
-	    						<%
-	    					}
-	    				%>
-	    					
-	    				<%
-	    				
-	    				contador++;
-	    			}else{
-	    				salir = true;
-	    			}
-	    			
-	    		}
-	    		 	 
-	    	}else{
-	    	
-	    		%>
-	    		<h3> No hay productos existentes</h3>
-	    		<%
-	    	}
-    	%>
+                <div class="pf-data__cantidad">
+                   
+                        <div class="pf-cantidad__buttons">
+                            <button class="pf-buttons__minus"></button>
+                                <span class="pf-buttons__input">0</span>
+                            <button class="pf-buttons__plus"></button>
+                        </div>
+                        <div class="pf-cantidad__precio">
+                            <span>PRECIO</span>
+                            <p><jsp:getProperty property="precio" name="product"/> EUROS</p>
+                        </div>
+                   
+
+                   
+
+
+
+<div class="pf-button-primary  pf-button-primary--fill ">
+    <a class="pf-button-primary__text" href="carrito?id=<%=producto.getId_producto() %>" >Añadir al carrito</a>
+</div>                </div>
+            </div>
+
+            
+        </div>
+        
+        <jsp:useBean id="info_product" class="modelos.InformacionNutricional" scope="session"></jsp:useBean>
+
+        <div class="pf-container__informacion">
+            <h3 class="pf-informacion__title">Información Nutricional</h3>
+
+            <div class="accordion" id="accordionExample">
+                <div class="card">
+                  <div class="card-header" id="headingOne">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#info_nutri" aria-expanded="false" aria-controls="info_nutri">
+                        Información nutricional
+                        <span> </span>
+                      </button>
+                    </h2>
+                  </div>
+              
+                  <div id="info_nutri" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                    <div class="card-body">
+
+                        <div class="pf-body__energy">
+                            <p> <jsp:getProperty property="energia" name="info_product"/> </p>
+                            <span>Energía</span>
+                        </div>
+                        <div class="pf-body__datos">
+                            <ul>
+                                <li>
+                                    <div class="form-group">
+                                        <label for="peso">Peso(g)</label>
+                                        <p><jsp:getProperty property="peso" name="info_product"/>g</p>
+                                    </div>
+                                </li>
+                                <li>   
+                                    <div class="form-group">
+                                        <label for="fibra">Fibra(g)</label>
+                                        <p><jsp:getProperty property="fibra" name="info_product"/>g</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="form-group">
+                                        <label for="v-energeticokj">Valor Energético(kJ)</label>
+                                        <p><jsp:getProperty property="valorkj" name="info_product"/>kJ</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="form-group">
+                                        <label for="azucares">Azúcares(g)</label>
+                                        <p><jsp:getProperty property="azucares" name="info_product"/>g</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="form-group">
+                                        <label for="v-energeticokc">Valor Energético(kcal)</label>
+                                        <p><jsp:getProperty property="valorkcal" name="info_product"/>Kcal</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="form-group">
+                                        <label for="grasas">Grasas(g)</label>
+                                        <p><jsp:getProperty property="grasas" name="info_product"/>g</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="form-group">
+                                        <label for="proteinas">Proteínas(g)</label>
+                                        <p><jsp:getProperty property="proteinas" name="info_product"/>g</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="form-group">
+                                        <label for="ac-saturados">Ác. Grasos Saturados(g)</label>
+                                        <p><jsp:getProperty property="grasos_saturados" name="info_product"/>g</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="form-group">
+                                        <label for="h-carbono">Hidratos de Carbono(g)</label>
+                                        <p><jsp:getProperty property="hidratos" name="info_product"/>g</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="form-group">
+                                        <label for="sal">Sal(g)</label>
+                                        <p><jsp:getProperty property="sal" name="info_product"/>g</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+             
+             
+              </div>
+        </div>
+    </div>
+
+</section>
     
     
     
-    	
-    
-    </section>
-    
-    
-    <section class="pf-paginacion"> 
-    
-	<!-- paginacion -->
-	
-	<%
-		for(int i = 1; i <= paginas; i++){
-			if(i ==  (int) session.getAttribute("pageSession")){
-				%>
-				<a class="pf-paginacion__page active" href="explorar?page=<%= i%>"> <%= i %> </a>
-			<%
-			}else{
-				
-			%>
-				<a class="pf-paginacion__page" href="explorar?page=<%= i%>"> <%= i %> </a>
-			<%
-			
-			}
-		}
-		
-	%>
-    </section>
-   
+  
 <footer class="pf-footer">
 
     <div class="pf-footer__container">
@@ -399,16 +366,13 @@
         <h3 class="pf-container__subtitle">Conviértete en Parte de Nuestro Viaje</h3>
 
         
-
-
-
 		<%if(!iniciado){
 			%>
 		  <div class="pf-button-primary  pf-button-primary--fill " data-id="registrar">
 			    <a data-id="registrar" class="pf-button-primary__text" >Únete ya</a>
 			</div>  
 		<%
-		}else{					
+		}else{				
 		%>
 		 <div class="pf-button-primary  pf-button-primary--fill " >
 			    <a href="explorar" class="pf-button-primary__text" >Explora</a>
@@ -416,7 +380,9 @@
 		<%
 		}
 		%>
- </div>
+
+
+    </div>
 
     <div class="pf-footer__nav">
         <div class="pf-nav__logo">
@@ -428,7 +394,7 @@
             <ul class="pf-container__menu">
     
                 <li class="pf-menu__item"><a href="inicio">INICIO</a></li>
-                <li class="pf-menu__item"><a href="#">EXPLORAR</a></li>
+                <li class="pf-menu__item"><a href="explorar">EXPLORAR</a></li>
                 <li class="pf-menu__item"><a href="#">SOBRE NOSOTROS</a></li>
                 <li class="pf-menu__item"><a href="contacto">CONTACTO</a></li>
             </ul>
@@ -627,4 +593,4 @@
 
 </body>
 
-</html> 
+</html>

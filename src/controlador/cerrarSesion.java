@@ -35,6 +35,7 @@ public class cerrarSesion extends HttpServlet {
 		session.setAttribute("tipo_usuario", null);
 		session.setAttribute("email-verificacion", null);
 		session.setAttribute("usuario", null);
+		session.invalidate();
 		
 		response.sendRedirect("inicio");
 	}
