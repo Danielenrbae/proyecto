@@ -42,17 +42,16 @@ public class compraProducto extends HttpServlet {
 		}
 
 		if (producto.leer("id_producto", String.valueOf(id_producto), true, false, false, 0)) {
-			System.out.println("sss");
 			info_nutri = new InformacionNutricional();
 
-			// TODO COMPROBAR EN EL JSP SI NO HAY INFORMACION NUTRICIONAL QUE SALG QUE NO TIENE
 			if(info_nutri.leer("id_producto", id_producto, true)) {
-				System.out.println("s");
 				
 				session.setAttribute("info_product", info_nutri);
-				session.setAttribute("product", producto);
-				request.getRequestDispatcher("WEB-INF/modules/style-guide/Producto.jsp").forward(request, response);				
+							
 			}
+			
+			session.setAttribute("product", producto);
+			request.getRequestDispatcher("WEB-INF/modules/style-guide/Producto.jsp").forward(request, response);	
 
 		} else {
 			request.getRequestDispatcher("WEB-INF/modules/style-guide/error404.jsp").forward(request, response);

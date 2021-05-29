@@ -54,9 +54,13 @@
 	
 	Producto producto;
 	
+	boolean binformacion;
+	
 	iniciado = false;
 	
 	producto= null;
+	
+	binformacion= false;
 	
 	if(session.getAttribute("usuario") != null){
 		iniciado = true;
@@ -67,6 +71,13 @@
 		producto = (Producto) session.getAttribute("product");
 	}
 	
+	if(session.getAttribute("info_product") == null){
+		%>
+			<jsp:useBean id="info_product" class="modelos.InformacionNutricional" scope="session"></jsp:useBean>
+		<%
+	}else{
+		binformacion = true;
+	}
 	
 
 %>
@@ -249,17 +260,23 @@
                    
 
 
-
-<div class="pf-button-primary  pf-button-primary--fill ">
-    <a class="pf-button-primary__text" href="carrito?id=<%=producto.getId_producto() %>" >Añadir al carrito</a>
-</div>                </div>
+				
+				<div class="pf-button-primary  pf-button-primary--fill ">
+<!-- 					cambiar el controlador del add carrito -->
+				    <a class="pf-button-primary__text" href="addcarrito?id=<%=producto.getId_producto() %>" >Añadir al carrito</a>
+				</div>               
+				
+				 </div>
             </div>
 
             
         </div>
         
-        <jsp:useBean id="info_product" class="modelos.InformacionNutricional" scope="session"></jsp:useBean>
-
+        
+        <%
+        	if (binformacion){
+        		%>
+        		
         <div class="pf-container__informacion">
             <h3 class="pf-informacion__title">Información Nutricional</h3>
 
@@ -352,6 +369,20 @@
              
               </div>
         </div>
+        		<%
+        	}else{
+        		
+        		%>
+        		    <div class="pf-container__informacion">
+        			
+        				<h4> Este producto no contiene información nutricional.</h4>
+        			
+        			</div>
+        		<%
+        	}
+        %>
+        
+
     </div>
 
 </section>

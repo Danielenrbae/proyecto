@@ -48,6 +48,7 @@ public class explorar extends HttpServlet {
 		producto = new Producto();
 		productos = new Producto[MAX_SIZE];
 		
+		session.setAttribute("info_product",null);
 		
 		if (session.isNew()) {
 			session.setAttribute("usuario", null);
