@@ -79,12 +79,14 @@ public class compraProducto extends HttpServlet {
 		carrito = new Carrito();
 		carpro = new Carpro();
 		
-		if(session.getAttribute("tipo_usuario") != null && !request.getParameter("id").isEmpty() || !request.getParameter("id").equals(null) ) {
+		if(session.getAttribute("tipo_usuario") != null && !request.getParameter("id").isEmpty()) {
 			
 			tipo= (String) session.getAttribute("tipo_usuario");
+			
+			System.out.println(tipo);
 			id_producto= Integer.parseInt(request.getParameter("id"));
 			
-			if (tipo.equals("Cliente")) {
+			if (tipo.equals("Cliente")) { // TODO EL TIPO ESTA NULO , entra en el if de todas formas
 				
 				comprador = (Comprador) session.getAttribute("usuario");
 
@@ -116,6 +118,9 @@ public class compraProducto extends HttpServlet {
 			}
 			
 		}else {
+			System.out.println(request.getParameter("id"));
+			System.out.println(session.getAttribute("tipo_usuario"));
+			
 			response.sendRedirect("inicio");
 		}
 		

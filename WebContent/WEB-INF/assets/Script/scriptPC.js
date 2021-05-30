@@ -388,10 +388,20 @@ $(document).ready(function () {
   }
 
   //Metodo para añadir un producto al carrito
-  $("pf-product .pf-button-primary__text").on("click", function () {
+  $(".pf-general__data .pf-button-primary ").on("click", function () {
     
-    let cantidad = $("pf-product .pf-buttons__input").val();
-    console.log(cantidad);
+    let cantidad = $(".pf-cantidad__buttons .pf-buttons__input").text();
+    let url = $(".pf-general__data .pf-button-primary .pf-button-primary__text").attr("data-href");
+
+    console.log(url);
+
+    $.post(url,
+      function (data, textStatus, jqXHR) {
+        
+      }
+    );
+
+    // TODO hacer post con la href + el parametro de la cantidad
   });
 
   // config
