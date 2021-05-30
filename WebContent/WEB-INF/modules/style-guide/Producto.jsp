@@ -263,7 +263,7 @@
 				
 				<div class="pf-button-primary  pf-button-primary--fill ">
 <!-- 					cambiar el controlador del add carrito -->
-				    <a class="pf-button-primary__text" href="addcarrito?id=<%=producto.getId_producto() %>" >Añadir al carrito</a>
+				    <a class="pf-button-primary__text" data-href="addcarrito?id=<%=producto.getId_producto() %>" >Añadir al carrito</a>
 				</div>               
 				
 				 </div>

@@ -9,7 +9,7 @@ import utils.CConexion;
 public class Carrito {
 
 	private int id_carrito;
-	private int id_comprador;
+	private String id_comprador;
 	
 	CConexion con ;
 	ResultSet rs;
@@ -19,7 +19,7 @@ public class Carrito {
 		con = new CConexion();
 	}
 	
-	public Carrito(int cid_comprador) {
+	public Carrito(String cid_comprador) {
 		id_comprador = cid_comprador;
 		con = new CConexion();
 	}
@@ -43,7 +43,7 @@ public class Carrito {
 		try {
 			
 			ps = con.getConnection().prepareStatement(sql);
-			ps.setInt(1, id_comprador);
+			ps.setString(1, id_comprador);
 			
 			if(ps.execute()) {
 				resultado = true;
@@ -95,7 +95,7 @@ public class Carrito {
 			if (rs.next()) {
 				
 				id_carrito = rs.getInt("id_carrito");
-				id_comprador = rs.getInt("id_comprador");
+				id_comprador = rs.getString("id_comprador");
 				resultado = true;
 			}else {
 				rs.close();
@@ -115,6 +115,30 @@ public class Carrito {
 		}
 	
 		return resultado;
+	}
+
+	public int getId_carrito() {
+		return id_carrito;
+	}
+
+	public void setId_carrito(int id_carrito) {
+		this.id_carrito = id_carrito;
+	}
+
+	public String getId_comprador() {
+		return id_comprador;
+	}
+
+	public void setId_comprador(String id_comprador) {
+		this.id_comprador = id_comprador;
+	}
+
+	public CConexion getCon() {
+		return con;
+	}
+
+	public void setCon(CConexion con) {
+		this.con = con;
 	}
 	
 	

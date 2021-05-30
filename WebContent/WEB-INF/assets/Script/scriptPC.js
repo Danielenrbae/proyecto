@@ -387,6 +387,13 @@ $(document).ready(function () {
   
   }
 
+  //Metodo para añadir un producto al carrito
+  $("pf-product .pf-button-primary__text").on("click", function () {
+    
+    let cantidad = $("pf-product .pf-buttons__input").val();
+    console.log(cantidad);
+  });
+
   // config
 
   const labels = ["January", "February", "March", "April", "May", "June"];
