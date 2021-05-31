@@ -3,7 +3,6 @@ package modelos;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import utils.CConexion;
 
 public class Carpro {
@@ -74,6 +73,82 @@ public class Carpro {
 		
 		
 		
+		return resultado;
+	}
+	
+	/**
+	 * Metodo para consultar los productos de un carrito
+	 * 
+	 * 
+	 * 
+	 * @return resultado boolean
+	 */
+	
+	public boolean leer(String columna , int valor , boolean unico) {
+		boolean resultado;
+		String sql;
+		
+		sql="";
+		resultado = false;
+		
+		if (!columna.isEmpty()) {
+			sql = "SELECT * from carpro where "+columna +" = ?";
+		}else {
+			sql = "select * from carpro";
+		}
+		
+		con.iniciarConexion("ns3034756.ip-91-121-81.eu:5432/a20-denrbae?currentSchema=proyecto", "a20-denrbae", "a20-denrbae");
+
+		try {
+			ps = con.getConnection().prepareStatement(sql);
+			
+			ps.setInt(1, valor);
+			
+			rs = ps.executeQuery();
+			
+			if (rs.next()) {
+				cantidad = rs.getInt("cantidad");
+				id_carrito = rs.getInt("id_carrito");
+				id_producto= rs.getInt("id_producto");
+				resultado = true;
+			}else {
+				rs.close();
+				ps.close();
+				con.cerrarConexion();
+			}
+			
+			if (unico) {
+				rs.close();
+				ps.close();
+				con.cerrarConexion();
+			}
+			
+		} catch (SQLException e) {
+			resultado = false;
+			e.printStackTrace();
+		}
+		
+		return resultado;
+	}
+	
+	public boolean leerSiguiente() {
+		boolean resultado = false;
+
+		try {
+			if (rs.next()) {
+				cantidad = rs.getInt("cantidad");
+				id_carrito = rs.getInt("id_carrito");
+				id_producto= rs.getInt("id_producto");
+				resultado = true;
+			} else {
+				rs.close();
+				ps.close();
+				con.cerrarConexion();
+			}
+		} catch (SQLException e) {
+			resultado = false;
+
+		}
 		return resultado;
 	}
 

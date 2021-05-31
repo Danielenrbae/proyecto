@@ -257,9 +257,9 @@
                         </div>
                    
 
-				<div class="pf-button-primary  pf-button-primary--fill ">
+				<div class="pf-button-secondary  pf-button-primary--fill ">
 <!-- 					cambiar el controlador del add carrito -->
-				    <a class="pf-button-primary__text" data-href="compraProducto?id=<%=producto.getId_producto() %>" >Añadir al carrito</a>
+				    <button <% if (!iniciado) out.print("disabled");%> class="pf-button-primary__text" data-href="compraProducto?id=<%=producto.getId_producto() %>" >Añadir al carrito</button>
 				</div>               
 				
 				 </div>

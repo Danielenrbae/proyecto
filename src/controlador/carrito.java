@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import modelos.Carpro;
 import modelos.Carrito;
 import modelos.Comprador;
 
@@ -25,12 +26,22 @@ public class carrito extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int id_comprador;
+		
 		Carrito carrito;
 		Comprador usuario;
+		Carpro carpro, aux_carpro;
+		boolean salir;
+		int contador;
+		Carpro[] productos;
+		final int MAX_SIZE = 25;
+		double total_carrito;
 		
 		session = request.getSession();
 		carrito = new Carrito();
+		salir = false;
+		contador = 0;
+		productos = new Carpro[MAX_SIZE];
+		total_carrito = 0;
 
 		if (session.isNew()) {
 			session.setAttribute("usuario", null);
@@ -42,6 +53,45 @@ public class carrito extends HttpServlet {
 	
 		if (session.getAttribute("usuario") != null) {
 			usuario = (Comprador) session.getAttribute("usuario");
+			
+			if (carrito.leer("id_comprador", usuario.getEmail(), true)) {
+				carpro = new Carpro();
+				
+				if (carpro.leer("id_carrito", carrito.getId_carrito(), false)) {
+					
+					aux_carpro = new Carpro();
+										
+					aux_carpro.setCantidad(carpro.getCantidad());
+					aux_carpro.setId_carrito(carpro.getId_carrito());
+					aux_carpro.setId_producto(carpro.getId_producto());
+					
+					//TODO CONSEGUIR EL PRECIO DEL PRODUCTO
+					
+					productos[contador] = aux_carpro;
+					contador++;
+										
+					while(!salir) {
+
+						if (carpro.leerSiguiente()) {
+							aux_carpro = new Carpro();
+						
+							aux_carpro.setCantidad(carpro.getCantidad());
+							aux_carpro.setId_carrito(carpro.getId_carrito());
+							aux_carpro.setId_producto(carpro.getId_producto());
+							
+							productos[contador] = aux_carpro;
+							contador++;
+							
+						}else {
+							salir = true;
+						}
+						
+					}
+					
+					session.setAttribute("carrito", productos);
+					
+				}
+			}
 		
 		}
 		

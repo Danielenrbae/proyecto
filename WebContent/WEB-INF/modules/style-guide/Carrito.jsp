@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="modelos.Comprador"%>
+<%@page import="modelos.Carpro"%>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -15,18 +17,13 @@
     <meta name="application-name" content="Carrito" />
     <title>Carrito</title>
 
-<!--     <link rel="stylesheet" href="/WEB-INF/assets/Script/jquery-ui-1.12.1/jquery-ui.css" media="all"> -->
-<!--     <link rel="stylesheet" href="/WEB-INF/assets/Script/jquerymodal/jquerymodal.css" media="all"> -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     
 
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
-<!--     <script src="/WEB-INF/assets/Script/jquery-ui-1.12.1/jquery.js"></script> -->
-<!--     <script src="/WEB-INF/assets/Script/jquery-ui-1.12.1/jquery-ui.js"></script> -->
-<!--     <script src="/WEB-INF/assets/Script/jquerymodal/jquerymodal.js"></script> -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
 
 
 </head>
@@ -53,10 +50,17 @@
 <%
 	Comprador comprador;
 	boolean iniciado = false;
+	boolean bcarrito = false;
+	Carpro[] carpro;
 	
 	if(session.getAttribute("usuario") != null){
 		iniciado = true;
 		comprador = (Comprador) session.getAttribute("usuario");
+	}
+	
+	if(session.getAttribute("carrito") != null){
+		bcarrito = true;
+		carpro = (Carpro[]) session.getAttribute("carrito");
 	}
 %>
 
@@ -202,7 +206,61 @@
 				<%
 			}else{
 				
-				//faltaria la comprobacion si tiene pedidos realizados
+				if(bcarrito){
+					
+					%>
+				
+<section class="pf-carrito">
+
+
+    <h2 class="pf-carrito__title">Carrito</h2>
+
+              <div class="pf-carrito__container">
+                <div class="pf-container__productos">
+                    <div class="pf-productos__item">
+                        <img src="../../../assets/Img/dynamic/mcextreme.png" alt=""/>
+                        <div class="pf-item__data">
+                            <p>Grand McExtreme 1995</p>
+                            <p>10.00 $</p>
+                            <p>2 unidades</p>
+                            <p>Mc Donald's</p>
+                        </div>  
+                        <a href="#">ELIMINAR</a>
+                    </div>
+ 
+                </div>
+
+                <div class="pf-container__total">
+                    <h3 class="pf-total__title"> Subtotal (6 productos)</h3>
+
+                    <p class="pf-total__valor">60.00 $</p>
+
+                    <div class="pf-total__promocional">
+                       
+                    </div>
+
+                    
+
+
+
+<div class="pf-button-primary  pf-button-primary--fill ">
+    <a class="pf-button-primary__text" href="#">Tramitar pedido</a>
+</div>
+                    
+
+
+
+<div class="pf-button-primary ">
+    <a class="pf-button-primary__text" href="explorar">Seguir comprando</a>
+</div>                </div>
+            </div>
+            
+</section> 
+
+
+					<%					
+				}else{
+		
 				%>
 				
 				
@@ -214,6 +272,7 @@
 		            <a href="explorar">¡Añade ya un producto!</a>
 		          </div>
 				<%
+				}
 			}
 		%>
 	

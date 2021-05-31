@@ -118,7 +118,7 @@ public class compraProducto extends HttpServlet {
 
 							if (!carpro.insertar()) {
 
-								out.print("{ \"ok\" : 1}");
+								out.print("{ \"ok\" : 1 , \"url\": \"explorar\"}");
 
 							} else {
 

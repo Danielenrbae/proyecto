@@ -388,7 +388,7 @@ $(document).ready(function () {
   }
 
   //Metodo para añadir un producto al carrito
-  $(".pf-general__data .pf-button-primary ").on("click", function () {
+  $(".pf-general__data .pf-button-secondary").on("click", function () {
     
     let cantidad = $(".pf-cantidad__buttons .pf-buttons__input").text();
     let url = $(".pf-general__data .pf-button-primary .pf-button-primary__text").attr("data-href");
