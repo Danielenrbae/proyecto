@@ -65,7 +65,8 @@ public class carrito extends HttpServlet {
 					aux_carpro.setId_carrito(carpro.getId_carrito());
 					aux_carpro.setId_producto(carpro.getId_producto());
 					
-					//TODO CONSEGUIR EL PRECIO DEL PRODUCTO
+					//TODO CONSEGUIR EL PRECIO DEL PRODUCTO- reorganizar
+					//TODO REALIZAR CONSULTAR MULTIPLE PARA LUEGO CALCULAR EL PRECIO TOTAL
 					
 					productos[contador] = aux_carpro;
 					contador++;
