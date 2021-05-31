@@ -393,15 +393,24 @@ $(document).ready(function () {
     let cantidad = $(".pf-cantidad__buttons .pf-buttons__input").text();
     let url = $(".pf-general__data .pf-button-primary .pf-button-primary__text").attr("data-href");
 
-    console.log(url);
 
-    $.post(url,
+    $.post(url, {cantidad: cantidad},
       function (data, textStatus, jqXHR) {
-        
+        if(data != null){
+          let json = JSON.parse(data);
+
+          if(json.error){
+            alert(json.error);
+          }
+
+          if(json.ok == 1){
+
+            alert("Se ha añadido correctamente");
+            document.location.href=url;
+          }
+        }
       }
     );
-
-    // TODO hacer post con la href + el parametro de la cantidad
   });
 
   // config

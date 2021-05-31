@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import modelos.Carrito;
 import modelos.Comprador;
 import modelos.Empresa;
 import utils.Cifrado;
@@ -62,6 +63,8 @@ public class registrar extends HttpServlet {
 		Comprador comprador;
 		Empresa empresa;
 		String user;
+		
+		Carrito carrito;
 
 		PrintWriter out;
 		response.setContentType("text/plain");
@@ -98,7 +101,14 @@ public class registrar extends HttpServlet {
 					pass_cifrada = Cifrado.cifrado(password);
 					compr = new Comprador(email,nombre,0,pass_cifrada,null, null,null,null,"F");
 					
-					if (!compr.insertar()) out.print("{ \"ok\" : 1 }");
+					if (!compr.insertar()) {
+						carrito = new Carrito();
+						carrito.setId_comprador(compr.getEmail());
+						
+						if (!carrito.insertar()) {
+							out.print("{ \"ok\" : 1}");
+						}																	
+					}
 				}
 
 			} else if (user.equals("Empresa")) {

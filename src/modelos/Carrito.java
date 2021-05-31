@@ -88,7 +88,7 @@ public class Carrito {
 		try {
 			ps= con.getConnection().prepareStatement(sql);
 			
-			ps.setInt(1, Integer.parseInt(valor));
+			ps.setString(1, valor);
 			
 			rs = ps.executeQuery();
 			

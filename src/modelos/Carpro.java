@@ -10,6 +10,7 @@ public class Carpro {
 
 	private int id_producto;
 	private int id_carrito;
+	private int cantidad;
 	
 	
 	CConexion con;
@@ -20,9 +21,10 @@ public class Carpro {
 		con = new CConexion();
 	}
 	
-	public Carpro(int cid_producto, int cid_carrito) {
+	public Carpro(int cid_producto, int cid_carrito , int ccantidad) {
 		id_carrito= cid_carrito;
 		id_producto = cid_producto;
+		cantidad = ccantidad;
 		
 		con = new CConexion();
 	}
@@ -36,7 +38,7 @@ public class Carpro {
 		boolean resultado;
 		String sql;
 	
-		sql = "insert into carpro (id_carrito , id_producto) values (?,?);";
+		sql = "insert into carpro (id_carrito , id_producto, cantidad) values (?,?,?);";
 		resultado = false;
 		
 		con.iniciarConexion("ns3034756.ip-91-121-81.eu:5432/a20-denrbae?currentSchema=proyecto", "a20-denrbae", "a20-denrbae");
@@ -47,6 +49,8 @@ public class Carpro {
 			
 			ps.setInt(1, id_carrito);
 			ps.setInt(2, id_producto);
+			ps.setInt(3, cantidad);
+
 			
 			if (ps.execute()) {
 				resultado = true;
@@ -95,6 +99,14 @@ public class Carpro {
 
 	public void setCon(CConexion con) {
 		this.con = con;
+	}
+
+	public int getCantidad() {
+		return cantidad;
+	}
+
+	public void setCantidad(int cantidad) {
+		this.cantidad = cantidad;
 	}
 	
 	

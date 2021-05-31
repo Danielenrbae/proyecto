@@ -1,6 +1,8 @@
 package controlador;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -47,14 +49,14 @@ public class compraProducto extends HttpServlet {
 		if (producto.leer("id_producto", String.valueOf(id_producto), true, false, false, 0)) {
 			info_nutri = new InformacionNutricional();
 
-			if(info_nutri.leer("id_producto", id_producto, true)) {
-				
+			if (info_nutri.leer("id_producto", id_producto, true)) {
+
 				session.setAttribute("info_product", info_nutri);
-							
+
 			}
-			
+
 			session.setAttribute("product", producto);
-			request.getRequestDispatcher("WEB-INF/modules/style-guide/Producto.jsp").forward(request, response);	
+			request.getRequestDispatcher("WEB-INF/modules/style-guide/Producto.jsp").forward(request, response);
 
 		} else {
 			request.getRequestDispatcher("WEB-INF/modules/style-guide/error404.jsp").forward(request, response);
@@ -74,56 +76,75 @@ public class compraProducto extends HttpServlet {
 		Comprador comprador;
 		String tipo;
 		Carpro carpro;
-		
+		PrintWriter out;
+		int cantidad;
+
 		session = request.getSession();
 		carrito = new Carrito();
 		carpro = new Carpro();
-		
-		if(session.getAttribute("tipo_usuario") != null && !request.getParameter("id").isEmpty()) {
-			
-			tipo= (String) session.getAttribute("tipo_usuario");
-			
-			System.out.println(tipo);
-			id_producto= Integer.parseInt(request.getParameter("id"));
-			
-			if (tipo.equals("Cliente")) { // TODO EL TIPO ESTA NULO , entra en el if de todas formas
-				
-				comprador = (Comprador) session.getAttribute("usuario");
+		response.setContentType("text/plain");
+		out = response.getWriter();
+		id_producto = 0;
+		cantidad = 0;
 
-				if (carrito.leer("id_comprador", comprador.getEmail(), true)) {
-					
-					//insertar el producto en la tabla relacion del carrito + producto
-					carpro.setId_carrito(carrito.getId_carrito());
-					carpro.setId_producto(id_producto);
-					//TODO comprobar la cantidad de productos que inserta y hacer bucle
-					if (carpro.insertar()) {
-						response.sendRedirect("compraProducto?id="+id_producto);
-					}else {
-						request.getRequestDispatcher("WEB-INF/modules/style-guide/error404.jsp").forward(request, response);
-					}
-					
-					
-				}else {
-					
-					carrito.setId_comprador(comprador.getEmail());
-					
-					if (carrito.insertar()) {
-						
-						response.sendRedirect("addcarrito");
-					}
-				}
-				
-			}else {
-				response.sendRedirect("inicio");
-			}
-			
-		}else {
-			System.out.println(request.getParameter("id"));
-			System.out.println(session.getAttribute("tipo_usuario"));
-			
-			response.sendRedirect("inicio");
+		if (session.getAttribute("tipo_usuario") != null && !request.getParameter("id").isEmpty()) {
+			System.out.println("diferente");
+		} else {
+			System.out.println("nulo");
 		}
-		
+
+		// SI EL USUARIO ES NULO QUE SALGA MENSAJE QUE DEBE INICIAR SESION
+		if (session.getAttribute("tipo_usuario") != null) {
+			tipo = (String) session.getAttribute("tipo_usuario");
+
+			if (!request.getParameter("id").isEmpty()) {
+				id_producto = Integer.parseInt(request.getParameter("id"));
+
+				if (tipo.equals("Cliente")) {
+
+					comprador = (Comprador) session.getAttribute("usuario");
+
+					cantidad = Integer.parseInt(request.getParameter("cantidad"));
+
+					if (cantidad != 0) {
+
+						if (carrito.leer("id_comprador", comprador.getEmail(), true)) {
+
+							// insertar el producto en la tabla relacion del carrito + producto
+							carpro.setId_carrito(carrito.getId_carrito());
+							carpro.setId_producto(id_producto);
+							carpro.setCantidad(cantidad);
+							// comprobar la cantidad de productos que inserta y hacer bucle
+
+							if (!carpro.insertar()) {
+
+								out.print("{ \"ok\" : 1}");
+
+							} else {
+
+								out.print("{ \"error\" : \"Algo ha salido mal. Inténtelo de nuevo\"}");
+							}
+
+						}
+
+					}else {
+						out.print("{ \"error\" : \"La cantidad no debe ser 0\"}");
+
+					}
+
+				} else {
+					out.print(
+							"{ \"error\" : \"Debes iniciar sesión como cliente para poder añadir un producto al carrito\" }");
+				}
+
+			} else {
+				out.print("{ \"error\" : \"Algo ha salido mal. Inténtelo de nuevo\"}");
+			}
+
+		} else {
+			out.print("{ \"error\" : \"Debes iniciar sesión para poder añadir un producto al carrito\" }");
+		}
+
 	}
 
 }
