@@ -197,7 +197,20 @@
         <h1 class="pf-info__title">Hacemos la vida más facil a todos.</h1>
 
         <div class="pf-button-primary " data-id="registrar">
-		    <a class="pf-button-primary__text" >Únete ya</a>
+        
+        <% if(!iniciado){
+        	%>
+        	<a class="pf-button-primary__text" >Únete ya</a>
+        	
+        	<%
+        	}else{
+        		%>
+        	<a class="pf-button-primary__text" >Explora</a>
+        		
+        		<%
+        	}
+        	
+        %>
 		</div>  
     </div>
 

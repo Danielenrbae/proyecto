@@ -406,7 +406,7 @@ $(document).ready(function () {
           if(json.ok == 1){
 
             alert("Se ha añadido correctamente");
-            document.location.href=url;
+            document.location.href= json.url;
           }
         }
       }

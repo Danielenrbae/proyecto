@@ -402,7 +402,7 @@ html {
 	background-color: #d4d4d4;
 } 
 
-.pf-button-primary :hover {
+.pf-button-primary:hover {
 	background-color: #2E5056;
 }
 
@@ -423,7 +423,9 @@ html {
 	color: #2E5056;
 	text-decoration: none;
 	font-weight: bold;
-	color: white;
+	color: white;	
+	padding: 7px 30px;
+	
 	font-size: 1.8rem;
 }
 

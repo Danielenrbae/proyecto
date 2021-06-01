@@ -110,19 +110,30 @@ public class compraProducto extends HttpServlet {
 
 						if (carrito.leer("id_comprador", comprador.getEmail(), true)) {
 
-							// insertar el producto en la tabla relacion del carrito + producto
-							carpro.setId_carrito(carrito.getId_carrito());
-							carpro.setId_producto(id_producto);
-							carpro.setCantidad(cantidad);
-							// comprobar la cantidad de productos que inserta y hacer bucle
+							if (carpro.leer("id_carrito", carrito.getId_carrito(), "id_producto" , id_producto, true, false)) {
+								int cantidad_old;
+								cantidad_old = carpro.getCantidad();
+								
+								int cantidad_nueva = cantidad_old + cantidad;
+								if (carpro.update("cantidad" , cantidad_nueva , "id_producto" , id_producto , "id_carrito" , carrito.getId_carrito())) {
+									out.print("{ \"ok\" : 1 , \"url\": \"explorar\"}");
+								}else {
+									out.print("{ \"error\" : \"Algo ha salido mal. Inténtelo de nuevo\"}");
+								}
+								
+							}else {
+								// insertar el producto en la tabla relacion del carrito + producto
+								carpro.setId_carrito(carrito.getId_carrito());
+								carpro.setId_producto(id_producto);
+								carpro.setCantidad(cantidad);
+								
+								if (!carpro.insertar()) {
+									out.print("{ \"ok\" : 1 , \"url\": \"explorar\"}");
 
-							if (!carpro.insertar()) {
+								} else {
 
-								out.print("{ \"ok\" : 1 , \"url\": \"explorar\"}");
-
-							} else {
-
-								out.print("{ \"error\" : \"Algo ha salido mal. Inténtelo de nuevo\"}");
+									out.print("{ \"error\" : \"Algo ha salido mal. Inténtelo de nuevo\"}");
+								}
 							}
 
 						}

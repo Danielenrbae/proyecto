@@ -52,6 +52,19 @@
 	boolean iniciado = false;
 	boolean bcarrito = false;
 	Carpro[] carpro;
+	boolean salir;
+	int contador;
+	double total_carrito;
+	int total_cantidad;
+	int id_carrito;
+	
+	salir = false;
+	contador = 0;
+	total_carrito = 0;
+	carpro =null;
+	total_cantidad = 0;
+	comprador = null;
+	id_carrito = 0;
 	
 	if(session.getAttribute("usuario") != null){
 		iniciado = true;
@@ -62,6 +75,15 @@
 		bcarrito = true;
 		carpro = (Carpro[]) session.getAttribute("carrito");
 	}
+	
+	if(session.getAttribute("total_carrito") != null){
+		total_carrito = (double) session.getAttribute("total_carrito");
+	}
+	
+	if(session.getAttribute("total_cantidad") != null){
+		total_cantidad = (int) session.getAttribute("total_cantidad");
+	}
+	
 %>
 
 <nav class="pf-nav">
@@ -210,52 +232,73 @@
 					
 					%>
 				
-<section class="pf-carrito">
-
-
-    <h2 class="pf-carrito__title">Carrito</h2>
-
-              <div class="pf-carrito__container">
-                <div class="pf-container__productos">
-                    <div class="pf-productos__item">
-                        <img src="../../../assets/Img/dynamic/mcextreme.png" alt=""/>
-                        <div class="pf-item__data">
-                            <p>Grand McExtreme 1995</p>
-                            <p>10.00 $</p>
-                            <p>2 unidades</p>
-                            <p>Mc Donald's</p>
-                        </div>  
-                        <a href="#">ELIMINAR</a>
-                    </div>
- 
-                </div>
-
-                <div class="pf-container__total">
-                    <h3 class="pf-total__title"> Subtotal (6 productos)</h3>
-
-                    <p class="pf-total__valor">60.00 $</p>
-
-                    <div class="pf-total__promocional">
-                       
-                    </div>
-
-                    
-
-
-
-<div class="pf-button-primary  pf-button-primary--fill ">
-    <a class="pf-button-primary__text" href="#">Tramitar pedido</a>
-</div>
-                    
-
-
-
-<div class="pf-button-primary ">
-    <a class="pf-button-primary__text" href="explorar">Seguir comprando</a>
-</div>                </div>
-            </div>
-            
-</section> 
+		<section class="pf-carrito">
+		
+		
+		    <h2 class="pf-carrito__title">Carrito</h2>
+		
+		              <div class="pf-carrito__container">
+		                <div class="pf-container__productos">
+		                
+		                <%
+		                	while(!salir){
+		                		if(carpro[contador] != null){
+		                			%>
+		                	<div class="pf-productos__item">
+		                	
+		                	<%
+		                		if(carpro[contador].getProducto().getFoto() != null){
+		                			%>
+		                			<img class="img-fluid" src="bajarFoto?param_img=producto&idproducto=<%= carpro[contador].getId_producto() %>"/> 
+		                				             			
+		                			<%
+		                		}else{
+		                			%>
+		                			<img class="img-fluid" src="./Img/common/pf-default-image.png"/>    
+		                			<%
+		                		}
+		                	%>
+		                
+		                        <div class="pf-item__data">
+		                            <p><%= carpro[contador].getProducto().getNombre() %></p>
+		                            <p><%= carpro[contador].getProducto().getPrecio()%> EUROS</p>
+		                            <p> <%=carpro[contador].getCantidad() %> unidad/es</p>                            
+		                        </div>  
+		                        <a href="deleteCarrito?producto=<%= carpro[contador].getId_producto()%>">ELIMINAR</a>
+		                    </div>
+		                			<%
+		                			contador++;
+		                		}else{
+		                			salir = true;
+		                		}
+		                	}
+		                
+		                %>
+		
+		                </div>
+		
+		                <div class="pf-container__total">
+		                    <h3 class="pf-total__title"> Subtotal ( <%= total_cantidad %> producto/s)</h3>
+		
+		                    <p class="pf-total__valor"> <%= total_carrito %> EUROS</p>
+		
+		                    <div class="pf-total__promocional">
+		                       
+		                    </div>
+		
+		<div class="pf-button-primary  pf-button-primary--fill ">
+		    <a class="pf-button-primary__text" href="#">Tramitar pedido</a>
+		</div>
+		                    
+		
+		
+		
+		<div class="pf-button-primary ">
+		    <a class="pf-button-primary__text" href="explorar">Seguir comprando</a>
+		</div>                </div>
+		            </div>
+		            
+		</section> 
 
 
 					<%					
