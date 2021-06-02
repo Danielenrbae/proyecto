@@ -37,6 +37,8 @@
 
 	<%@ include file="/WEB-INF/assets/CSS/themes/theme.css"%>
 	<%@ include file="/WEB-INF/assets/CSS/stylesPC.css"%>
+	<%@ include file="/WEB-INF/assets/CSS/update.css"%>
+	
 
 </style>
 
@@ -251,7 +253,7 @@
             </tbody>
         </table>
 
-
+</article>
         <section class="pf-mantenimiento__producto">
 
             <h2 class="pf-producto__title">Datos del Producto</h2>
@@ -260,33 +262,41 @@
 
                 <div class="form-row">
 
-                    <div class="pf-row__part1">
-                        <img src="" alt="Imagen producto">
+                    <div class="pf-row__part1 col-xs-12 col-2">
+                       <img src="./Img/common/pf-default-image.png" alt="foto por defectp de no existencia" />
+
                         <input type="file" name="imagen">
                     </div>
 
-                    <div class="pf-row__part2">
+                    <div class="pf-row__part2 col-xs-12 col-10">
                             
                         <div class="row">
-                            <div class="form-group">
+                            <div class="form-group col-xs-12 col-4">
                                 <label for="identificador">IDENTIFICADOR</label>
-                                <input type="text" name="identificador" class="form-control" disabled >
+                                  <div class="row">
+                                
+                                <input type="text" name="identificador" class="form-control col-xs-12 col-10" disabled >
+                                </div>
                             </div>
                         </div>
 
                         <div class="row">
-                            <div class="form-group">
+                            <div class="form-group col-xs-12 col-12">
                                 <label for="nombre">NOMBRE DEL PRODUCTO</label>
-                                <input type="text" class="form-control" name="nombre" >
+                                <div class="row">
+                                
+                               	 <input type="text" class="form-control col-xs-12 col-10" name="nombre" >
+                                </div>
                             </div>
                         </div>
 
                         <div class="row">
-                            <div class="form-group">
+                            <div class="form-group col-xs-12 col-4">
                                 <label for="categoria">CATEGORIA</label>
-                                <select class="form-control pf-form__select" name="categoria" placeholder="Seleccione una categoria" title="Seleccione una categoria" required>
+                                <div class="row">
+                                <select class="form-control pf-form__select col-xs-12 col-10" name="categoria" placeholder="Seleccione una categoria" title="Seleccione una categoria" required>
                                  <option selected>Seleccione una categoria</option>
-                             
+                             </div>
                           	<%
                           		
                             		
@@ -311,17 +321,22 @@
                         </div>
 
                         <div class="row">
-                            <div class="form-group">
+                            <div class="form-group col-xs-12 col-4">
                                 <label for="precio">PRECIO</label>
-                                <input type="number" class="form-control" name="precio" >
+                                <div class="row">
+                                <input type="number" class="form-control col-xs-12 col-10" name="precio" >
+                                </div>
                             </div>
                         </div>
 
                         <div class="row">
-                            <div class="form-group">
+                            <div class="form-group col-xs-12 col-12">
                                 <label for="descripcion">DESCRIPCION</label>
-                                <textarea name="descripcion"></textarea>
+                                <div class="row">
+                                <textarea name="descripcion " class="col-xs-12 col-10"></textarea>
+                                </div>
                                 <small>Máximo 500 caracteres</small>
+
                             </div>
                         </div>
                     </div>
@@ -331,8 +346,7 @@
 
 
         </section>
-        
-    </article>
+   
 </section>
 
 <footer class="pf-footer-bussiness">
