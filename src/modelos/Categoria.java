@@ -51,7 +51,7 @@ public class Categoria {
 
 		con.iniciarConexion("ns3034756.ip-91-121-81.eu:5432/a20-denrbae", "a20-denrbae", "a20-denrbae");
 
-		if (columna.equals("") || valor.equals("") || columna.equals(null) || valor.equals(null)) {
+		if (columna.isEmpty() || valor.isEmpty() ) {
 			sql = "SELECT * FROM proyecto.categoria";
 		} else {
 			sql = "SELECT * FROM proyecto.categoria where " + columna + "= '" + valor + "';";
@@ -65,8 +65,6 @@ public class Categoria {
 
 			if (rs.next()) {
 				
-				
-
 				id_categoria = rs.getInt("id_categoria");
 				nombre = rs.getString("nombre");
 				descripcion = rs.getString("descripcion");

@@ -63,8 +63,11 @@
 	Producto product_delete;
 	boolean bproducto_delete;
 	
+	boolean toUpdate;
+	
 
 	bproductos = false;
+	toUpdate = false;
 	productos = null;
 	
 	contador_categorias = 0;
@@ -90,6 +93,10 @@
 	if(session.getAttribute("delete_producto") != null){
 		bproducto_delete= true;
 		product_delete= (Producto) session.getAttribute("delete_producto");
+	}
+	
+	if(session.getAttribute("producto_toUpdate") != null){
+		toUpdate= true;
 	}
 %>
 
@@ -227,9 +234,9 @@
                         <div class="pf-table__buttons">
 
                             
-                            <button class="seeProduct" data-id="<%= productos[i].getId_producto() %>">
+                            <a href="actualizarProducto?id=<%=productos[i].getId_producto() %>" class="seeProduct" data-id="<%= productos[i].getId_producto() %>">
                                 Ver producto
-                            </button>
+                            </a>
 
                             <div class="pf-buttons__trash">
                             </div>
@@ -254,6 +261,12 @@
         </table>
 
 </article>
+
+			
+			<% if(toUpdate){
+				%>
+				
+				<jsp:useBean id="producto_toUpdate" scope="session" class="modelos.Producto"></jsp:useBean>
         <section class="pf-mantenimiento__producto">
 
             <h2 class="pf-producto__title">Datos del Producto</h2>
@@ -263,19 +276,21 @@
                 <div class="form-row">
 
                     <div class="pf-row__part1 col-xs-12 col-2">
-                       <img src="./Img/common/pf-default-image.png" alt="foto por defectp de no existencia" />
+                    
+<!--                     comprobar si la imagen es nula -->
+                       <img src="bajarFoto?param_img=producto&idproducto=<%=producto_toUpdate.getId_producto()%>" alt="foto por defecto de no existencia" />
 
                         <input type="file" name="imagen">
                     </div>
 
-                    <div class="pf-row__part2 col-xs-12 col-10">
+                    <div class="pf-row__part2 col-xs-12 col-9">
                             
                         <div class="row">
                             <div class="form-group col-xs-12 col-4">
                                 <label for="identificador">IDENTIFICADOR</label>
                                   <div class="row">
                                 
-                                <input type="text" name="identificador" class="form-control col-xs-12 col-10" disabled >
+                                <input type="text" value='<jsp:getProperty property="id_producto" name="producto_toUpdate"/>' name="identificador" class="form-control col-xs-12 col-10" disabled >
                                 </div>
                             </div>
                         </div>
@@ -285,7 +300,7 @@
                                 <label for="nombre">NOMBRE DEL PRODUCTO</label>
                                 <div class="row">
                                 
-                               	 <input type="text" class="form-control col-xs-12 col-10" name="nombre" >
+                               	 <input type="text" value="<jsp:getProperty property="nombre" name="producto_toUpdate"/>" class="form-control col-xs-12 col-10" name="nombre" >
                                 </div>
                             </div>
                         </div>
@@ -295,18 +310,17 @@
                                 <label for="categoria">CATEGORIA</label>
                                 <div class="row">
                                 <select class="form-control pf-form__select col-xs-12 col-10" name="categoria" placeholder="Seleccione una categoria" title="Seleccione una categoria" required>
-                                 <option selected>Seleccione una categoria</option>
+                                 <option>Seleccione una categoria</option>
+                                 
                              </div>
                           	<%
                           		
-                            		
-                            
                             	if(bcategorias){
                             	 	while(!salir_categorias){
                                 		
                                 		if(categorias[contador_categorias] != null){                            			                            			
                                 			%>
-                                				<option> <%= categorias[contador_categorias]%> </option>
+                                				<option <% if (categorias[contador_categorias].equals(producto_toUpdate.getCategoria())){ %> selected<%} %>><%= categorias[contador_categorias]%> </option>
                                 			<%
                                 			contador_categorias++;
                                 		}else{                            		
@@ -324,7 +338,7 @@
                             <div class="form-group col-xs-12 col-4">
                                 <label for="precio">PRECIO</label>
                                 <div class="row">
-                                <input type="number" class="form-control col-xs-12 col-10" name="precio" >
+                                <input type="number" value="<jsp:getProperty property="precio" name="producto_toUpdate"/>" class="form-control col-xs-12 col-10" name="precio" >
                                 </div>
                             </div>
                         </div>
@@ -333,7 +347,7 @@
                             <div class="form-group col-xs-12 col-12">
                                 <label for="descripcion">DESCRIPCION</label>
                                 <div class="row">
-                                <textarea name="descripcion " class="col-xs-12 col-10"></textarea>
+                                <textarea name="descripcion"  class="col-xs-12 col-10"><jsp:getProperty property="descripcion" name="producto_toUpdate"/></textarea>
                                 </div>
                                 <small>Máximo 500 caracteres</small>
 
@@ -343,9 +357,21 @@
                 </div>
 
             </form>
+            
+            <div class="row">
+				<div class="pf-button-primary d-flex ml-auto ">
+					<a class="pf-button-primary__text " >Guardar cambios</a>
+				</div>
+				</div>	
 
 
         </section>
+        
+        <%
+			}
+			
+			
+			%>
    
 </section>
 

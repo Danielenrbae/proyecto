@@ -48,11 +48,18 @@
       width: 100%;
     }
 
+    .row {
+        width: 100%;
+        margin-left: unset;
+        
+      }
+
     .pf-row__part1 {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
       justify-content: flex-start;
+      margin-right: 141px;
 
       > img {
         width: 250px;
@@ -70,6 +77,10 @@
         margin-left: unset;
         margin-bottom: 10px;
       }
+    }
+
+    .pf-button-primary{
+        margin-right: 225px;
     }
 
     textarea {

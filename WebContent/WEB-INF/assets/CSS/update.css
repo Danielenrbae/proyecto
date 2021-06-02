@@ -58,6 +58,11 @@
   width: 100%;
 }
 
+.pf-mantenimiento__producto .pf-producto-form .row {
+  width: 100%;
+  margin-left: unset;
+}
+
 .pf-mantenimiento__producto .pf-producto-form .pf-row__part1 {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -72,6 +77,7 @@
   -webkit-box-pack: start;
       -ms-flex-pack: start;
           justify-content: flex-start;
+  margin-right: 141px;
 }
 
 .pf-mantenimiento__producto .pf-producto-form .pf-row__part1 > img {
@@ -90,6 +96,10 @@
   width: 100%;
   margin-left: unset;
   margin-bottom: 10px;
+}
+
+.pf-mantenimiento__producto .pf-producto-form .pf-button-primary {
+  margin-right: 225px;
 }
 
 .pf-mantenimiento__producto .pf-producto-form textarea {

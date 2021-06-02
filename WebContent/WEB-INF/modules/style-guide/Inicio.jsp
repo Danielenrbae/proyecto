@@ -196,7 +196,7 @@
     <div class="pf-header__info">
         <h1 class="pf-info__title">Hacemos la vida más facil a todos.</h1>
 
-        <div class="pf-button-primary " data-id="registrar">
+        <div class="pf-button-primary" data-id="registrar">
         
         <% if(!iniciado){
         	%>
