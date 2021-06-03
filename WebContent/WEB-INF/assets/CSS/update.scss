@@ -17,6 +17,30 @@
     background-color: transparent;
   }
 
+  input[type="submit"] {
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+    font-family: "Open Sans";
+    outline: none !important;
+    border: none;
+    padding: 7px 30px;
+    text-align: center;
+    cursor: pointer;
+    background-color: white;
+    border: 1px solid #2E5056;
+
+    text-decoration: none;
+    font-weight: bold;
+    color: #2E5056;
+    font-size: 1.5rem;
+    margin-right: 225px;
+    &:hover{
+      background-color: #2E5056;
+      color: white;
+    }
+  }
+
   .pf-producto__title {
     margin-bottom: 20px;
     font-weight: 600;
@@ -79,9 +103,6 @@
       }
     }
 
-    .pf-button-primary{
-        margin-right: 225px;
-    }
 
     textarea {
       background-color: #f5f5f5;

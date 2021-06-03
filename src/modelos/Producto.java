@@ -291,6 +291,52 @@ public class Producto {
 
 	}
 	
+	/**
+	 *  Método para actualizar los datos de un producto
+	 * 
+	 * @return boolean 
+	 */
+	
+	public boolean update(String columnCondicion , int valorCondicion , String nombre , String descripcion , double precio) {
+		boolean resultado;
+		String sql ;
+		
+		sql = "";
+		resultado = false;
+		
+		con.iniciarConexion("ns3034756.ip-91-121-81.eu:5432/a20-denrbae", "a20-denrbae", "a20-denrbae");
+
+		
+		if (!columnCondicion.isEmpty()) {
+			sql = "update proyecto.producto set nombre = ? , descripcion = ? , precio = ? where "+columnCondicion+" = ?";
+		}
+		
+		try {
+			ps = con.getConnection().prepareStatement(sql);
+			
+			
+			ps.setString(1, nombre);
+			ps.setString(2, descripcion);
+			ps.setDouble(3, precio);
+			ps.setInt(4, valorCondicion);
+			
+			if (ps.executeUpdate() == 1) {
+				resultado = true;
+			}
+			
+			ps.close();
+			con.cerrarConexion();
+			
+		} catch (SQLException e) {
+			resultado= false;
+			e.printStackTrace();
+		}
+		
+		
+		
+		return resultado;
+	}
+	
 	
 
 	public int getId_producto() {

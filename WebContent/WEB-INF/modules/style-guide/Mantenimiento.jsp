@@ -65,6 +65,8 @@
 	
 	boolean toUpdate;
 	
+	String errorUpdate;
+	
 
 	bproductos = false;
 	toUpdate = false;
@@ -74,6 +76,8 @@
 	salir_categorias= false;
 	bcategorias = false;
 	categorias = null;
+	
+	errorUpdate = "";
 	
 	param = Boolean.parseBoolean(request.getParameter("delete"));
 	
@@ -97,6 +101,10 @@
 	
 	if(session.getAttribute("producto_toUpdate") != null){
 		toUpdate= true;
+	}
+	
+	if(session.getAttribute("error_Update") != null){
+		errorUpdate = (String) session.getAttribute("error_Update");
 	}
 %>
 
@@ -271,7 +279,7 @@
 
             <h2 class="pf-producto__title">Datos del Producto</h2>
 
-            <form class="pf-producto-form">
+            <form id="formUpdate" action="actualizarProducto" method="post" class="pf-producto-form">
 
                 <div class="form-row">
 
@@ -280,7 +288,7 @@
 <!--                     comprobar si la imagen es nula -->
                        <img src="bajarFoto?param_img=producto&idproducto=<%=producto_toUpdate.getId_producto()%>" alt="foto por defecto de no existencia" />
 
-                        <input type="file" name="imagen">
+<!--                         <input type="file" name="imagen"> -->
                     </div>
 
                     <div class="pf-row__part2 col-xs-12 col-9">
@@ -356,14 +364,17 @@
                     </div>
                 </div>
 
-            </form>
-            
-            <div class="row">
-				<div class="pf-button-primary d-flex ml-auto ">
-					<a class="pf-button-primary__text " >Guardar cambios</a>
-				</div>
-				</div>	
+	      <div class="row">
+					
+						<input class="d-flex ml-auto" type="submit"  value="Guardar cambios" />
+					
+					</div>	
 
+            </form>
+            <div class="row">
+   				<h2><%= errorUpdate %></h2>
+            </div>
+      
 
         </section>
         

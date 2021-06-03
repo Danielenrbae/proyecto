@@ -27,7 +27,7 @@ public class explorar extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		Categoria categoria;
+		Categoria categoria , paramCat;
 		String[] categorias;
 		boolean salir;
 		int contador;
@@ -36,7 +36,10 @@ public class explorar extends HttpServlet {
 		Producto[] productos;
 		int totalProductos;
 		int res = 0;
-
+		String param_categoria;
+		String columna= "";
+		String valor="";
+		boolean all = true;
 		
 		
 		session = request.getSession();
@@ -65,6 +68,24 @@ public class explorar extends HttpServlet {
 			session.setAttribute("pageSession", 1);
 		}
 		
+		if (request.getParameter("cat") != null ) {
+			
+			param_categoria = request.getParameter("cat");
+			System.out.println(param_categoria);
+			paramCat = new Categoria();
+			
+			if (paramCat.leer("nombre", param_categoria, true)) {
+				
+				columna= "id_categoria";
+				valor = String.valueOf(paramCat.getId_categoria());
+				
+				all = false;
+			}
+			
+		}
+		
+		
+		
 		//GET CATEGORIAS
 		
 		
@@ -86,8 +107,8 @@ public class explorar extends HttpServlet {
 		//GET PRODUCTOS CON PAGINACION
 		contador = 1;
 		salir = false;
-		if (producto.leer("", "", false, true, false,page)) {
-			
+		if (producto.leer(columna, valor, false, all, false,page)) {
+	
 			aux_producto = new Producto();
 			
 			aux_producto.setId_producto(producto.getId_producto());
@@ -120,8 +141,8 @@ public class explorar extends HttpServlet {
 		session.setAttribute("explora_productos", productos);
 		
 	
-		
-		if(producto.leer("", "", false, false, true, 0)) {
+	
+		if(producto.leer(columna, valor, false, false, true, 0)) {
 			totalProductos = producto.getNumeroTotal();
 			//totalProductos = 53; //prueba para mostrar 3 paginaciones
 			res = (totalProductos / 25);

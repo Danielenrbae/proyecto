@@ -2,6 +2,7 @@ package controlador;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -42,6 +43,8 @@ public class actualizarProducto extends HttpServlet {
 		categoria = new Categoria();
 		session = request.getSession();
 
+		
+		
 		if (!request.getParameter("id").isEmpty()) {
 			id_producto = Integer.parseInt(request.getParameter("id"));
 		}
@@ -88,6 +91,61 @@ public class actualizarProducto extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		
+		String id_producto;
+		String nombre;
+		double precio;
+		String descripcion;
+		String categoria;
+		Empresa empresa;
+		Producto producto;
+		
+		
+		
+		session = request.getSession();
+		producto = null;
+		nombre = "";
+		descripcion ="";
+		precio = 0;
+		
+		if (session.getAttribute("usuario") != null) {
+			empresa = (Empresa) session.getAttribute("usuario");
+		}
+		
+		Map<String, String[]> params = request.getParameterMap();
+		
+		for (String key : params.keySet()) {
+		   if (!params.get(key)[0].isEmpty()) {
+			   
+			   if (key.equals("id_producto")) id_producto= params.get(key)[0] ;
+			   if (key.equals("nombre")) nombre= params.get(key)[0] ;
+			   if (key.equals("categoria")) categoria= params.get(key)[0] ;
+			   if (key.equals("precio")) precio= Double.parseDouble(params.get(key)[0] );
+			   if (key.equals("descripcion")) descripcion= params.get(key)[0] ;
+			   			   
+				producto = (Producto) session.getAttribute("producto_toUpdate");
+
+			   
+			}else {
+				session.setAttribute("error_Update", "Hay campos vacios en el formulario");
+				response.sendRedirect("mantenimiento#formUpdate");
+			}
+		}
+		
+		if (producto.update("id_producto", producto.getId_producto(), nombre, descripcion, precio)) {
+			
+			if (producto.leer("id_producto", String.valueOf(producto.getId_producto()), true, false, false, 0)) {
+				session.setAttribute("producto_toUpdate", producto);
+			}
+			
+			session.setAttribute("error_Update", "");
+			response.sendRedirect("mantenimiento#formUpdate");
+		}else {
+			session.setAttribute("error_Update", "No se ha podido guardar los cambios. Inténtelo de nuevo");
+			response.sendRedirect("mantenimiento#formUpdate");
+
+		}
+		
 	}
 
 }
