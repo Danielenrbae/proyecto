@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import utils.EnvioCorreo;
+
 /**
  * Servlet implementation class contacto
  */
@@ -22,6 +24,9 @@ public class contacto extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
+		String tipo;
+		
+		tipo=null;
 		
 		session = request.getSession();
 		
@@ -34,7 +39,21 @@ public class contacto extends HttpServlet {
 
 		}
 		
-		request.getRequestDispatcher("/WEB-INF/modules/style-guide/Contacto.jsp").forward(request, response);
+		if (session.getAttribute("tipo_usuario") != null) {
+			tipo = (String) session.getAttribute("tipo_usuario");
+			
+			if (tipo.equals("Empresa")) {
+				request.getRequestDispatcher("/WEB-INF/modules/style-guide/ContactoEmpresa.jsp").forward(request, response);
+
+			}else {
+				request.getRequestDispatcher("/WEB-INF/modules/style-guide/Contacto.jsp").forward(request, response);
+
+			}
+		}else {
+			request.getRequestDispatcher("/WEB-INF/modules/style-guide/Contacto.jsp").forward(request, response);
+
+		}
+		
 	}
 
 	/**
@@ -42,7 +61,17 @@ public class contacto extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		doGet(request, response);
+		EnvioCorreo envio ;
+		String email;
+		String telefono;
+		String asunto;
+		String mensaje;
+		
+		
+		session = request.getSession();
+		envio = new EnvioCorreo();
+		
+		
 	}
 
 }
