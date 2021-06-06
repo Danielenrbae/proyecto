@@ -120,12 +120,10 @@ public class doPedido extends HttpServlet {
 			
 			//conseguir la id de la empresa del producto
 			
-		
-
-			//generar el pedido
-			
 			for(int item : conjuntoEmpresas) {
 			
+				
+				//generar el pedido
 				calendar = Calendar.getInstance();
 				fecha = calendar.get(Calendar.DATE)+"/"+Calendar.MONTH+"/"+Calendar.YEAR;
 				pedido = new Pedido();
@@ -135,13 +133,22 @@ public class doPedido extends HttpServlet {
 				pedido.setId_empresa(item);
 				pedido.setFecha(fecha);
 				
-				if (pedido.insertar()) {
+				if (!pedido.insertar()) {
 					
 					//insertar los productos de los pedidos de esa empresa
 					
+					if (pedido.leer("id_comprador", usuario.getEmail(), "fecha", fecha, "id_empresa", pedido.getId_empresa(), true)) {
+						contador = 0;
+						salir = false;
+						while (salir) {
+							
+							
+							
+						}
+						
+						
 					
-					
-					
+					}
 				}
 			}
 			

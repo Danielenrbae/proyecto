@@ -87,9 +87,101 @@ public class Pedido {
 	 * @return boolean
 	 */
 	
-	public boolean leerPrimero(String columna , String valor) {
+	public boolean leer(String columna , String valor, String columna2, String valor2 ,String columna3, int valor3 ,boolean unico) {
 		boolean resultado;
+		String sql;
+		
+		sql = "";
 		resultado= false;
+		
+		if (!columna.isEmpty() && columna2.isEmpty() && columna3.isEmpty()) {
+			sql = "select * from pedido where "+columna +"= ?";
+		}
+		
+		if (!columna.isEmpty() && !columna2.isEmpty() && !columna3.isEmpty()) {
+			sql = "select * from pedido where "+columna +"= ? and "+columna2+"= ? and "+columna3+"= ?";
+
+		}
+		
+		con.iniciarConexion("ns3034756.ip-91-121-81.eu:5432/a20-denrbae?currentSchema=proyecto", "a20-denrbae", "a20-denrbae");
+			
+		try {
+			ps = con.getConnection().prepareStatement(sql);
+			
+			
+			if (!columna.isEmpty() && columna2.isEmpty() && columna3.isEmpty()) {
+				ps.setString(1, valor);
+			}
+			
+			if (!columna.isEmpty() && !columna2.isEmpty() && !columna3.isEmpty()) {
+				ps.setString(1, valor);
+				ps.setString(2, valor2);
+				ps.setInt(3, valor3);
+			}
+			rs = ps.executeQuery();
+			
+			if (rs.next()) {
+				id_comprador = rs.getString("id_comprador");
+				id_empresa= rs.getInt("id_empresa");
+				estado = rs.getString("estado");
+				fecha = rs.getString("fecha");
+				id_pedido = rs.getInt("id_pedido");
+				
+				resultado = true;
+				
+			}else {
+				rs.close();
+				ps.close();
+				con.cerrarConexion();
+			}
+			
+			if (unico) {
+				rs.close();
+				ps.close();
+				con.cerrarConexion();
+			}
+			
+		} catch (SQLException e) {
+			resultado= false;
+			
+			try {
+				ps.close();
+				rs.close();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+			con.cerrarConexion();
+			e.printStackTrace();
+		}
+		
+
+		return resultado;
+	}
+	
+	public boolean leerSiguiente() {
+		boolean resultado;
+		resultado =false;
+
+		
+		try {
+			if (rs.next()) {
+				id_comprador = rs.getString("id_comprador");
+				id_empresa= rs.getInt("id_empresa");
+				estado = rs.getString("estado");
+				fecha = rs.getString("fecha");
+				id_pedido = rs.getInt("id_pedido");
+				
+				resultado = true;
+				
+			}else {
+				rs.close();
+				ps.close();
+				con.cerrarConexion();
+			}
+		} catch (SQLException e) {
+			resultado = false;
+			e.printStackTrace();
+		}
 		
 		
 		return resultado;

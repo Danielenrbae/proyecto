@@ -76,7 +76,7 @@ public class Carrito {
 		String sql;
 		
 		resultado =false;
-		sql = "select * from carrito";
+		sql = "";
 		
 		con.iniciarConexion("ns3034756.ip-91-121-81.eu:5432/a20-denrbae?currentSchema=proyecto", "a20-denrbae", "a20-denrbae");
 
