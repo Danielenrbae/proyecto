@@ -287,7 +287,7 @@
 		                    </div>
 		
 		<div class="pf-button-primary  pf-button-primary--fill ">
-		    <a class="pf-button-primary__text" href="#">Tramitar pedido</a>
+		    <a class="pf-button-primary__text" href="doPedido">Tramitar pedido</a>
 		</div>
 		                    
 		
