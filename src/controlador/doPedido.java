@@ -15,8 +15,10 @@ import javax.servlet.http.HttpSession;
 import modelos.Carpro;
 import modelos.Carrito;
 import modelos.Comprador;
+import modelos.Factura;
 import modelos.Pedido;
 import modelos.Producto;
+import modelos.Proped;
 
 /**
  * Servlet implementation class doPedido
@@ -48,17 +50,23 @@ public class doPedido extends HttpServlet {
 		Pedido pedido;
 		Calendar calendar;
 		String fecha;
+		Proped proped;
+		boolean isInsertado;
+	
+		Factura factura;
+		double importe = 0;
 		
 		carpro = new Carpro();
 		tipo_usuario = null;
 		id_carrito = 0;
 		aux_carpro = null;
 		contador = 0;
+		isInsertado= false;
 		salir = false;
 		carrito = new Carrito();
 		conjuntoEmpresas = new TreeSet<Integer>();
 		producto = new Producto();
-		
+
 		
 		
 		productosCarrito = new Carpro[25];
@@ -86,21 +94,30 @@ public class doPedido extends HttpServlet {
 				aux_carpro.setCantidad(carpro.getCantidad());
 				aux_carpro.setId_carrito(carpro.getId_carrito());
 				aux_carpro.setId_producto(carpro.getId_producto());
+				
+				aux_carpro.getProducto().setId_empresa(carpro.getProducto().getId_empresa());
+				aux_carpro.getProducto().setPrecio(carpro.getProducto().getPrecio());
+
 
 				if (producto.leer("id_producto", String.valueOf(aux_carpro.getId_producto()), true, false, false, 0)) {
 					conjuntoEmpresas.add(producto.getId_empresa());
 				}
 				
+				
 				productosCarrito[contador] = aux_carpro;
 				contador++;
 				while (!salir) {
-
+				
 					if (carpro.leerSiguiente(true)) {
 						aux_carpro = new Carpro();
 
 						aux_carpro.setCantidad(carpro.getCantidad());
 						aux_carpro.setId_carrito(carpro.getId_carrito());
 						aux_carpro.setId_producto(carpro.getId_producto());
+						
+						aux_carpro.getProducto().setId_empresa(carpro.getProducto().getId_empresa());
+						aux_carpro.getProducto().setPrecio(carpro.getProducto().getPrecio());
+
 
 						
 						if (producto.leer("id_producto", String.valueOf(aux_carpro.getId_producto()), true, false, false, 0)) {
@@ -120,12 +137,18 @@ public class doPedido extends HttpServlet {
 			
 			//conseguir la id de la empresa del producto
 			
-			for(int item : conjuntoEmpresas) {
 			
-				
+			//generar el pedido
+			calendar = Calendar.getInstance();
+			fecha = calendar.get(Calendar.DATE)+"/"+Calendar.MONTH+"/"+Calendar.YEAR;
+			double total_carrito;
+			total_carrito= 0 ;
+			for(int item : conjuntoEmpresas) {
+
+				contador = 0;
+				salir = false;
 				//generar el pedido
-				calendar = Calendar.getInstance();
-				fecha = calendar.get(Calendar.DATE)+"/"+Calendar.MONTH+"/"+Calendar.YEAR;
+			
 				pedido = new Pedido();
 				
 				pedido.setEstado("P");
@@ -138,28 +161,78 @@ public class doPedido extends HttpServlet {
 					//insertar los productos de los pedidos de esa empresa
 					
 					if (pedido.leer("id_comprador", usuario.getEmail(), "fecha", fecha, "id_empresa", pedido.getId_empresa(), true)) {
-						contador = 0;
-						salir = false;
-						while (salir) {
+					
+						
+						
+						
+						while (!salir) {
+							proped = new Proped();
+	
+							if (productosCarrito[contador] != null) {
 							
+
+								if (productosCarrito[contador].getProducto().getId_empresa() == item) {
+									
+									proped.setId_pedido(pedido.getId_pedido());
+									proped.setId_producto(productosCarrito[contador].getId_producto());
+									proped.setCantidad(productosCarrito[contador].getCantidad());
+										
+									//System.out.println(productosCarrito[contador].getProducto().getPrecio()  + contador); 
+									total_carrito+= (productosCarrito[contador].getProducto().getPrecio() * productosCarrito[contador].getCantidad()) ;
+									//System.out.println(total_carrito);
+								
+									if (!proped.insertar()) {
+										isInsertado = true;
+										
+									}
+								}
+								contador++;
+								
+							}else {
+								salir = true;
+								System.out.println(productosCarrito[contador-1].getProducto().getPrecio());
+
+							
+							}
 							
 							
 						}
 						
+						factura = new Factura();
 						
 					
+						factura.setFecha(fecha);
+						factura.setId_pedido(pedido.getId_pedido());
+					
+						System.out.println("----- "+ item);
+					
+//						if (factura.insertar()) {
+//							System.out.println("todo correcto");
+//						}
+						
+						
+					}else {
+						System.out.println("no");
 					}
 				}
+				
+				
+		
+				
 			}
 			
-//			if (pedido.insertar()) {
-				
-				
-				//insertar todos los productos a la lista de productos del pedido
+			//borrar datos del carrito al completarse el pedido
+//			
+//			if (isInsertado) {
+//				
+//				if (carpro.delete("id_carrito", id_carrito, "", 0)) {
+//			
+//				}
+//				
 //			}
+
 	
-			//generar la factura
-			
+	
 			
 		}else {
 			request.getRequestDispatcher("WEB-INF/modules/style-guide/error404.jsp").forward(request, response);

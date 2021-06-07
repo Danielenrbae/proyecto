@@ -130,6 +130,7 @@ public class Carpro {
 					producto.setNombre(rs.getString("nombre"));
 					producto.setPrecio(rs.getFloat("precio"));
 					producto.setFoto(rs.getBytes("foto"));
+					producto.setId_empresa(rs.getInt("id_empresa"));
 				}
 
 				resultado = true;
