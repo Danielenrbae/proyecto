@@ -95,12 +95,14 @@ public class doPedido extends HttpServlet {
 				aux_carpro.setId_carrito(carpro.getId_carrito());
 				aux_carpro.setId_producto(carpro.getId_producto());
 				
-				aux_carpro.getProducto().setId_empresa(carpro.getProducto().getId_empresa());
-				aux_carpro.getProducto().setPrecio(carpro.getProducto().getPrecio());
+			
 
 
 				if (producto.leer("id_producto", String.valueOf(aux_carpro.getId_producto()), true, false, false, 0)) {
 					conjuntoEmpresas.add(producto.getId_empresa());
+					aux_carpro.getProducto().setId_empresa(producto.getId_empresa());
+					aux_carpro.getProducto().setPrecio(producto.getPrecio());
+
 				}
 				
 				
@@ -115,13 +117,16 @@ public class doPedido extends HttpServlet {
 						aux_carpro.setId_carrito(carpro.getId_carrito());
 						aux_carpro.setId_producto(carpro.getId_producto());
 						
-						aux_carpro.getProducto().setId_empresa(carpro.getProducto().getId_empresa());
-						aux_carpro.getProducto().setPrecio(carpro.getProducto().getPrecio());
+						
 
 
 						
 						if (producto.leer("id_producto", String.valueOf(aux_carpro.getId_producto()), true, false, false, 0)) {
 							conjuntoEmpresas.add(producto.getId_empresa());
+							aux_carpro.getProducto().setId_empresa(producto.getId_empresa());
+							aux_carpro.getProducto().setPrecio(producto.getPrecio());
+
+
 						}
 
 						productosCarrito[contador] = aux_carpro;
@@ -142,9 +147,9 @@ public class doPedido extends HttpServlet {
 			calendar = Calendar.getInstance();
 			fecha = calendar.get(Calendar.DATE)+"/"+Calendar.MONTH+"/"+Calendar.YEAR;
 			double total_carrito;
-			total_carrito= 0 ;
+			
 			for(int item : conjuntoEmpresas) {
-
+				total_carrito= 0 ;
 				contador = 0;
 				salir = false;
 				//generar el pedido
@@ -156,43 +161,37 @@ public class doPedido extends HttpServlet {
 				pedido.setId_empresa(item);
 				pedido.setFecha(fecha);
 				
+				
+			
 				if (!pedido.insertar()) {
 					
 					//insertar los productos de los pedidos de esa empresa
 					
 					if (pedido.leer("id_comprador", usuario.getEmail(), "fecha", fecha, "id_empresa", pedido.getId_empresa(), true)) {
-					
-						
-						
-						
-						while (!salir) {
-							proped = new Proped();
-	
-							if (productosCarrito[contador] != null) {
-							
 
+						while (!salir) {
+					
+							if (productosCarrito[contador] != null) {
+										
+											
 								if (productosCarrito[contador].getProducto().getId_empresa() == item) {
-									
+								
+									proped = new Proped();
 									proped.setId_pedido(pedido.getId_pedido());
 									proped.setId_producto(productosCarrito[contador].getId_producto());
 									proped.setCantidad(productosCarrito[contador].getCantidad());
 										
-									//System.out.println(productosCarrito[contador].getProducto().getPrecio()  + contador); 
 									total_carrito+= (productosCarrito[contador].getProducto().getPrecio() * productosCarrito[contador].getCantidad()) ;
-									//System.out.println(total_carrito);
 								
 									if (!proped.insertar()) {
 										isInsertado = true;
-										
 									}
 								}
+								
 								contador++;
 								
 							}else {
 								salir = true;
-								System.out.println(productosCarrito[contador-1].getProducto().getPrecio());
-
-							
 							}
 							
 							
@@ -203,12 +202,11 @@ public class doPedido extends HttpServlet {
 					
 						factura.setFecha(fecha);
 						factura.setId_pedido(pedido.getId_pedido());
-					
+						factura.setImporte(total_carrito);
 						System.out.println("----- "+ item);
 					
-//						if (factura.insertar()) {
-//							System.out.println("todo correcto");
-//						}
+						if (!factura.insertar()) {
+						}
 						
 						
 					}else {
@@ -223,13 +221,13 @@ public class doPedido extends HttpServlet {
 			
 			//borrar datos del carrito al completarse el pedido
 //			
-//			if (isInsertado) {
-//				
-//				if (carpro.delete("id_carrito", id_carrito, "", 0)) {
-//			
-//				}
-//				
-//			}
+			if (isInsertado) {
+				
+				if (carpro.delete("id_carrito", id_carrito, "", 0)) {
+			
+				}
+				
+			}
 
 	
 	
