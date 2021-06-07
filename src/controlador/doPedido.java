@@ -203,9 +203,12 @@ public class doPedido extends HttpServlet {
 						factura.setFecha(fecha);
 						factura.setId_pedido(pedido.getId_pedido());
 						factura.setImporte(total_carrito);
-						System.out.println("----- "+ item);
+						
 					
 						if (!factura.insertar()) {
+							isInsertado= true;
+						}else {
+							isInsertado = false;
 						}
 						
 						
@@ -223,8 +226,8 @@ public class doPedido extends HttpServlet {
 //			
 			if (isInsertado) {
 				
-				if (carpro.delete("id_carrito", id_carrito, "", 0)) {
-			
+				if (!carpro.delete("id_carrito", id_carrito, "", 0)) {
+					request.getRequestDispatcher("WEB-INF/modules/style-guide/PedidoRealizado.jsp").forward(request, response);
 				}
 				
 			}
