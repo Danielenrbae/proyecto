@@ -67,6 +67,8 @@ public class doPedido extends HttpServlet {
 		conjuntoEmpresas = new TreeSet<Integer>();
 		producto = new Producto();
 
+		calendar = Calendar.getInstance();
+		fecha = calendar.get(Calendar.DATE)+"/"+Calendar.MONTH+"/"+Calendar.YEAR+" || "+Calendar.HOUR+":"+Calendar.MINUTE;
 		
 		
 		productosCarrito = new Carpro[25];
@@ -144,8 +146,7 @@ public class doPedido extends HttpServlet {
 			
 			
 			//generar el pedido
-			calendar = Calendar.getInstance();
-			fecha = calendar.get(Calendar.DATE)+"/"+Calendar.MONTH+"/"+Calendar.YEAR;
+		
 			double total_carrito;
 			
 			for(int item : conjuntoEmpresas) {

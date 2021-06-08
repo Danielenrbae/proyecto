@@ -118,6 +118,71 @@ public class Pedido {
 				ps.setString(2, valor2);
 				ps.setInt(3, valor3);
 			}
+			System.out.println(ps);
+			rs = ps.executeQuery();
+			
+			if (rs.next()) {
+				id_comprador = rs.getString("id_comprador");
+				id_empresa= rs.getInt("id_empresa");
+				estado = rs.getString("estado");
+				fecha = rs.getString("fecha");
+				id_pedido = rs.getInt("id_pedido");
+				
+				resultado = true;
+				
+			}else {
+				rs.close();
+				ps.close();
+				con.cerrarConexion();
+			}
+			
+			if (unico) {
+				rs.close();
+				ps.close();
+				con.cerrarConexion();
+			}
+			
+		} catch (SQLException e) {
+			resultado= false;
+			
+			try {
+				ps.close();
+				rs.close();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+			con.cerrarConexion();
+			e.printStackTrace();
+		}
+		
+
+		return resultado;
+	}
+	
+	
+	public boolean leer(String columna, int valor , boolean unico) {
+		boolean resultado;
+		String sql;
+		
+		sql = "";
+		resultado= false;
+		
+		if (!columna.isEmpty()) {
+			sql = "select * from pedido where "+columna +"= ?";
+		}
+
+		con.iniciarConexion("ns3034756.ip-91-121-81.eu:5432/a20-denrbae?currentSchema=proyecto", "a20-denrbae", "a20-denrbae");
+			
+		try {
+			ps = con.getConnection().prepareStatement(sql);
+			
+			
+			if (!columna.isEmpty()) {
+				ps.setInt(1, valor);
+			}
+			
+		
+		
 			rs = ps.executeQuery();
 			
 			if (rs.next()) {

@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="modelos.Empresa"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="modelos.Pedido"%>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -51,6 +53,20 @@
 	<%@ include file="/WEB-INF/assets/Script/scriptPC.js"%>
 </script>
 
+
+<%
+	ArrayList<Pedido> listaPedidos;
+	boolean b_listaPedidos;
+	
+	b_listaPedidos = false;
+	listaPedidos = null;
+
+	if(session.getAttribute("pedidos_empresa") != null){
+		listaPedidos = (ArrayList) session.getAttribute("pedidos_empresa");
+		b_listaPedidos= true;
+	}
+
+%>
     
 <jsp:useBean id="usuario" scope="session" class="modelos.Empresa"></jsp:useBean>
 
@@ -153,128 +169,60 @@
     <h2 class="pf-resumen__title">INFÓRMATE</h2>
     <h3 class="pf-resumen__subtitle">Historial de Pedidos</h3>
 
-    <section class="pf-resumen__table">
-        <table id="table_id" class="pf-table">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>CLIENTE </th>
-                    <th>FECHA</th>
-                    <th>IMPORTE</th>
-                    <th>ESTADO</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                </tr>
-                <tr>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                </tr>
-                <tr>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                </tr>
-                <tr>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                </tr>
-                <tr>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                </tr>
-                <tr>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                </tr>
-                <tr>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                </tr>
-                <tr>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                </tr>
-                <tr>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                </tr>
+	<%
+		if (b_listaPedidos){
+			%>
+			 <section class="pf-resumen__table">
+		        <table id="table_id" class="pf-table">
+		            <thead>
+		                <tr>
+		                    <th>ID</th>
+		                    <th>CLIENTE </th>
+		                    <th>FECHA</th>
+		                    <th>IMPORTE</th>
+		                    <th>ESTADO</th>
+		                </tr>
+		            </thead>
+		            <tbody>
+		            
+		            <%
+					for(int i = 0; i < listaPedidos.size(); i++){
+						Pedido pedido = listaPedidos.get(i);
+						
+						%>
+						 <tr>
+		                    <td><%= pedido.getId_pedido() %></td>
+		                    <td><%= pedido.getId_comprador() %></td>
+		                    <td><%= pedido.getFecha() %></td>
+		                    <td></td>
+		                    <td>
+		                    
+		                    <% if(pedido.getEstado().equals("E")) %> <img src="./Img/icons/check-circle.svg" alt="Icon check"/>
+		                   	<% if(pedido.getEstado().equals("P")) %> <img src="./Img/icons/coffee.svg" alt="Icon in progress"/>
+		                   	<% if(pedido.getEstado().equals("D")) %> <img src="./Img/icons/x-circle.svg" alt="Icon denegado"/>
+		                   	
+		                    
+		                    </td>
+		               	 </tr>
+		                
+						<%
+					}
+		            
+		            %>
+		               
+		                
+		            </tbody>
+		        </table>
+		    </section>
+			<%
+		}else{
+			%>
+			<h2> Todavía no se ha realizado ningún pedido.</h2>
+			<%
+		}
+	%>
 
-                <tr>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                </tr>
-                <tr>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                </tr>
-                <tr>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                </tr>
-                <tr>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                </tr>
-                <tr>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                </tr>
-                <tr>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                    <td>DATO</td>
-                </tr>
-                
-            </tbody>
-        </table>
-    </section>
+   
 
 </section>
 <footer class="pf-footer-bussiness">
