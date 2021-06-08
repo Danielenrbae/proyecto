@@ -134,7 +134,7 @@
 		         <div class="pf-auth__options" style="z-index: 9999">
 		           <ul class="pf-options__menu">
 		               <li class="pf-menu__item"><span>¡Hola! <jsp:getProperty property="nombre" name="usuario"/></span></li>
-		               <li class="pf-menu__item"><a href="#">Mi Perfil</a></li>
+		               <li class="pf-menu__item"><a href="mispedidos">Mi Perfil</a></li>
 		               <li class="pf-menu__item"><a href="#">Mis Pedidos</a></li>
 		                <li class="pf-menu__item"><a href="cerrarSesion">Cerrar Sesión <img src="./Img/icons/log-out.svg" alt="Icono cerrar sesion"></a></li>
 		           </ul>
@@ -191,7 +191,7 @@
                     <ul class="pf-logged__menu">
                         <li class="pf-menu__item"><span>¡Hola! <jsp:getProperty property="nombre" name="usuario"/></span></li>
                         <li class="pf-menu__item"><a href="#">Mi Perfil</a></li>
-                        <li class="pf-menu__item"><a href="#">Mis Pedidos</a></li>
+                        <li class="pf-menu__item"><a href="mispedidos">Mis Pedidos</a></li>
                         <li class="pf-menu__item"><a href="cerrarSesion">Cerrar Sesión <img src="./Img/icons/log-out.svg" alt="Icono cerrar sesion"></a></li>
                     </ul>
                 </div>
