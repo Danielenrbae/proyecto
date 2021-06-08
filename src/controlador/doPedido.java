@@ -67,8 +67,7 @@ public class doPedido extends HttpServlet {
 		conjuntoEmpresas = new TreeSet<Integer>();
 		producto = new Producto();
 
-		calendar = Calendar.getInstance();
-		fecha = calendar.get(Calendar.DATE)+"/"+Calendar.MONTH+"/"+Calendar.YEAR+" || "+Calendar.HOUR+":"+Calendar.MINUTE;
+
 		
 		
 		productosCarrito = new Carpro[25];
@@ -156,7 +155,8 @@ public class doPedido extends HttpServlet {
 				//generar el pedido
 			
 				pedido = new Pedido();
-				
+				calendar = Calendar.getInstance();
+				fecha = calendar.get(Calendar.DATE)+"/"+Calendar.MONTH+"/"+Calendar.YEAR+" || "+Calendar.HOUR+":"+Calendar.MINUTE +":"+Calendar.SECOND;
 				pedido.setEstado("P");
 				pedido.setId_comprador(usuario.getEmail());
 				pedido.setId_empresa(item);
@@ -165,16 +165,12 @@ public class doPedido extends HttpServlet {
 				
 			
 				if (!pedido.insertar()) {
-					
 					//insertar los productos de los pedidos de esa empresa
 					
-					if (pedido.leer("id_comprador", usuario.getEmail(), "fecha", fecha, "id_empresa", pedido.getId_empresa(), true)) {
-
 						while (!salir) {
 					
 							if (productosCarrito[contador] != null) {
 										
-											
 								if (productosCarrito[contador].getProducto().getId_empresa() == item) {
 								
 									proped = new Proped();
@@ -213,9 +209,7 @@ public class doPedido extends HttpServlet {
 						}
 						
 						
-					}else {
-						System.out.println("no");
-					}
+					
 				}
 				
 				
@@ -227,7 +221,8 @@ public class doPedido extends HttpServlet {
 //			
 			if (isInsertado) {
 				
-				if (!carpro.delete("id_carrito", id_carrito, "", 0)) {
+				if (carpro.delete("id_carrito", id_carrito, "", 0)) {
+
 					request.getRequestDispatcher("WEB-INF/modules/style-guide/PedidoRealizado.jsp").forward(request, response);
 				}
 				

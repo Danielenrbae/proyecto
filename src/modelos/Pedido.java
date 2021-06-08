@@ -50,7 +50,7 @@ public class Pedido {
 		
 		con.iniciarConexion("ns3034756.ip-91-121-81.eu:5432/a20-denrbae?currentSchema=proyecto", "a20-denrbae", "a20-denrbae");
 		resultado = false;
-		sql="insert into proyecto.pedido (estado, fecha , id_comprador, id_empresa) values (?,?,?,?)";
+		sql="select * from proyecto.getLastIDPedido(?,?,?,?)";
 		
 		try {
 			ps = con.getConnection().prepareStatement(sql);
@@ -60,9 +60,12 @@ public class Pedido {
 			ps.setString(3, id_comprador);
 			ps.setInt(4, id_empresa);
 			
-			if(ps.execute()) {
-				resultado = true;
-			}
+			//ejecute query
+			rs = ps.executeQuery();
+			
+		if (rs.next()) {
+			id_pedido = rs.getInt(1);
+		}
 			
 			ps.close();
 			con.cerrarConexion();
