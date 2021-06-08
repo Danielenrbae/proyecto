@@ -47,7 +47,7 @@ public class doPedido extends HttpServlet {
 		boolean salir;
 		Set<Integer> conjuntoEmpresas;
 		Producto producto;
-		Pedido pedido;
+		Pedido pedido , aux_pedido;
 		Calendar calendar;
 		String fecha;
 		Proped proped;
@@ -167,14 +167,17 @@ public class doPedido extends HttpServlet {
 				if (!pedido.insertar()) {
 					//insertar los productos de los pedidos de esa empresa
 					
-						while (!salir) {
+				
 					
+					aux_pedido = new Pedido();
+					aux_pedido.setId_pedido(pedido.getId_pedido());
+				
+						while (!salir) {
 							if (productosCarrito[contador] != null) {
-										
 								if (productosCarrito[contador].getProducto().getId_empresa() == item) {
-								
 									proped = new Proped();
-									proped.setId_pedido(pedido.getId_pedido());
+								
+									proped.setId_pedido(aux_pedido.getId_pedido());
 									proped.setId_producto(productosCarrito[contador].getId_producto());
 									proped.setCantidad(productosCarrito[contador].getCantidad());
 										
@@ -182,6 +185,7 @@ public class doPedido extends HttpServlet {
 								
 									if (!proped.insertar()) {
 										isInsertado = true;
+									
 									}
 								}
 								
@@ -217,11 +221,11 @@ public class doPedido extends HttpServlet {
 				
 			}
 			
-			//borrar datos del carrito al completarse el pedido
-//			
+//			borrar datos del carrito al completarse el pedido
+			
 			if (isInsertado) {
 				
-				if (carpro.delete("id_carrito", id_carrito, "", 0)) {
+				if (!carpro.delete("id_carrito", id_carrito, "", 0)) {
 
 					request.getRequestDispatcher("WEB-INF/modules/style-guide/PedidoRealizado.jsp").forward(request, response);
 				}

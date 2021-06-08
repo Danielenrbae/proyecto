@@ -46,7 +46,7 @@ public class resumen extends HttpServlet {
 
 		if (tipo != null && !tipo.equals("Cliente")) {
 			
-			if (pedido.leer("id_empresa", usuario.getID_empresa(), false)) {
+			if (pedido.leer(usuario.getID_empresa(), false)) {
 				
 				aux_pedido = new Pedido();
 				
@@ -55,6 +55,8 @@ public class resumen extends HttpServlet {
 				aux_pedido.setId_comprador(pedido.getId_comprador());
 				aux_pedido.setId_empresa(pedido.getId_empresa());
 				aux_pedido.setId_pedido(pedido.getId_pedido());
+				aux_pedido.setImporte(pedido.getImporte());
+				
 				
 				listaPedidos.add(aux_pedido);
 				
@@ -67,7 +69,8 @@ public class resumen extends HttpServlet {
 					aux_pedido.setId_comprador(pedido.getId_comprador());
 					aux_pedido.setId_empresa(pedido.getId_empresa());
 					aux_pedido.setId_pedido(pedido.getId_pedido());
-					
+					aux_pedido.setImporte(pedido.getImporte());
+
 					listaPedidos.add(aux_pedido);
 				}
 			}

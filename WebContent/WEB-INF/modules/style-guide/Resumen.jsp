@@ -194,7 +194,7 @@
 		                    <td><%= pedido.getId_pedido() %></td>
 		                    <td><%= pedido.getId_comprador() %></td>
 		                    <td><%= pedido.getFecha() %></td>
-		                    <td></td>
+		                    <td><%= pedido.getImporte() %> EUR</td>
 		                    <td>
 		                    
 		                    <% if(pedido.getEstado().equals("E")) %> <img src="./Img/icons/check-circle.svg" alt="Icon check"/>
