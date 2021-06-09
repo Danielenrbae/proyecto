@@ -60,7 +60,7 @@ public class resumen extends HttpServlet {
 				
 				listaPedidos.add(aux_pedido);
 				
-				if (pedido.leerSiguiente()) {
+				if (pedido.leerSiguiente(true)) {
 					
 					aux_pedido = new Pedido();
 					

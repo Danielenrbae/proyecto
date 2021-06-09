@@ -15,6 +15,7 @@ public class Pedido {
 	private int id_empresa;
 	private int id_repartidor;
 	private double importe;
+	private String nombreEmpresa;
 
 	CConexion con;
 	ResultSet rs;
@@ -278,8 +279,70 @@ public class Pedido {
 
 		return resultado;
 	}
+	
+	public boolean leer(String valor, boolean unico) {
+		boolean resultado;
+		String sql;
 
-	public boolean leerSiguiente() {
+		sql = "";
+		resultado = false;
+
+		if (!valor.isEmpty()) {
+			sql = "select * from proyecto.getpedido_importeComprador(?);";
+		}
+
+		con.iniciarConexion("ns3034756.ip-91-121-81.eu:5432/a20-denrbae?currentSchema=proyecto", "a20-denrbae",
+				"a20-denrbae");
+
+		try {
+			ps = con.getConnection().prepareStatement(sql);
+
+			ps.setString(1, valor);
+
+			rs = ps.executeQuery();
+
+			if (rs.next()) {
+				id_comprador = rs.getString("id_comprador");
+				id_empresa = rs.getInt("id_empresa");
+				estado = rs.getString("estado");
+				fecha = rs.getString("fecha");
+				id_pedido = rs.getInt("id_pedido");
+				importe = rs.getDouble("importe");
+				nombreEmpresa= rs.getString("nombre");
+				
+
+				resultado = true;
+
+			} else {
+				rs.close();
+				ps.close();
+				con.cerrarConexion();
+			}
+
+			if (unico) {
+				rs.close();
+				ps.close();
+				con.cerrarConexion();
+			}
+
+		} catch (SQLException e) {
+			resultado = false;
+
+			try {
+				ps.close();
+				rs.close();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+			con.cerrarConexion();
+			e.printStackTrace();
+		}
+
+		return resultado;
+	}
+	
+
+	public boolean leerSiguiente(boolean function) {
 		boolean resultado;
 		resultado = false;
 
@@ -292,6 +355,11 @@ public class Pedido {
 				id_pedido = rs.getInt("id_pedido");
 
 				resultado = true;
+				
+				if (function) {
+					importe = rs.getDouble("importe");
+					nombreEmpresa= rs.getString("nombre");
+				}
 
 			} else {
 				rs.close();
@@ -369,6 +437,14 @@ public class Pedido {
 
 	public void setImporte(double importe) {
 		this.importe = importe;
+	}
+
+	public String getNombreEmpresa() {
+		return nombreEmpresa;
+	}
+
+	public void setNombreEmpresa(String nombreEmpresa) {
+		this.nombreEmpresa = nombreEmpresa;
 	}
 
 }
