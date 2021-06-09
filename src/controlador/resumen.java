@@ -33,8 +33,10 @@ public class resumen extends HttpServlet {
 		Empresa usuario ;
 		Pedido pedido , aux_pedido;
 		ArrayList<Pedido> listaPedidos;
+		boolean salir;
 		
 		session = request.getSession();
+		salir = false;
 		pedido = new Pedido();
 		tipo = (String) session.getAttribute("tipo_usuario");
 		usuario = null;
@@ -60,22 +62,30 @@ public class resumen extends HttpServlet {
 				
 				listaPedidos.add(aux_pedido);
 				
-				if (pedido.leerSiguiente(true)) {
-					
-					aux_pedido = new Pedido();
-					
-					aux_pedido.setEstado(pedido.getEstado());
-					aux_pedido.setFecha(pedido.getFecha());
-					aux_pedido.setId_comprador(pedido.getId_comprador());
-					aux_pedido.setId_empresa(pedido.getId_empresa());
-					aux_pedido.setId_pedido(pedido.getId_pedido());
-					aux_pedido.setImporte(pedido.getImporte());
+				while(!salir) {
+					if (pedido.leerSiguiente(false , true)) {
+						
+						aux_pedido = new Pedido();
+						
+						aux_pedido.setEstado(pedido.getEstado());
+						aux_pedido.setFecha(pedido.getFecha());
+						aux_pedido.setId_comprador(pedido.getId_comprador());
+						aux_pedido.setId_empresa(pedido.getId_empresa());
+						aux_pedido.setId_pedido(pedido.getId_pedido());
+						aux_pedido.setImporte(pedido.getImporte());
 
-					listaPedidos.add(aux_pedido);
+						listaPedidos.add(aux_pedido);
+					}else {
+						salir = true;
+					}
 				}
+				
+				
 			}
 			
 			session.setAttribute("pedidos_empresa", listaPedidos);
+			
+		
 			request.getRequestDispatcher("/WEB-INF/modules/style-guide/Resumen.jsp").forward(request, response);
 
 		} else {

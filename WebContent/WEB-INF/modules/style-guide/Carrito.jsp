@@ -261,7 +261,7 @@
 		                
 		                        <div class="pf-item__data">
 		                            <h1><strong><%= carpro[contador].getProducto().getNombre() %></strong></h1>
-		                            <h2><strong><%= carpro[contador].getProducto().getPrecio()%> EUROS </strong></p>
+		                            <h2><strong><%= carpro[contador].getProducto().getPrecio()%> EUR </strong></p>
 		                            <p> <%=carpro[contador].getCantidad() %> unidad/es</p>                            
 		                        </div>  
 		                        <a href="deleteCarrito?producto=<%= carpro[contador].getId_producto()%>">ELIMINAR</a>
@@ -323,7 +323,7 @@
 	</section> 
     
 
-	<footer class="pf-footer">
+	<footer class="pf-footer" style="margin-top:500px">
 
     <div class="pf-footer__container">
         <h2 class="pf-container__title">PARA UNA MEJOR VIDA</h2>

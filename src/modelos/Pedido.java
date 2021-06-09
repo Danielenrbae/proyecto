@@ -342,7 +342,7 @@ public class Pedido {
 	}
 	
 
-	public boolean leerSiguiente(boolean function) {
+	public boolean leerSiguiente(boolean function , boolean empresa) {
 		boolean resultado;
 		resultado = false;
 
@@ -353,12 +353,17 @@ public class Pedido {
 				estado = rs.getString("estado");
 				fecha = rs.getString("fecha");
 				id_pedido = rs.getInt("id_pedido");
+				
 
 				resultado = true;
 				
 				if (function) {
 					importe = rs.getDouble("importe");
 					nombreEmpresa= rs.getString("nombre");
+				}
+				
+				if (empresa) {
+					importe= rs.getDouble("importe");
 				}
 
 			} else {

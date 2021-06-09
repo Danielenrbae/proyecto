@@ -87,7 +87,7 @@ public class mispedidos extends HttpServlet {
 				
 				while(!salir) {
 					
-					if (pedido.leerSiguiente(true) && contador < 25) {
+					if (pedido.leerSiguiente(true, false) && contador < 25) {
 						
 						aux_pedido = new Pedido();
 
