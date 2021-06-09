@@ -26,15 +26,15 @@ import modelos.Proped;
 @WebServlet("/doPedido")
 public class doPedido extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
 	HttpSession session;
 
-	
-    
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
 		String tipo_usuario;
 		Comprador usuario;
@@ -47,57 +47,57 @@ public class doPedido extends HttpServlet {
 		boolean salir;
 		Set<Integer> conjuntoEmpresas;
 		Producto producto;
-		Pedido pedido , aux_pedido;
+		Pedido pedido, aux_pedido;
 		Calendar calendar;
 		String fecha;
 		Proped proped;
 		boolean isInsertado;
-	
+		int nproductos;
+
 		Factura factura;
 		double importe = 0;
-		
+
+		nproductos = 0;
 		carpro = new Carpro();
 		tipo_usuario = null;
 		id_carrito = 0;
 		aux_carpro = null;
 		contador = 0;
-		isInsertado= false;
+		isInsertado = false;
 		salir = false;
 		carrito = new Carrito();
 		conjuntoEmpresas = new TreeSet<Integer>();
 		producto = new Producto();
 
-
-		
-		
 		productosCarrito = new Carpro[25];
 		session = request.getSession();
-		
+
 		if (session.getAttribute("tipo_usuario") != null) {
 			tipo_usuario = (String) session.getAttribute("tipo_usuario");
+		}else {
+
+
+					request.getRequestDispatcher("WEB-INF/modules/style-guide/error404.jsp").forward(request, response);
+			
 		}
-		
+
 		if (tipo_usuario.equals("Cliente")) {
 			usuario = (Comprador) session.getAttribute("usuario");
-			
-			//get la id de carrito
-			
-			
+
+			// get la id de carrito
+
 			if (carrito.leer("id_comprador", usuario.getEmail(), true)) {
-				
-				id_carrito = carrito.getId_carrito();	
+
+				id_carrito = carrito.getId_carrito();
 			}
-			
-			//añadir recoger todos los productos del carrito
-			if (carpro.leer("id_carrito", id_carrito,"",0, false, true)) {
+
+			// añadir recoger todos los productos del carrito
+			if (carpro.leer("id_carrito", id_carrito, "", 0, false, true)) {
 				aux_carpro = new Carpro();
 
 				aux_carpro.setCantidad(carpro.getCantidad());
 				aux_carpro.setId_carrito(carpro.getId_carrito());
 				aux_carpro.setId_producto(carpro.getId_producto());
-				
-			
-
 
 				if (producto.leer("id_producto", String.valueOf(aux_carpro.getId_producto()), true, false, false, 0)) {
 					conjuntoEmpresas.add(producto.getId_empresa());
@@ -105,28 +105,23 @@ public class doPedido extends HttpServlet {
 					aux_carpro.getProducto().setPrecio(producto.getPrecio());
 
 				}
-				
-				
+
 				productosCarrito[contador] = aux_carpro;
 				contador++;
 				while (!salir) {
-				
+
 					if (carpro.leerSiguiente(true)) {
 						aux_carpro = new Carpro();
 
 						aux_carpro.setCantidad(carpro.getCantidad());
 						aux_carpro.setId_carrito(carpro.getId_carrito());
 						aux_carpro.setId_producto(carpro.getId_producto());
-						
-						
 
-
-						
-						if (producto.leer("id_producto", String.valueOf(aux_carpro.getId_producto()), true, false, false, 0)) {
+						if (producto.leer("id_producto", String.valueOf(aux_carpro.getId_producto()), true, false,
+								false, 0)) {
 							conjuntoEmpresas.add(producto.getId_empresa());
 							aux_carpro.getProducto().setId_empresa(producto.getId_empresa());
 							aux_carpro.getProducto().setPrecio(producto.getPrecio());
-
 
 						}
 
@@ -140,113 +135,113 @@ public class doPedido extends HttpServlet {
 
 				}
 			}
-			
-			//conseguir la id de la empresa del producto
-			
-			
-			//generar el pedido
-		
+
+			// conseguir la id de la empresa del producto
+
+			// generar el pedido
+
 			double total_carrito;
-			
-			for(int item : conjuntoEmpresas) {
-				total_carrito= 0 ;
+
+			for (int item : conjuntoEmpresas) {
+				total_carrito = 0;
 				contador = 0;
 				salir = false;
-				//generar el pedido
-			
+				// generar el pedido
+
 				pedido = new Pedido();
 				calendar = Calendar.getInstance();
-				fecha = calendar.get(Calendar.DATE)+"/"+Calendar.MONTH+"/"+Calendar.YEAR+" || "+Calendar.HOUR+":"+Calendar.MINUTE +":"+Calendar.SECOND;
+				fecha = calendar.get(Calendar.DATE) + "/" + Calendar.MONTH + "/" + Calendar.YEAR;
 				pedido.setEstado("P");
 				pedido.setId_comprador(usuario.getEmail());
 				pedido.setId_empresa(item);
 				pedido.setFecha(fecha);
-				
-				
-			
+
 				if (!pedido.insertar()) {
-					//insertar los productos de los pedidos de esa empresa
-					
-				
-					
+					// insertar los productos de los pedidos de esa empresa
+
+
 					aux_pedido = new Pedido();
 					aux_pedido.setId_pedido(pedido.getId_pedido());
-				
-						while (!salir) {
-							if (productosCarrito[contador] != null) {
-								if (productosCarrito[contador].getProducto().getId_empresa() == item) {
-									proped = new Proped();
-								
-									proped.setId_pedido(aux_pedido.getId_pedido());
-									proped.setId_producto(productosCarrito[contador].getId_producto());
-									proped.setCantidad(productosCarrito[contador].getCantidad());
-										
-									total_carrito+= (productosCarrito[contador].getProducto().getPrecio() * productosCarrito[contador].getCantidad()) ;
-								
-									if (!proped.insertar()) {
-										isInsertado = true;
-									
-									}
+
+					while (!salir) {
+						if (productosCarrito[contador] != null) {
+							if (productosCarrito[contador].getProducto().getId_empresa() == item) {
+								proped = new Proped();
+
+								proped.setId_pedido(aux_pedido.getId_pedido());
+								proped.setId_producto(productosCarrito[contador].getId_producto());
+								proped.setCantidad(productosCarrito[contador].getCantidad());
+
+								total_carrito += (productosCarrito[contador].getProducto().getPrecio()
+										* productosCarrito[contador].getCantidad());
+
+								if (!proped.insertar()) {
+									isInsertado = true;
+
+									nproductos++;
 								}
-								
-								contador++;
-								
-							}else {
-								salir = true;
 							}
-							
-							
+
+							contador++;
+
+						} else {
+							salir = true;
 						}
-						
-						factura = new Factura();
-						
-					
-						factura.setFecha(fecha);
-						factura.setId_pedido(pedido.getId_pedido());
-						factura.setImporte(total_carrito);
-						
-					
-						if (!factura.insertar()) {
-							isInsertado= true;
-						}else {
-							isInsertado = false;
-						}
-						
-						
-					
+
+					}
+
+					factura = new Factura();
+
+					factura.setFecha(fecha);
+					factura.setId_pedido(pedido.getId_pedido());
+					factura.setImporte(total_carrito);
+
+					if (!factura.insertar()) {
+						isInsertado = true;
+					} else {
+						isInsertado = false;
+					}
+
 				}
-				
-				
-		
-				
+
 			}
-			
+
 //			borrar datos del carrito al completarse el pedido
-			
-			if (isInsertado) {
-				
-				if (!carpro.delete("id_carrito", id_carrito, "", 0)) {
 
-					request.getRequestDispatcher("WEB-INF/modules/style-guide/PedidoRealizado.jsp").forward(request, response);
+			if (nproductos == 1) {
+				if (isInsertado) {
+
+					if (carpro.delete("id_carrito", id_carrito, "", 0)) {
+
+						request.getRequestDispatcher("WEB-INF/modules/style-guide/PedidoRealizado.jsp").forward(request,
+								response);
+					}
+
 				}
-				
+			} else {
+				if (isInsertado) {
+
+					if (!carpro.delete("id_carrito", id_carrito, "", 0)) {
+
+						request.getRequestDispatcher("WEB-INF/modules/style-guide/PedidoRealizado.jsp").forward(request,
+								response);
+					}
+
+				}
 			}
 
-	
-	
-			
-		}else {
+		} else {
 			request.getRequestDispatcher("WEB-INF/modules/style-guide/error404.jsp").forward(request, response);
 		}
-		
-		
-	
+
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doGet(request, response);
 	}
 

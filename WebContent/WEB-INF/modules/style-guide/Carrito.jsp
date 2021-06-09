@@ -135,7 +135,7 @@
 		           <ul class="pf-options__menu">
 		               <li class="pf-menu__item"><span>¡Hola! <jsp:getProperty property="nombre" name="usuario"/></span></li>
 		               <li class="pf-menu__item"><a href="mispedidos">Mi Perfil</a></li>
-		               <li class="pf-menu__item"><a href="#">Mis Pedidos</a></li>
+		               <li class="pf-menu__item"><a href="mispedidos">Mis Pedidos</a></li>
 		                <li class="pf-menu__item"><a href="cerrarSesion">Cerrar Sesión <img src="./Img/icons/log-out.svg" alt="Icono cerrar sesion"></a></li>
 		           </ul>
 		        </div>	
@@ -260,8 +260,8 @@
 		                	%>
 		                
 		                        <div class="pf-item__data">
-		                            <p><%= carpro[contador].getProducto().getNombre() %></p>
-		                            <p><%= carpro[contador].getProducto().getPrecio()%> EUROS</p>
+		                            <h1><strong><%= carpro[contador].getProducto().getNombre() %></strong></h1>
+		                            <h2><strong><%= carpro[contador].getProducto().getPrecio()%> EUROS </strong></p>
 		                            <p> <%=carpro[contador].getCantidad() %> unidad/es</p>                            
 		                        </div>  
 		                        <a href="deleteCarrito?producto=<%= carpro[contador].getId_producto()%>">ELIMINAR</a>

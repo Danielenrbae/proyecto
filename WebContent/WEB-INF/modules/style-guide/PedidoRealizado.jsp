@@ -219,7 +219,7 @@
 	</section> 
     
 
-	<footer class="pf-footer">
+	<footer class="pf-footer" style="margin-top: 500px;">
 
     <div class="pf-footer__container">
         <h2 class="pf-container__title">PARA UNA MEJOR VIDA</h2>

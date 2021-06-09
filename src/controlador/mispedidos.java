@@ -1,7 +1,10 @@
 package controlador;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -36,7 +39,7 @@ public class mispedidos extends HttpServlet {
 		int contador;
 		boolean salir;
 		Proped producto , aux_producto;
-		HashMap<Integer, Proped> listaProductos;
+		ArrayList< Proped> listaProductos;
 		
 			
 		pedido = null;
@@ -44,14 +47,14 @@ public class mispedidos extends HttpServlet {
 		aux_pedido= null;
 		usuario = null;
 		session = request.getSession();
-		pedidos = new Pedido[10];
+		pedidos = new Pedido[25];
 		contador = 0;
 		salir = false;
 		producto= null;
 		aux_producto = null;
 		
 		
-		listaProductos = new HashMap<Integer, Proped>();
+		listaProductos = new ArrayList<Proped>();
 		
 		
 		if (session.getAttribute("tipo_usuario") != null) {
@@ -84,7 +87,7 @@ public class mispedidos extends HttpServlet {
 				
 				while(!salir) {
 					
-					if (pedido.leerSiguiente(true) && contador < 10) {
+					if (pedido.leerSiguiente(true) && contador < 25) {
 						
 						aux_pedido = new Pedido();
 
@@ -117,15 +120,47 @@ public class mispedidos extends HttpServlet {
 					int id_pedido;
 					
 					id_pedido = pedidos[contador].getId_pedido();
-					
+					producto = new Proped();
 					if (producto.leer(id_pedido, usuario.getEmail())) {
+					
+						aux_producto = new Proped();
+						
+						aux_producto.setCantidad(producto.getCantidad());
+						aux_producto.setId_comprador(producto.getId_comprador());
+						aux_producto.setId_pedido(producto.getId_pedido());
+						aux_producto.setNombre(producto.getNombre());
+						aux_producto.setPrecioUnidad(producto.getPrecioUnidad());
+						aux_producto.setId_producto(producto.getId_producto());
+						
+						listaProductos.add(aux_producto);
+						
+						while (producto.leerSiguiente()) {
+							
+							aux_producto = new Proped();
+							
+							aux_producto.setCantidad(producto.getCantidad());
+							aux_producto.setId_comprador(producto.getId_comprador());
+							aux_producto.setId_pedido(producto.getId_pedido());
+							aux_producto.setNombre(producto.getNombre());
+							aux_producto.setPrecioUnidad(producto.getPrecioUnidad());
+							aux_producto.setId_producto(producto.getId_producto());
+							
+							listaProductos.add( aux_producto);
+						}
 						
 					}
-					
-					
+					contador++;
+	
+				}else
+				{
+					salir = true;
 				}
 				
 			}
+		
+			session.setAttribute("misPedidos", pedidos);
+			session.setAttribute("misPedidosPro", listaProductos);
+		
 			
 			request.getRequestDispatcher("WEB-INF/modules/style-guide/MisPedidos.jsp").forward(request, response);
 		}else {

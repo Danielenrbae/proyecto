@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="modelos.Comprador"%>
-<%@page import="modelos.Carpro"%>
+<%@page import="modelos.Proped"%>
+<%@page import="modelos.Pedido"%>
+<%@page import="java.util.ArrayList"%>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -51,7 +53,15 @@
 	Comprador comprador;
 	boolean iniciado = false;
 	boolean pedidos = false;
-
+	Pedido[] mispedidos;
+	ArrayList<Proped> listaProductos; 
+	boolean salir;
+	int contador;
+	
+	listaProductos = null;
+	mispedidos= null;
+	salir = false;
+	contador = 0;
 	
 	if(session.getAttribute("usuario") != null){
 		iniciado = true;
@@ -60,6 +70,12 @@
 	
 	if(session.getAttribute("misPedidos") != null){
 		pedidos= true;
+		mispedidos = (Pedido[]) session.getAttribute("misPedidos");
+	}
+	
+	if(session.getAttribute("misPedidosPro") != null){
+		pedidos= true;
+		listaProductos = (ArrayList) session.getAttribute("misPedidosPro");
 	}
 	
 
@@ -218,6 +234,76 @@
 		    <h2 class="pf-carrito__title">Mis Pedidos</h2>
 		
 		              <div class="pf-carrito__container">
+		              
+		              	<div class="pf-container__productos"> 		           
+		              	
+		              	<%
+		              	
+		              		while(!salir){
+		              			if(mispedidos[contador] != null){
+		              				 
+		              				%>
+		              					<div class="pf-productos__item" style="flex-direction: column;">
+		              					<div style="width: 100%;">
+		              						<h1>Pedido Nº <strong><%= mispedidos[contador].getId_pedido() %></strong></h2>
+		              						
+		              					
+		              						<h3>El pedido fue realizado el <strong><%=mispedidos[contador].getFecha()%> </strong></h4>
+		              						
+		              							<h2 style ="display: flex; justify-content: flex-start; align-items: center; gap:20px; margin-top: 20px;">Estado: 
+		              						
+		              						         <% if(mispedidos[contador].getEstado().equals("E")) %> <img style="width: 30px;" src="./Img/icons/check-circle.svg" alt="Icon check"/>
+									                   	<% if(mispedidos[contador].getEstado().equals("P")) %> <img style="width: 30px;" src="./Img/icons/coffee.svg" alt="Icon in progress"/>
+									                   	<% if(mispedidos[contador].getEstado().equals("D")) %> <img style="width: 30px;" src="./Img/icons/x-circle.svg" alt="Icon denegado"/>
+		              							
+		              						</h2>
+		              					</div>
+		              					
+		              					<div style="width: 100%">
+		              						<h1>Productos:</h1>
+		              						<ul style="width: 100%; margin-top:30px;">
+		              							<%
+		              							for(Proped item : listaProductos){
+		              								if(item.getId_pedido() == mispedidos[contador].getId_pedido()){
+		              									%>
+		              									<li style="font-size: 2rem;  display: flex; justify-content:flex-start; gap: 70px; width: 100%; margin-left: 100px; align-items: center;">
+		              										
+		              										<img class="img-fluid" style="width: 80px;" src="bajarFoto?param_img=producto&idproducto=<%= item.getId_producto()%>"/> 
+
+		              									
+		              										<p style="max-width: 320px; min-width: 320px;"> <stong><a style="color: black" href="compraProducto?id=<%= item.getId_producto()%>"><%= item.getNombre() %></a> </stong></p>
+		              										<div style="display: flex; justify-content: space-between; align-items:center; gap:100px;">
+		              								
+		              										<p style="min-width: 170px"> Precio: <strong><%= item.getPrecioUnidad() %> EUR </strong> </p>
+		              										<p style="min-width: 170px"> Cantidad:  <%= item.getCantidad() %></p>
+		              										
+		              										</div>
+		              									
+		              									</li>
+		              									
+		              									<hr>
+		              									<%
+		              								}
+		              							}
+		              							
+		              							%>
+		              						</ul>
+		              					</div>
+		              						<h2 style="align-self: flex-end;">Importe Total: <strong style="font-size: 2.5rem;"><%=mispedidos[contador].getImporte() %> EUR</strong></h4>
+		              						
+		              						
+		              					</div>
+		              				<%
+		              				contador++;
+		              			}else{
+		              				salir = true;
+		              			}
+		              		}
+		              	
+		              	%>
+		              	
+		              	</div>
+		              	
 		              </div>
 		            
 			</section> 
