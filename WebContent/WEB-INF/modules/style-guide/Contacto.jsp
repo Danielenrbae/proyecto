@@ -49,6 +49,13 @@
 <%
 	Comprador comprador;
 	boolean iniciado = false;
+	boolean correcto;
+	
+	correcto = false;
+	
+	if(session.getAttribute("contacto_correcto") != null){
+		correcto= true;
+	}
 	
 	if(session.getAttribute("usuario") != null){
 		iniciado = true;
@@ -187,8 +194,10 @@
     
 	<div class="pf-cabecera-contacto"> 
 	</div>    
+	
+	
 
-<form class="pf-form-contac">
+<form class="pf-form-contac" action="contacto" method="POST">
     <div class="form-row">
       <div class="form-group col-sm-12 col-lg-6">
         <label for="email">CORREO ELECTRÓNICO</label>
@@ -206,12 +215,12 @@
     <div class="form-row">
         <div class="form-group col">
             <label for="asunto">ASUNTO</label>
-            <input type="email" class="form-control" name="asunto" aria-describedby="asuntoHelp" required placeholder="Asunto" required="required">
+            <input type="text" class="form-control" name="asunto" aria-describedby="asuntoHelp" required placeholder="Asunto" required="required">
         </div>
     </div>
     <div class="form-row">
         <div class="form-group col ">
-            <textarea class="form-control" placeholder="Cuéntanos" required></textarea>
+            <textarea class="form-control" name="mensaje" placeholder="Cuéntanos" required></textarea>
             <!-- <input type="text" class="form-control pf-form-group__cuerpo"  aria-describedby="cuerpohelp" required > -->
             <span>Máximo 500 caracteres</span>
         </div>
@@ -230,7 +239,10 @@
 
     <div class="form-row">
         <input class="pf-form-contac__submit" type="submit" value="Contactar">
+        
     </div>
+     <% if (correcto) %> <h2 style="margin-top:20px;"> Mensaje enviado con éxito.</h2>
+    
   </form>
 
 

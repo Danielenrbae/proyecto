@@ -80,10 +80,10 @@ public class resumen extends HttpServlet {
 					}
 				}
 				
-				
+				session.setAttribute("pedidos_empresa", listaPedidos);
 			}
 			
-			session.setAttribute("pedidos_empresa", listaPedidos);
+
 			
 		
 			request.getRequestDispatcher("/WEB-INF/modules/style-guide/Resumen.jsp").forward(request, response);

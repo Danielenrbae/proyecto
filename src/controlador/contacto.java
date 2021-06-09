@@ -25,11 +25,16 @@ public class contacto extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
 		String tipo;
+		boolean correcto;
 		
 		tipo=null;
+		correcto =false;
 		
 		session = request.getSession();
-		
+		if (request.getParameter("correcto") != null) {
+			correcto = Boolean.parseBoolean(request.getParameter("correcto"));
+			session.setAttribute("contacto_correcto", correcto);
+		}
 		if (session.isNew()) {
 			session.setAttribute("usuario", null);
 			session.setAttribute("email-verificacion", null);
@@ -66,11 +71,38 @@ public class contacto extends HttpServlet {
 		String telefono;
 		String asunto;
 		String mensaje;
-		
+		String FROM ;
+		String TO;
+		String cuerpo;
+		String CLAVE;
+		String acepto;
 		
 		session = request.getSession();
 		envio = new EnvioCorreo();
-	
+		FROM = "danieloffi00@gmail.com";
+		CLAVE= "15enri12";
+		TO = "danieloffi00@gmail.com";
+		
+		
+		asunto = request.getParameter("asunto");
+		email = request.getParameter("email");
+		telefono = request.getParameter("telefono");
+		cuerpo = request.getParameter("mensaje");
+		acepto = request.getParameter("acepto");
+		
+		mensaje = "Mensaje recibido de "+email+ " con teléfono "+telefono+"\n"
+				+ "Asunto del mensaje: "+asunto+"\n"
+				+ "Cuerpo del mensaje: "+cuerpo+"\n";
+		
+		if (acepto.equals("on")) {
+			envio.enviar(FROM, CLAVE, TO, asunto, mensaje);
+			response.sendRedirect("contacto?correcto=true");
+
+		}else  {
+			response.sendRedirect("contacto");
+		}
+		
+		
 		
 	}
 

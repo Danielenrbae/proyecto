@@ -11,8 +11,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="index, follow">
     <meta charset="utf-8" />
-    <meta name="application-name" content="Inicio" />
-    <title>Inicio</title>
+    <meta name="application-name" content="Contacto" />
+    <title>Contacto</title>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
@@ -46,6 +46,15 @@
 	<%@ include file="/WEB-INF/assets/Script/scriptPC.js"%>
 </script>
 
+<%
+	boolean correcto;
+
+	correcto = false;
+	
+	if(session.getAttribute("contacto_correcto") != null){
+		correcto = true;
+	}
+%>
     
 <jsp:useBean id="usuario" scope="session" class="modelos.Empresa"></jsp:useBean>
 
@@ -100,7 +109,6 @@
 <div class="pf-nav-bussines__desplegable">
   <ul class="pf-container__menu">
     <li class="pf-menu__item"><a href="resumen">RESUMEN</a></li>
-    <li class="pf-menu__item"><a href="#">PEDIDOS</a></li>
     <li class="pf-menu__item"><a href="mantenimiento">MANTENIMIENTO</a></li>
     <li class="pf-menu__item"><a href="#">SOBRE NOSOTROS</a></li>
     <li class="pf-menu__item"><a href="contacto">CONTACTO</a></li>
@@ -134,7 +142,7 @@
 <div class="pf-cabecera-contacto"> 
 	</div>    
 
-<form class="pf-form-contac">
+<form class="pf-form-contac" method="post" action="contacto">
     <div class="form-row">
       <div class="form-group col-sm-12 col-lg-6">
         <label for="email">CORREO ELECTRÓNICO</label>
@@ -152,12 +160,12 @@
     <div class="form-row">
         <div class="form-group col">
             <label for="asunto">ASUNTO</label>
-            <input type="email" class="form-control" name="asunto" aria-describedby="asuntoHelp" required placeholder="Asunto">
+            <input type="text" class="form-control" name="asunto" aria-describedby="asuntoHelp" required placeholder="Asunto">
         </div>
     </div>
     <div class="form-row">
         <div class="form-group col ">
-            <textarea class="form-control" placeholder="Cuéntanos" required></textarea>
+            <textarea class="form-control" name="cuerpo" placeholder="Cuéntanos" required></textarea>
             <span>Máximo 500 caracteres</span>
         </div>
     </div>
@@ -165,7 +173,7 @@
     <div class="form-row">
         <div class="form-group col">
             <div class="form-check">
-              <input class="form-check-input" type="checkbox" name="acepto"/>
+              <input class="form-check-input" type="checkbox" name="acepto" required="required"/>
               <label class="form-check-label" for="acepto">
                 He leído, comprendo y acepto el tratamiento de datos personales
               </label>
@@ -176,8 +184,12 @@
     <div class="form-row">
         <input class="pf-form-contac__submit" type="submit" value="Contactar">
     </div>
+    
+      <% if (correcto) %> <h2 style="margin-top:20px;"> Mensaje enviado con éxito.</h2>
+    
   </form>
 
+	<% session.setAttribute("contacto_correcto", null); %>
 
 	<footer class="pf-footer-bussiness">
 	

@@ -97,6 +97,7 @@ public class InformacionNutricional {
 			
 
 			ps.setInt(1, valor);
+		
 			rs = ps.executeQuery();
 			
 			
@@ -171,7 +172,8 @@ public class InformacionNutricional {
 			ps.setInt(12, id_producto);
 			
 				
-			
+		
+
 			if (ps.executeUpdate() == 1) {
 				resultado = true;
 			}

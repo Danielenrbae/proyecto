@@ -225,7 +225,7 @@
    
 
 </section>
-<footer class="pf-footer-bussiness">
+<footer class="pf-footer-bussiness" style="margin-top:120px;">
 
     <div class="pf-footer-bussiness__nav">
         <div class="pf-nav__logo">
