@@ -14,7 +14,7 @@
     <meta name="robots" content="index, follow">
     <meta charset="utf-8" />
     <meta name="application-name" content="Inicio" />
-    <title>Inicio</title>
+    <title>Resumen</title>
 
 <!--     <link rel="stylesheet" href="/WEB-INF/assets/Script/jquery-ui-1.12.1/jquery-ui.css" media="all"> -->
 <!--     <link rel="stylesheet" href="/WEB-INF/assets/Script/jquerymodal/jquerymodal.css" media="all"> -->
@@ -62,6 +62,7 @@
 	listaPedidos = null;
 
 	if(session.getAttribute("pedidos_empresa") != null){
+		System.out.println("holaa");
 		listaPedidos = (ArrayList) session.getAttribute("pedidos_empresa");
 		b_listaPedidos= true;
 	}

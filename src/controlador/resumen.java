@@ -49,7 +49,7 @@ public class resumen extends HttpServlet {
 		if (tipo != null && !tipo.equals("Cliente")) {
 			
 			if (pedido.leer(usuario.getID_empresa(), false)) {
-				
+				System.out.println("1");
 				aux_pedido = new Pedido();
 				
 				aux_pedido.setEstado(pedido.getEstado());
@@ -81,6 +81,9 @@ public class resumen extends HttpServlet {
 				}
 				
 				session.setAttribute("pedidos_empresa", listaPedidos);
+			}else {
+				request.getRequestDispatcher("/WEB-INF/modules/style-guide/Resumen.jsp").forward(request, response);
+
 			}
 			
 
