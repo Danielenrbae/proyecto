@@ -172,7 +172,7 @@ public class Empresa {
 	}
 	
 	/**
-	 * 
+	 * Método para modificar los datos de la empresa
 	 * 
 	 * 
 	 * */

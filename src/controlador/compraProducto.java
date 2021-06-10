@@ -87,11 +87,7 @@ public class compraProducto extends HttpServlet {
 		id_producto = 0;
 		cantidad = 0;
 
-		if (session.getAttribute("tipo_usuario") != null && !request.getParameter("id").isEmpty()) {
-			System.out.println("diferente");
-		} else {
-			System.out.println("nulo");
-		}
+		
 
 		// SI EL USUARIO ES NULO QUE SALGA MENSAJE QUE DEBE INICIAR SESION
 		if (session.getAttribute("tipo_usuario") != null) {

@@ -43,7 +43,7 @@ public class Comprador {
 	}
 
 	
-	/*
+	/**
 	 * Este método realiza una consulta en la base de datos en la tabla relacionada con los compradores - solo devuelve un registro
 	 * 
 	 *	@param columna Valor de la columna donde quiere realizar la consulta

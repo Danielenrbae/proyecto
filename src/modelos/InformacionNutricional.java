@@ -87,8 +87,6 @@ public class InformacionNutricional {
 		
 		if (!columna.isEmpty() || valor != 0) {
 			sql = "SELECT * FROM informacion_nutricional where "+columna+" = ? ;";
-		}else {
-			sql = "SELECT * FROM informacion_nutricional;";
 		}
 		
 		

@@ -26,10 +26,9 @@ public class inicio extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		Empresa empresa;
-		Comprador comprador;
+	
 		String tipo;
-		String email;
+
 
 		session = request.getSession();
 

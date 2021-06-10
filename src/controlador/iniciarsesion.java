@@ -97,7 +97,7 @@ public class iniciarsesion extends HttpServlet {
 
 						correo = new EnvioCorreo();
 
-						// correo.enviar(from, clave, to, asunto, mensaje);
+						// TODO correo.enviar(from, clave, to, asunto, mensaje);
 
 						session.setAttribute("email-verificacion", email);
 						session.setAttribute("codigo-verificacion", codigo);
@@ -137,7 +137,7 @@ public class iniciarsesion extends HttpServlet {
 
 						correo = new EnvioCorreo();
 
-						// correo.enviar(from, clave, to, asunto, mensaje);
+						//TODO correo.enviar(from, clave, to, asunto, mensaje);
 
 						session.setAttribute("email-verificacion", email);
 						session.setAttribute("codigo-verificacion", codigo);

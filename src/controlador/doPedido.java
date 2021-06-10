@@ -55,7 +55,7 @@ public class doPedido extends HttpServlet {
 		int nproductos;
 
 		Factura factura;
-		double importe = 0;
+	
 
 		nproductos = 0;
 		carpro = new Carpro();

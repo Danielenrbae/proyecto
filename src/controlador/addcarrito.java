@@ -40,7 +40,6 @@ public class addcarrito extends HttpServlet {
 			
 			tipo= (String) session.getAttribute("tipo_usuario");
 			
-			System.out.println(tipo);
 			id_producto= Integer.parseInt(request.getParameter("id"));
 			
 			if (tipo.equals("Cliente")) { // TODO EL TIPO ESTA NULO , entra en el if de todas formas
@@ -52,7 +51,7 @@ public class addcarrito extends HttpServlet {
 					//insertar el producto en la tabla relacion del carrito + producto
 					carpro.setId_carrito(carrito.getId_carrito());
 					carpro.setId_producto(id_producto);
-					//TODO comprobar la cantidad de productos que inserta y hacer bucle
+					// comprobar la cantidad de productos que inserta y hacer bucle
 					if (carpro.insertar()) {
 						response.sendRedirect("compraProducto?id="+id_producto);
 					}else {

@@ -44,14 +44,12 @@ public class resumen extends HttpServlet {
 		
 		if (session.getAttribute("usuario") != null) {
 			usuario = (Empresa) session.getAttribute("usuario");
-			System.out.println("entra usuario");
 		}
 
 		if (tipo != null && !tipo.equals("Cliente")) {
-			System.out.println("1 antes");
-			System.out.println(usuario.getID_empresa());
+	
 			if (pedido.leer(usuario.getID_empresa(), false)) {
-				System.out.println("1");
+			
 				aux_pedido = new Pedido();
 				
 				aux_pedido.setEstado(pedido.getEstado());
@@ -87,10 +85,7 @@ public class resumen extends HttpServlet {
 				request.getRequestDispatcher("/WEB-INF/modules/style-guide/Resumen.jsp").forward(request, response);
 
 			}
-			
 
-			
-		
 			request.getRequestDispatcher("/WEB-INF/modules/style-guide/Resumen.jsp").forward(request, response);
 
 		} else {

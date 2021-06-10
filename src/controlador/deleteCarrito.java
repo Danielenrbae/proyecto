@@ -26,13 +26,13 @@ public class deleteCarrito extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int id_carrito;
 		int id_producto;
-		Comprador usuario;
+
 		Carpro carpro;
 		String tipo;
-		int cantidad;
+	
 		
 		tipo = null;
-		cantidad = 0;
+		
 		id_carrito= 0;
 		id_producto= 0;
 
