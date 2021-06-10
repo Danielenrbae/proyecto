@@ -84,6 +84,8 @@ public class verificacion extends HttpServlet {
 			if (tipo_usuario.equals("Cliente")) {
 				comprador = new Comprador();
 				if (comprador.update("verificado", "T", "email", email)) {
+					comprador.leer("email", email);
+					session.setAttribute("usuario", comprador);
 					out.print("{ \"ok\" : 1 , \"url\" : \"/inicio\" }");
 				} else {
 					session.setAttribute("usuario", null);
@@ -93,6 +95,10 @@ public class verificacion extends HttpServlet {
 				empresa = new Empresa();
 				if (empresa.update("verificado", "T", "email", email)) {
 
+					empresa.leer("email", email);
+					
+					session.setAttribute("usuario", empresa);
+					
 					out.print("{ \"ok\" : 1 , \"url\" : \"/resumen\" }");
 				} else {
 					session.setAttribute("usuario", null);

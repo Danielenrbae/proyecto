@@ -44,10 +44,12 @@ public class resumen extends HttpServlet {
 		
 		if (session.getAttribute("usuario") != null) {
 			usuario = (Empresa) session.getAttribute("usuario");
+			System.out.println("entra usuario");
 		}
 
 		if (tipo != null && !tipo.equals("Cliente")) {
-			
+			System.out.println("1 antes");
+			System.out.println(usuario.getID_empresa());
 			if (pedido.leer(usuario.getID_empresa(), false)) {
 				System.out.println("1");
 				aux_pedido = new Pedido();
