@@ -68,12 +68,14 @@ public class explorar extends HttpServlet {
 			session.setAttribute("pageSession", 1);
 		}
 		
+		session.setAttribute("cateparam",null);
+		
 		if (request.getParameter("cat") != null ) {
 			
 			param_categoria = request.getParameter("cat");
-			System.out.println(param_categoria);
 			paramCat = new Categoria();
-			
+			session.setAttribute("cateparam", param_categoria);
+//			
 			if (paramCat.leer("nombre", param_categoria, true)) {
 				
 				columna= "id_categoria";
@@ -105,41 +107,41 @@ public class explorar extends HttpServlet {
 		}
 		
 		//GET PRODUCTOS CON PAGINACION
-		contador = 1;
-		salir = false;
-		if (producto.leer(columna, valor, false, all, false,page)) {
-	
-			aux_producto = new Producto();
-			
-			aux_producto.setId_producto(producto.getId_producto());
-			aux_producto.setNombre(producto.getNombre());										
-			aux_producto.setPrecio(producto.getPrecio());
-			aux_producto.setFoto(producto.getFoto());
-			
-			
-			productos[0] = aux_producto;
-			
-			while(!salir) {
-				if (producto.leersiguiente()) {
-					aux_producto = new Producto();
-					
-					aux_producto.setId_producto(producto.getId_producto());
-					aux_producto.setNombre(producto.getNombre());										
-					aux_producto.setPrecio(producto.getPrecio());
-					aux_producto.setFoto(producto.getFoto());
-
-					productos[contador] = aux_producto;
-					contador++;
-				}else {
-					salir = true;
-				}
-				
-			}
-			
-		}
-	
-		session.setAttribute("explora_productos", productos);
-		
+//		contador = 1;
+//		salir = false;
+//		if (producto.leer(columna, valor, false, all, false,page)) {
+//	
+//			aux_producto = new Producto();
+//			
+//			aux_producto.setId_producto(producto.getId_producto());
+//			aux_producto.setNombre(producto.getNombre());										
+//			aux_producto.setPrecio(producto.getPrecio());
+//			aux_producto.setFoto(producto.getFoto());
+//			
+//			
+//			productos[0] = aux_producto;
+//			
+//			while(!salir) {
+//				if (producto.leersiguiente()) {
+//					aux_producto = new Producto();
+//					
+//					aux_producto.setId_producto(producto.getId_producto());
+//					aux_producto.setNombre(producto.getNombre());										
+//					aux_producto.setPrecio(producto.getPrecio());
+//					aux_producto.setFoto(producto.getFoto());
+//
+//					productos[contador] = aux_producto;
+//					contador++;
+//				}else {
+//					salir = true;
+//				}
+//				
+//			}
+//			
+//		}
+//	
+//		session.setAttribute("explora_productos", productos);
+//		
 	
 	
 		if(producto.leer(columna, valor, false, false, true, 0)) {
@@ -170,4 +172,74 @@ public class explorar extends HttpServlet {
 		doGet(request, response);
 	}
 
+	
+	
+//	<%     	    		   
+//	if(explora_Productos){
+//		
+//		while(!salir){
+//			
+//			if(productos[contador] != null){
+//				%>
+//				
+//				
+//				<% 
+//					if(productos[contador].getFoto() != null){
+//						%>
+//						
+//						
+//						<div class="card pf-productos__item" data-id="<%= productos[contador].getId_producto()%>" >
+//							   <img class="content card-img-top img-fluid" src="bajarFoto?param_img=producto&idproducto=<%= productos[contador].getId_producto() %>"/> 
+//						
+//					
+//							  <div class="card-body">
+//							    <p class="card-text" ><%= productos[contador].getNombre() %></p>
+//						
+//								<div class="button-group">
+//									    <p class="card-text"><%= productos[contador].getPrecio() %> €</p>
+//							        <a href="compraProducto?id=<%=productos[contador].getId_producto() %>" class="btn btn-primary">Añadir al carrito</a>
+//								</div>
+//							
+//							  </div>
+//							</div>
+//						
+//						<%
+//					}else{
+//						%>
+//							<div class="card pf-productos__item">
+//							   <img class="card-img-top img-fluid" src="./Img/common/pf-default-image.png"/> 
+//						
+//					
+//							  <div class="card-body">
+//							    <p class="card-text"><%= productos[contador].getNombre() %></p>
+//							  
+//								<div class="button-group">
+//									    <p class="card-text"><%= productos[contador].getPrecio() %> €</p>
+//							        <a href="compraProducto?id=<%=productos[contador].getId_producto() %>" class="btn btn-primary">Añadir al carrito</a>
+//								</div>
+//							  </div>
+//							</div>
+//
+//						<%
+//					}
+//				%>
+//					
+//				<%
+//				
+//				contador++;
+//			}else{
+//				salir = true;
+//			}
+//			
+//		}
+//		 	 
+//	}else{
+//	
+//		%>
+//		<h3> No hay productos existentes</h3>
+//		<%
+//	}
+//%>
+
+	
 }

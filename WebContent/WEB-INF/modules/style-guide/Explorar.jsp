@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@page import="modelos.Comprador"%>
 <%@page import="modelos.Producto"%>
+<%@taglib prefix="tag" uri="../../tags.tld" %>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -63,6 +64,8 @@
 	String[] categorias;
 	int contador_categorias;
 	boolean salir_categorias;
+	int numero;
+	String catego;
 	
 	int paginas;
 	
@@ -74,7 +77,7 @@
 	
 	iniciado = false;
 	bcategoria = false;
-	
+	numero =1;
 	contador_categorias = 0;
 	salir_categorias= false;
 	categorias = null;
@@ -84,6 +87,7 @@
 	productos = null;
 	explora_Productos = false;
 	salir= false;
+	catego = "";
 	contador = 0;
 
 	
@@ -116,16 +120,25 @@
 		paginas = (int) (session.getAttribute("paginas"));
 	}
 	
+	if(session.getAttribute("pageSession") != null)
+	{
+		 numero = (int)session.getAttribute("pageSession");
+	}
+	
+	
+	if(session.getAttribute("cateparam") != null){
+		catego = (String) session.getAttribute("cateparam");
+	}
 	/**
 	Control de los productos
 	
 	*/
 	
-	if(session.getAttribute("explora_productos") != null){
-		productos = (Producto[]) session.getAttribute("explora_productos");
-		explora_Productos = true;
+// 	if(session.getAttribute("explora_productos") != null){
+// 		productos = (Producto[]) session.getAttribute("explora_productos");
+// 		explora_Productos = true;
 
-	}
+// 	}
 	
 
 	
@@ -149,7 +162,7 @@
         <ul class="pf-container__menu">
 
             <li class="pf-menu__item"><a href="inicio">INICIO</a></li>
-            <li class="pf-menu__item"><a href="#">EXPLORAR</a></li>
+            <li class="pf-menu__item"><a href="explorar">EXPLORAR</a></li>
             <li class="pf-menu__item"><a href="#">SOBRE NOSOTROS</a></li>
             <li class="pf-menu__item"><a href="contacto">CONTACTO</a></li>
 
@@ -256,7 +269,7 @@
         <nav class="pf-breadcrumb" aria-label="breadcrumb">
 	  <ol class="breadcrumb">
 	    <li class="breadcrumb-item" aria-current="page"><a href="inicio">Inicio</a></li>
-	    <li class="breadcrumb-item" aria-current="page"><a href="explora">Explora</a></li>
+	    <li class="breadcrumb-item" aria-current="page"><a href="explorar">Explora</a></li>
 	  </ol>
 	</nav>
     
@@ -296,74 +309,8 @@
     
     <section class="pf-productos container-fluid">
     
-    	<%     	    		   
-	    	if(explora_Productos){
-	    		
-	    		while(!salir){
-	    			
-	    			if(productos[contador] != null){
-	    				%>
-	    				
-	    				
-	    				<% 
-	    					if(productos[contador].getFoto() != null){
-	    						%>
-	    						
-	    						
-	    						<div class="card pf-productos__item" data-id="<%= productos[contador].getId_producto()%>" >
-	    							   <img class="content card-img-top img-fluid" src="bajarFoto?param_img=producto&idproducto=<%= productos[contador].getId_producto() %>"/> 
-	    						
-							
-									  <div class="card-body">
-									    <p class="card-text" ><%= productos[contador].getNombre() %></p>
-								
-										<div class="button-group">
-											    <p class="card-text"><%= productos[contador].getPrecio() %> €</p>
-									        <a href="compraProducto?id=<%=productos[contador].getId_producto() %>" class="btn btn-primary">Añadir al carrito</a>
-										</div>
-									
-									  </div>
-									</div>
-	    						
-	    						<%
-	    					}else{
-	    						%>
-	    							<div class="card pf-productos__item">
-	    							   <img class="card-img-top img-fluid" src="./Img/common/pf-default-image.png"/> 
-	    						
-							
-									  <div class="card-body">
-									    <p class="card-text"><%= productos[contador].getNombre() %></p>
-									  
-										<div class="button-group">
-											    <p class="card-text"><%= productos[contador].getPrecio() %> €</p>
-									        <a href="compraProducto?id=<%=productos[contador].getId_producto() %>" class="btn btn-primary">Añadir al carrito</a>
-										</div>
-									  </div>
-									</div>
-
-	    						<%
-	    					}
-	    				%>
-	    					
-	    				<%
-	    				
-	    				contador++;
-	    			}else{
-	    				salir = true;
-	    			}
-	    			
-	    		}
-	    		 	 
-	    	}else{
-	    	
-	    		%>
-	    		<h3> No hay productos existentes</h3>
-	    		<%
-	    	}
-    	%>
-    
-    
+    	
+    	<tag:Products page="<%= numero %>" cat="<%= catego %>"/>
     
     	
     

@@ -114,7 +114,7 @@ public class Producto {
 		boolean resultado;
 		String sql;
 		int numeroRegistros;
-		numeroRegistros = 25;
+		numeroRegistros = 24;
 		resultado = false;
 		sql = "";
 
@@ -148,10 +148,9 @@ public class Producto {
 			if(pagina == 1) {
 				
 				if(all) {
-					sql = "SELECT * from proyecto.producto offset 0 rows fetch next 25 rows only";
+					sql = "SELECT * from proyecto.producto offset 0 rows fetch next 24 rows only";
 				}else {
-					
-					sql = "SELECT * FROM proyecto.producto where " + columna + " = " + valor + "offset 0 rows fetch next 25 rows only";
+					sql = "SELECT * FROM proyecto.producto where " + columna + " = " + valor + " offset 0 rows fetch next 24 rows only";
 
 					
 					
@@ -160,11 +159,10 @@ public class Producto {
 				}
 			}else {
 				numeroRegistros = (pagina - 1) * numeroRegistros;
-				System.out.println(numeroRegistros);
 				if(all) {
-					sql = "SELECT * from proyecto.producto offset " + numeroRegistros + "rows fetch next "+(numeroRegistros+25)+" only;";
+					sql = "SELECT * from proyecto.producto offset " + numeroRegistros + " rows fetch next "+(numeroRegistros+24)+" rows only";
 				}else {
-					sql = "SELECT * FROM proyecto.producto where " + columna + " = " + valor + " offset " + numeroRegistros + "rows fetch next "+(numeroRegistros+25)+"rows only;";
+					sql = "SELECT * FROM proyecto.producto where " + columna + " = " + valor + " offset " + numeroRegistros + " rows fetch next "+(numeroRegistros+24)+"rows only;";
 
 				}
 			}
@@ -172,12 +170,9 @@ public class Producto {
 		
 	
 		try {
-
 			ps = con.getConnection().prepareStatement(sql);
 
 
-			
-		
 			rs = ps.executeQuery();
 
 			if (rs.next()) {
@@ -377,6 +372,16 @@ public class Producto {
 
 	public void setFoto(byte[] foto) {
 		this.foto = foto;
+	}
+	
+	
+
+	public PreparedStatement getPs() {
+		return ps;
+	}
+
+	public void setPs(PreparedStatement ps) {
+		this.ps = ps;
 	}
 
 	public int getId_empresa() {
