@@ -89,26 +89,28 @@ public class iniciarsesion extends HttpServlet {
 					if (comprador.isVerificado().equals("F")) {
 
 						codigo = Cifrado.generarCodigo(); // cambiar cuenta
-						from = "danieloffi00@gmail.com";
-						clave = "15enri12";
+						
 						asunto = "Código de verificación";
 						mensaje = "El código es: " + codigo;
 						to = email;
 
 						correo = new EnvioCorreo();
-
-						// TODO correo.enviar(from, clave, to, asunto, mensaje);
-
+						if (correo.enviar(to, asunto, mensaje)) {
+							System.out.println("Todo correcto");
+						}
+						//  correo.enviar(from, clave, to, asunto, mensaje);
+					//	correo.enviar(from, clave, to, asunto, mensaje);
 						session.setAttribute("email-verificacion", email);
 						session.setAttribute("codigo-verificacion", codigo);
 						session.setAttribute("tipo_usuario", "Cliente");
+						
 						System.out.println(codigo);
 						out.print("{ \"ok\" : 1 }");
 
 					} else {
 						session.setAttribute("tipo_usuario", "Cliente");
 						session.setAttribute("usuario", comprador);
-						out.print("{ \"ok\" : 2 ,\"url\" : \"/inicio\"}");
+						out.print("{ \"ok\" : 2 ,\"url\" : \"/a20-denrbae_proyecto_final/inicio\"}");
 					}
 
 				} else {
@@ -129,16 +131,20 @@ public class iniciarsesion extends HttpServlet {
 					if (empresa.isVerificado().equals("F")) {
 
 						codigo = Cifrado.generarCodigo(); // cambiar cuenta
-						from = "danieloffi00@gmail.com";
-						clave = "15enri12";
+						
+					
 						asunto = "Código de verificación";
 						mensaje = "El código es: " + codigo;
 						to = email;
 
 						correo = new EnvioCorreo();
 
-						//TODO correo.enviar(from, clave, to, asunto, mensaje);
-
+						correo = new EnvioCorreo();
+						if (correo.enviar(to, asunto, mensaje)) {
+							System.out.println("Todo correcto");
+						}
+						// correo.enviar(from, clave, to, asunto, mensaje);
+						//correo.enviar(from, clave, to, asunto, mensaje);
 						session.setAttribute("email-verificacion", email);
 						session.setAttribute("codigo-verificacion", codigo);
 						session.setAttribute("tipo_usuario", "Empresa");
@@ -148,7 +154,7 @@ public class iniciarsesion extends HttpServlet {
 					} else {
 						session.setAttribute("tipo_usuario", "Empresa");
 						session.setAttribute("usuario", empresa);
-						out.print("{ \"ok\" : 2 ,\"url\" : \"/resumen\"  }");
+						out.print("{ \"ok\" : 2 ,\"url\" : \"/a20-denrbae_proyecto_final/resumen\"  }");
 					}
 
 				} else {

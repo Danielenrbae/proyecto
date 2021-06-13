@@ -86,7 +86,7 @@ public class verificacion extends HttpServlet {
 				if (comprador.update("verificado", "T", "email", email)) {
 					comprador.leer("email", email);
 					session.setAttribute("usuario", comprador);
-					out.print("{ \"ok\" : 1 , \"url\" : \"/inicio\" }");
+					out.print("{ \"ok\" : 1 , \"url\" : \"/a20-denrbae_proyecto_final/inicio\" }");
 				} else {
 					session.setAttribute("usuario", null);
 					out.print("{ \"error\" : \"Ha ocurrido un error. Inténtelo de nuevo\" }");
@@ -99,7 +99,7 @@ public class verificacion extends HttpServlet {
 					
 					session.setAttribute("usuario", empresa);
 					
-					out.print("{ \"ok\" : 1 , \"url\" : \"/resumen\" }");
+					out.print("{ \"ok\" : 1 , \"url\" : \"/a20-denrbae_proyecto_final/resumen\" }");
 				} else {
 					session.setAttribute("usuario", null);
 					out.print("{ \"error\" : \"Ha ocurrido un error. Inténtelo de nuevo\" }");

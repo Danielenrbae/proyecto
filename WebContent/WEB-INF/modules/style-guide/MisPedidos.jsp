@@ -253,8 +253,8 @@
 		              							<h2 style ="display: flex; justify-content: flex-start; align-items: center; gap:20px; margin-top: 20px;">Estado: 
 		              						
 		              						         <% if(mispedidos[contador].getEstado().equals("E")) %> <img style="width: 30px;" src="./Img/icons/check-circle.svg" alt="Icon check"/>
-									                   	<% if(mispedidos[contador].getEstado().equals("P")) %> <img style="width: 30px;" src="./Img/icons/coffee.svg" alt="Icon in progress"/>
-									                   	<% if(mispedidos[contador].getEstado().equals("D")) %> <img style="width: 30px;" src="./Img/icons/x-circle.svg" alt="Icon denegado"/>
+									                 <% if(mispedidos[contador].getEstado().equals("P")) %> <img style="width: 30px;" src="./Img/icons/coffee.svg" alt="Icon in progress"/>
+									                 <% if(mispedidos[contador].getEstado().equals("D")) %> <img style="width: 30px;" src="./Img/icons/x-circle.svg" alt="Icon denegado"/>
 		              							
 		              						</h2>
 		              					</div>

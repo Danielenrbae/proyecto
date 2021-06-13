@@ -10,7 +10,7 @@ html {
 
 .pf-header {
 	width: 100%;
-	background-image: url("../../../Img/common/header.png");
+	background-image: url("./Img/common/header.png");
 	background-repeat: repeat;
 	background-size: cover;
 	background-position: top;
@@ -4301,7 +4301,7 @@ html {
 
 .pf-modal-forgot .modal-dialog .modal-content .pf-modal-forgot__close {
 	content: "";
-	background-image: url("../../../Img/icons/icon-close-gray.svg");
+	background-image: url("./Img/icons/icon-close-gray.svg");
 	background-size: 100% 100%;
 	position: absolute;
 	top: 10px;
@@ -4441,7 +4441,7 @@ html {
 .pf-modal-verificacion .modal-dialog .modal-content .pf-modal-verificacion__close
 	{
 	content: "";
-	background-image: url("../../../Img/icons/icon-close-gray.svg");
+	background-image: url("./Img/icons/icon-close-gray.svg");
 	background-size: 100% 100%;
 	position: absolute;
 	top: 10px;
@@ -4521,7 +4521,7 @@ html {
 
 .pf-cabecera-contacto {
 	content: "";
-	background-image: url("../../../Img/common/cabecera.png");
+	background-image: url("./Img/common/cabecera.png");
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center;
@@ -4539,7 +4539,7 @@ html {
 	width: 100%;
 	height: 300px;
 	content: "";
-	background-image: url("../../../Img/common/cabecera.png");
+	background-image: url("./Img/common/cabecera.png");
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: bottom;
@@ -4641,7 +4641,7 @@ html {
 	{
 	content: "";
 	background-image:
-		url("../../../Img/icons/icon-arrow2-right-blue-svg.png");
+		url("./Img/icons/icon-arrow2-right-blue-svg.png");
 	background-size: 110% 110%;
 	background-position: center;
 	background-repeat: no-repeat;
@@ -4663,7 +4663,7 @@ html {
 	{
 	content: "";
 	background-image:
-		url("../../../Img/icons/icon-arrow2-left-blue-svg.png");
+		url("./Img/icons/icon-arrow2-left-blue-svg.png");
 	background-size: 110% 110%;
 	background-position: center;
 	background-repeat: no-repeat;
@@ -4706,7 +4706,7 @@ html {
 	width: 100%;
 	height: 300px;
 	content: "";
-	background-image: url("../../../Img/common/cabecera.png");
+	background-image: url("./Img/common/cabecera.png");
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: bottom;
@@ -4774,7 +4774,7 @@ html {
 .pf-mantenimiento .pf-mantenimiento__table .pf-table .pf-table__buttons .pf-buttons__trash
 	{
 	content: "";
-	background-image: url("../../../Img/icons/icon-trash.svg");
+	background-image: url("./Img/icons/icon-trash.svg");
 	background-position: center;
 	background-size: 100% 100%;
 	background-repeat: no-repeat;
@@ -4836,7 +4836,7 @@ html {
 	{
 	content: "";
 	background-image:
-		url("../../../Img/icons/icon-arrow2-right-blue-svg.png");
+		url("./Img/icons/icon-arrow2-right-blue-svg.png");
 	background-size: 110% 110%;
 	background-position: center;
 	background-repeat: no-repeat;
@@ -4858,7 +4858,7 @@ html {
 	{
 	content: "";
 	background-image:
-		url("../../../Img/icons/icon-arrow2-left-blue-svg.png");
+		url("./Img/icons/icon-arrow2-left-blue-svg.png");
 	background-size: 110% 110%;
 	background-position: center;
 	background-repeat: no-repeat;
@@ -4927,7 +4927,7 @@ html {
 .pf-modal-producto .modal-dialog .modal-content .pf-modal-producto__close
 	{
 	content: "";
-	background-image: url("../../../Img/icons/icon-close-gray.svg");
+	background-image: url("./Img/icons/icon-close-gray.svg");
 	background-size: 100% 100%;
 	position: absolute;
 	top: 10px;
@@ -5243,7 +5243,7 @@ html {
 
 .pf-modal-delete .modal-dialog .modal-content .pf-modal-delete__close {
 	content: "";
-	background-image: url("../../../Img/icons/icon-close-gray.svg");
+	background-image: url("./Img/icons/icon-close-gray.svg");
 	background-size: 100% 100%;
 	position: absolute;
 	top: 10px;
@@ -5623,11 +5623,7 @@ html {
 	text-align: center
 }
 
-@media screen and (max-width: 1024px) {
-	.pf-categorias {
-		
-	}
-}
+
 
 .pf-categorias .pf-categorias__list {
 	width: 100%;
@@ -5802,7 +5798,7 @@ html {
   -webkit-transform: translateX(-50%);
   -ms-transform: translateX(-50%);
   transform: translateX(-50%);
-  background: url("../../../Img/common/bg.jpg") no-repeat;
+  background: url("./Img/common/bg.jpg") no-repeat;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-size: cover;

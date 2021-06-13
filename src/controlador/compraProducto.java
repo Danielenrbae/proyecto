@@ -112,7 +112,7 @@ public class compraProducto extends HttpServlet {
 								
 								int cantidad_nueva = cantidad_old + cantidad;
 								if (carpro.update("cantidad" , cantidad_nueva , "id_producto" , id_producto , "id_carrito" , carrito.getId_carrito())) {
-									out.print("{ \"ok\" : 1 , \"url\": \"explorar\"}");
+									out.print("{ \"ok\" : 1 , \"url\": \"/a20-denrbae_proyecto_final/explorar\"}");
 								}else {
 									out.print("{ \"error\" : \"Algo ha salido mal. Inténtelo de nuevo\"}");
 								}
@@ -124,7 +124,7 @@ public class compraProducto extends HttpServlet {
 								carpro.setCantidad(cantidad);
 								
 								if (!carpro.insertar()) {
-									out.print("{ \"ok\" : 1 , \"url\": \"explorar\"}");
+									out.print("{ \"ok\" : 1 , \"url\": \"/a20-denrbae_proyecto_final/explorar\"}");
 
 								} else {
 

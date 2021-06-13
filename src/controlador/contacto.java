@@ -79,9 +79,7 @@ public class contacto extends HttpServlet {
 		
 		session = request.getSession();
 		envio = new EnvioCorreo();
-		FROM = "danieloffi00@gmail.com";
-		CLAVE= "15enri12";
-		TO = "danieloffi00@gmail.com";
+		TO = "danielenrbae@gmail.com";
 		
 		
 		asunto = request.getParameter("asunto");
@@ -95,8 +93,21 @@ public class contacto extends HttpServlet {
 				+ "Cuerpo del mensaje: "+cuerpo+"\n";
 		
 		if (acepto.equals("on")) {
-			envio.enviar(FROM, CLAVE, TO, asunto, mensaje);
-			response.sendRedirect("contacto?correcto=true");
+			
+			//envio.correoContacto("brian94mj@gmail.com", "brian94mj@gmail.com", asunto, mensaje);
+			
+			if((envio.enviar( TO, asunto, mensaje))) {
+				session.setAttribute("messageErrorContacto", "Mensaje enviado correctamente");
+
+				response.sendRedirect("contacto?correcto=true");
+				
+
+			}else {
+
+				session.setAttribute("messageErrorContacto", "Error al enviar el mensaje - Inténtelo de nuevo");
+				response.sendRedirect("contacto?correcto=true");
+
+			}
 
 		}else  {
 			response.sendRedirect("contacto");

@@ -147,7 +147,7 @@ $(document).ready(function () {
             if (json.ok == 1) {
               alert("Registro completo");
 
-              document.location.href = "/inicio";
+              document.location.href = "/a20-denrbae_proyecto_final/inicio";
             } else {
               alert("No se ha podido completar la acción - Intentelo de nuevo");
             }
@@ -327,7 +327,7 @@ $(document).ready(function () {
           let json = JSON.parse(data);
 
           if (json.ok == 1) {
-            document.location.href = "/mantenimiento?delete=true";
+            document.location.href = "/a20-denrbae_proyecto_final/mantenimiento?delete=true";
 
             $.get(
               "bajarFoto",
@@ -358,7 +358,7 @@ $(document).ready(function () {
 
         if (json.ok == 1) {
           alert("Eliminador correctamente");
-          document.location.href = "mantenimiento";
+          document.location.href = "/a20-denrbae_proyecto_final/mantenimiento";
         }
       }
     });

@@ -50,10 +50,14 @@
 	Comprador comprador;
 	boolean iniciado = false;
 	boolean correcto;
-	
+	String messageErrorContacto;
+	messageErrorContacto= "";
 	correcto = false;
 	
 	if(session.getAttribute("contacto_correcto") != null){
+		
+		messageErrorContacto= (String) session.getAttribute("messageErrorContacto");
+		
 		correcto= true;
 	}
 	
@@ -241,7 +245,13 @@
         <input class="pf-form-contac__submit" type="submit" value="Contactar">
         
     </div>
-     <% if (correcto) %> <h2 style="margin-top:20px;"> Mensaje enviado con éxito.</h2>
+     <% 
+     if (correcto) {
+    	 %>
+    	  <h2 style="margin-top:20px;"> <%= messageErrorContacto %></h2>
+    	  <%
+    	}
+    %>
     
   </form>
 
