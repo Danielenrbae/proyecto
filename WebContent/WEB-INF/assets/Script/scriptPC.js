@@ -109,7 +109,7 @@ $(document).ready(function () {
   function comprobarCantidad(num) {
     let result;
     result = false;
-    if (num > 0 && num < 99) result = true;
+    if (num > 0 && num <= 99) result = true;
     return result;
   }
 

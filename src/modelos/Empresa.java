@@ -156,7 +156,8 @@ public class Empresa {
 			ps.setString(3, password);
 			ps.setString(4, verificado);
 			
-			if (ps.execute()) {
+			if (!ps.execute()) {
+				
 				resultado = true;
 			}
 			
@@ -164,6 +165,7 @@ public class Empresa {
 			con.cerrarConexion();
 
 		} catch (SQLException e) {
+			resultado = false;
 			e.printStackTrace();
 		}
 

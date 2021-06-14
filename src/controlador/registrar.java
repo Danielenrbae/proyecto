@@ -101,13 +101,16 @@ public class registrar extends HttpServlet {
 					pass_cifrada = Cifrado.cifrado(password);
 					compr = new Comprador(email,nombre,0,pass_cifrada,null, null,null,null,"F");
 					
-					if (!compr.insertar()) {
+					if (compr.insertar()) {
 						carrito = new Carrito();
 						carrito.setId_comprador(compr.getEmail());
 						
 						if (!carrito.insertar()) {
 							out.print("{ \"ok\" : 1}");
 						}																	
+					}else {
+						out.print("{ \"error\" : \"Datos no válidos\" }");
+
 					}
 				}
 
@@ -115,7 +118,6 @@ public class registrar extends HttpServlet {
 				
 
 				if (empresa.leer("email", email)) {
-					empresa.leersiguiente();
 					out.print("{ \"error\" : \"El correo electrónico ya esta en uso\" }");
 				} else {
 					Empresa empr;
@@ -125,7 +127,12 @@ public class registrar extends HttpServlet {
 					
 					empr = new Empresa(nombre, 0, pass_cifrada, null, null, null, null, "F", email);
 
-					if (!empr.insertar()) out.print("{ \"ok\" : 1 }");
+					if (empr.insertar()) {
+						System.out.println("entro");
+						out.print("{ \"ok\" : 1 }");
+					}else {
+						out.print("{ \"error\" : \"Datos no válidos\" }");
+					}
 						
 			
 				}

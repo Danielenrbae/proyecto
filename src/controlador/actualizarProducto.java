@@ -49,14 +49,16 @@ public class actualizarProducto extends HttpServlet {
 			id_producto = Integer.parseInt(request.getParameter("id"));
 		}
 
+		//comprobar tipo usuario
 		if (session.getAttribute("tipo_usuario") != null) {
 			tipo = (String) session.getAttribute("tipo_usuario");
 
 			if (tipo.equals("Empresa")) {
 				empresa = (Empresa) session.getAttribute("usuario");
 
+				//leer si existe el producto
 				if (producto.leer("id_producto", String.valueOf(id_producto), true, false, false, 0)) {
-
+					//comprobar si es la misma empresa
 					if (producto.getId_empresa() == empresa.getID_empresa()) {
 					
 						if (categoria.leer("id_categoria", String.valueOf(producto.getId_categoria()), true)) {

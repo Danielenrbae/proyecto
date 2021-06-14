@@ -56,7 +56,7 @@ public class carrito extends HttpServlet {
 
 		if (session.getAttribute("usuario") != null) {
 			usuario = (Comprador) session.getAttribute("usuario");
-
+			//leo el carrito del usuario y sus productos
 			if (carrito.leer("id_comprador", usuario.getEmail(), true)) {
 				carpro = new Carpro();
 

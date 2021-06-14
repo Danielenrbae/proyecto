@@ -92,6 +92,8 @@ public class contacto extends HttpServlet {
 				+ "Asunto del mensaje: "+asunto+"\n"
 				+ "Cuerpo del mensaje: "+cuerpo+"\n";
 		
+		System.out.println(mensaje);
+		
 		if (acepto.equals("on")) {
 			
 			//envio.correoContacto("brian94mj@gmail.com", "brian94mj@gmail.com", asunto, mensaje);

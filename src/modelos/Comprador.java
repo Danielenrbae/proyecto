@@ -151,7 +151,7 @@ public class Comprador {
 			ps.setString(3, password);
 			ps.setString(4, verificado);
 			
-			if (ps.execute()) {
+			if (!ps.execute()) {
 				resultado = true;
 			}
 			

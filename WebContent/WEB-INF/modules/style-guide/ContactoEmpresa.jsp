@@ -48,6 +48,19 @@
 
 <%
 	boolean correcto;
+	
+	String messageErrorContacto;
+	messageErrorContacto= "";
+	correcto = false;
+	
+	if(session.getAttribute("contacto_correcto") != null){
+		
+		if(session.getAttribute("messageErrorContacto") != null){
+			messageErrorContacto= (String) session.getAttribute("messageErrorContacto");
+			correcto= true;
+
+		}
+	}
 
 	correcto = false;
 	
@@ -164,8 +177,35 @@
         </div>
     </div>
     <div class="form-row">
+     <script type="text/javascript">
+	    contenido_textarea = ""
+	    	num_caracteres_permitidos = 500;
+	
+	    	function valida_longitud(){
+// 	    	   num_caracteres = document.forms[0].texto.value.length
+				num_caracteres = document.getElementById("textareaid").value.length;
+	    	   console.log(num_caracteres);
+	    	   if (num_caracteres > num_caracteres_permitidos) {
+	    		   document.getElementById("textareaid").value = contenido_textarea
+	    	   }else{
+	    	      contenido_textarea = document.getElementById("textareaid").value
+	    	   }
+	
+	    	   if (num_caracteres >= num_caracteres_permitidos){
+	    		   document.getElementById("textareaid").style.color="#ff0000";
+	    		   console.log("no permitido");
+	    	   }else{
+	    		   document.getElementById("textareaid").style.color="#000000";
+	    		   console.log("permitido");
+	    	   }
+	    	   cuenta()
+	    	}
+	
+	    	function cuenta(){
+	    	}
+    </script>
         <div class="form-group col ">
-            <textarea class="form-control" name="cuerpo" placeholder="Cuéntanos" required></textarea>
+            <textarea id="textareaid" class="form-control" name="mensaje" placeholder="Cuéntanos" required onKeyDown="valida_longitud()" onKeyUp="valida_longitud()"></textarea>
             <span>Máximo 500 caracteres</span>
         </div>
     </div>
@@ -185,7 +225,13 @@
         <input class="pf-form-contac__submit" type="submit" value="Contactar">
     </div>
     
-      <% if (correcto) %> <h2 style="margin-top:20px;"> Mensaje enviado con éxito.</h2>
+      <% 
+     if (correcto) {
+    	 %>
+    	  <h2 style="margin-top:20px;"> <%= messageErrorContacto %></h2>
+    	  <%
+    	}
+    %>
     
   </form>
 
