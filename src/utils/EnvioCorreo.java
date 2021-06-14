@@ -15,7 +15,7 @@ import com.sun.mail.util.MailSSLSocketFactory;
 
 public class EnvioCorreo {
 	String from = "danielenrbae@gmail.com";
-	String clave = "15Enri12"; //Es una contraseña de aplicación
+	String clave = "mgheovqnmyvwiiko"; //Es una contraseña de aplicación
 	String to = "";
 	String asunto="";
 	String mensaje="";
